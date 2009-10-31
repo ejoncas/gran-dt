@@ -26,9 +26,9 @@ public class SistemaGranDT {
 
 	private SistemaGranDT(){
 		//Private Constructor -  SINGLETON
-		this.usuarios=new Vector();
-		this.jugadores=new Vector();
-		this.torneos=new Vector();
+		this.usuarios=new Vector<Usuario>();
+		this.jugadores=new Vector<Jugador>();
+		this.torneos=new Vector<Torneo>();
 	}
 
 	public SistemaGranDT getInstance(){
