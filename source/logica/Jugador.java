@@ -1,4 +1,6 @@
 package logica;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -45,6 +47,37 @@ public class Jugador {
 		"\nFecha Nacimiento: "+this.fechaNac.toString()+
 		"\nPuntaje: "+this.puntaje+
 		"\nPrecio: "+this.precio+"\n";
+	}
+
+	//Getters and Setters
+	public String getNombre() {
+		return nombre;
+	}
+
+	public String getEquipo() {
+		return equipo;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public Date getFechaNac() {
+		return fechaNac;
+	}
+
+	public String getFechaNacSQLString(){
+		Format formatter = new SimpleDateFormat("yyyyMMdd");
+		System.out.println(formatter.format(this.fechaNac));
+		return formatter.format(this.fechaNac);
+	}
+
+	public int getPuntaje() {
+		return puntaje;
+	}
+
+	public float getPrecio() {
+		return precio;
 	}
 
 }
