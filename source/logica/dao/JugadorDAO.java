@@ -12,11 +12,11 @@ import logica.Jugador;
 public class JugadorDAO {
 	private final String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 
-	//change the following lines acording to your MSSQLServer
-	private final String user = "jonatan";
-	private final String password = "manager";
-	private final String defaultdb = "grandt";
-	private final String ip = "192.168.2.102";
+	//edit Config class according to your MSSQLServer
+	private final String user = ConfigDB.USER;
+	private final String password = ConfigDB.PASS;
+	private final String defaultdb = ConfigDB.DEFAULT_DB;
+	private final String ip = ConfigDB.IP;
 
 	private final String urldb = "jdbc:sqlserver://"+this.ip+":1433;DatabaseName="+this.defaultdb;
 
