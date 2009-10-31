@@ -23,9 +23,12 @@ public class Main {
 
 		Vector<Jugador> jugadoresVolantes = jdao.getJugadoresPorPosicion("VOL");
 
-		for(Jugador jug : jugadoresVolantes){
-			System.out.println(jug.toString());
-		}
+		jdao.insertJugador(j);
+
+
+		//for(Jugador jug : jugadoresVolantes){
+		//		System.out.println(jug.toString());
+		//}
 
 		System.out.println(loaded.toString());
 

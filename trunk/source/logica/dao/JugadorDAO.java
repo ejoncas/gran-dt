@@ -2,6 +2,7 @@ package logica.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,9 +11,10 @@ import java.util.Vector;
 import logica.Jugador;
 
 public class JugadorDAO {
-	private final String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+
 
 	//edit Config class according to your MSSQLServer
+	private final String driver = ConfigDB.DRIVER;
 	private final String user = ConfigDB.USER;
 	private final String password = ConfigDB.PASS;
 	private final String defaultdb = ConfigDB.DEFAULT_DB;
@@ -101,6 +103,45 @@ public class JugadorDAO {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+
+	public void insertJugador(Jugador j){
+
+		try{
+			//import jdbc
+			Class.forName(this.driver);
+			//connect to db
+			Connection connection = DriverManager.getConnection(urldb,this.user,this.password);
+
+			String query = "insert into Jugador(nombre, apellido, equipo, nacimiento, puntaje, precio, posicion) values(?,?,?,?,?,?,?)";
+			//create statment
+			PreparedStatement stmt = connection.prepareStatement(query);
+
+			//we prepare the statement
+			stmt.setString(1, j.getNombre());
+			stmt.setString(2, j.getApellido());
+			stmt.setString(3, j.getEquipo());
+			stmt.setString(4, j.getFechaNacSQLString());
+			stmt.setInt(5, j.getPuntaje());
+			stmt.setFloat(6, j.getPrecio());
+			stmt.setString(7, "VOL");
+
+			stmt.execute();
+
+			//we close all the connections
+			connection.close();
+			stmt.close();
+
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
 	}
 
 }
