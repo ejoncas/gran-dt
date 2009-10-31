@@ -34,7 +34,7 @@ public class Jugador {
 		/** Today's date */
 		Date now = new Date();
 		/**Datediff in java? get lost**/
-		return now.compareTo(this.fechaNac) > 0 ? ((now.getTime() - this.fechaNac.getTime()) / (1000 * 60 * 60 * 24))/365 : null;
+		return now.compareTo(this.fechaNac) > 0 ? ((now.getTime() - this.fechaNac.getTime()) / (1000 * 60 * 60 * 24))/365 : 0;
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class Jugador {
 		"\nEquipo: "+this.equipo+
 		"\nFecha Nacimiento: "+this.fechaNac.toString()+
 		"\nPuntaje: "+this.puntaje+
-		"\nPrecio: "+this.precio;
+		"\nPrecio: "+this.precio+"\n";
 	}
 
 }
