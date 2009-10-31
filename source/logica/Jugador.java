@@ -20,7 +20,7 @@ public class Jugador {
 		this.puntaje=0;		
 	}
 
-	public Jugador(String n, String a, String e, Date f, float p){
+	public Jugador(String n, String a, String e, Date f,int pj, float p){
 		this.nombre=n;
 		this.equipo=e;
 		this.apellido=a;
