@@ -2,8 +2,6 @@
 package Main;
 
 
-import java.util.Vector;
-
 import logica.Jugador;
 import logica.dao.JugadorDAO;
 
@@ -19,11 +17,11 @@ public class Main {
 		System.out.println(j.getEdad());
 
 		JugadorDAO jdao = new JugadorDAO();
-		Jugador loaded = jdao.getJugadorPorId(1704);
+		Jugador loaded = jdao.getJugadorPorId(370);
 
-		Vector<Jugador> jugadoresVolantes = jdao.getJugadoresPorPosicion("VOL");
+		//Vector<Jugador> jugadoresVolantes = jdao.getJugadoresPorPosicion("VOL");
 
-		jdao.insertJugador(j);
+		//jdao.insertJugador(j);
 
 
 		//for(Jugador jug : jugadoresVolantes){

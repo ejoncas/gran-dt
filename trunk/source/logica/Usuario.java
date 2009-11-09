@@ -27,7 +27,7 @@ public class Usuario {
 	private Equipo equipo;
 	private float montoDisponible;
 	private float montoGastado;
-	private Vector<Torneo> _torneos;
+	private Vector<Torneo> torneos;
 
 
 	public void update() {

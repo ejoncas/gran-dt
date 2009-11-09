@@ -1,7 +1,6 @@
 package logica.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,21 +12,20 @@ import logica.Jugador;
 public class JugadorDAO {
 
 
-	//edit Config class according to your MSSQLServer
-	private final String driver = ConfigDB.DRIVER;
-	private final String user = ConfigDB.USER;
-	private final String password = ConfigDB.PASS;
-	private final String defaultdb = ConfigDB.DEFAULT_DB;
-	private final String ip = ConfigDB.IP;
 
-	private final String urldb = "jdbc:sqlserver://"+this.ip+":1433;DatabaseName="+this.defaultdb;
+	//	private final String driver = ConfigDB.DRIVER;
+	//	private final String user = ConfigDB.USER;
+	//	private final String password = ConfigDB.PASS;
+	//	private final String defaultdb = ConfigDB.DEFAULT_DB;
+	//	private final String ip = ConfigDB.IP;
+	//	private final String urldb = "jdbc:sqlserver://"+this.ip+":1433;DatabaseName="+this.defaultdb;
+
+	private final DAOConnectionManager DAOCM = DAOConnectionManager.getDAOConectionManager();
 
 	public Jugador getJugadorPorId(int id){
 		try{
-			//import jdbc
-			Class.forName(this.driver);
 			//connect to db
-			Connection connection = DriverManager.getConnection(urldb,this.user,this.password);
+			Connection connection = DAOCM.getConnection();
 			//create statment
 			Statement stmt = connection.createStatement();
 
@@ -65,10 +63,8 @@ public class JugadorDAO {
 
 	public Vector<Jugador> getJugadoresPorPosicion(String posicion){
 		try{
-			//import jdbc
-			Class.forName(this.driver);
 			//connect to db
-			Connection connection = DriverManager.getConnection(urldb,this.user,this.password);
+			Connection connection = DAOCM.getConnection();
 			//create statment
 			Statement stmt = connection.createStatement();
 
@@ -109,10 +105,8 @@ public class JugadorDAO {
 	public void insertJugador(Jugador j){
 
 		try{
-			//import jdbc
-			Class.forName(this.driver);
 			//connect to db
-			Connection connection = DriverManager.getConnection(urldb,this.user,this.password);
+			Connection connection = DAOCM.getConnection();
 
 			String query = "insert into Jugador(nombre, apellido, equipo, nacimiento, puntaje, precio, posicion) values(?,?,?,?,?,?,?)";
 			//create statment
