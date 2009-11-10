@@ -17,7 +17,7 @@ public class Main {
 		System.out.println(j.getEdad());
 
 		JugadorDAO jdao = new JugadorDAO();
-		Jugador loaded = jdao.getJugadorPorId(370);
+		Jugador loaded = jdao.getJugadorPorId(1704);
 
 		//Vector<Jugador> jugadoresVolantes = jdao.getJugadoresPorPosicion("VOL");
 
