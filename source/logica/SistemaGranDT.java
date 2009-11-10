@@ -1,4 +1,5 @@
 package logica;
+import java.util.Date;
 import java.util.Vector;
 
 /**
@@ -36,44 +37,51 @@ public class SistemaGranDT {
 		return grandt==null ? new SistemaGranDT() : grandt;		
 	}
 
-
-	public void ingresoNuevoUsuario(Object aString_n, Object aString_a, Object aString_td, Object aInt_nd, Object aDate_fn, Object aString_s, Object aString_h) {
-		throw new UnsupportedOperationException();
+	// getters
+	public Vector getUsuarios() {
+		return usuarios;
 	}
 
-	public void armarEquipo() {
-		throw new UnsupportedOperationException();
+	public Vector getJugadores() {
+		return jugadores;
 	}
 
-	public void static_getInstance() {
-		throw new UnsupportedOperationException();
+	public Vector getTorneos() {
+		return torneos;
 	}
-
-	public boolean validarDni(Object aInt_dni) {
-		throw new UnsupportedOperationException();
+	
+	
+	
+	/********** validaciones *************/
+	// valida el DNI: si ya existe un usuario con el dni devuelve true, si no false.
+	public boolean validarDNI (String tipo, int nro){
+		Vector usuarios = this.getUsuarios();
+		String t;
+		int n;
+		for(int i=0; i<usuarios.size();i++){
+			Usuario u = (Usuario) usuarios.elementAt(i);
+			n = u.getNroDoc();
+			t = u.getTipoDoc();
+			if (tipo.equals(t) && nro == n)
+				return true;
+		}			
+		return false;		
 	}
-
-	public void ingresoDatosEquipoUsuario(Object aInt_nro, Object aString_ne, Object aString_nu, Object aString_pass, Object aString_cpass, Object aString_captcha) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void verificarDatosObligatorios() {
-		throw new UnsupportedOperationException();
-	}
-
-	public void verificarDatosContacto() {
-		throw new UnsupportedOperationException();
-	}
-
-	public void verificarDatosEquipoUsuario() {
-		throw new UnsupportedOperationException();
-	}
-
-	public void ingresoDatosContacto(Object aString_p, Object aString_pa, Object aString_l, Object aString_c, Object aString_n, Object aString_cp, Object aString_cel, Object aString_op, Object aString_email) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void crearUsuario() {
-		throw new UnsupportedOperationException();
+	
+	// crea un usuario y lo agrega al vector de usuarios
+	public void crearUsuario(String nombre, String apellido, String tipoDoc, int nroDoc,
+			Date fechaNac, String sexo, String hincha, String provincia,
+			String partido, String localidad, String calle, int numero,
+			int piso, String dpto, String cp, int tel, int cel,
+			String proveedorCel, String email, String password){
+		
+		Usuario u = new Usuario(nombre,  apellido,  tipoDoc,  nroDoc,
+			 fechaNac,  sexo,  hincha, provincia,
+			 partido,  localidad,  calle, numero,
+			 piso,  dpto,  cp,  tel,  cel,
+			 proveedorCel,  email,  password);
+		
+		this.usuarios.addElement(u);
+		
 	}
 }
