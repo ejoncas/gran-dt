@@ -56,6 +56,7 @@ public class AltaUsuario3 extends javax.swing.JFrame {
 				lblContrasenia = new JLabel();
 				lblContrasenia.setText("Contraseña");
 			}
+
 			{
 				txtPassword = new JPasswordField();
 			}
