@@ -68,7 +68,7 @@ public class SistemaGranDT {
 	}
 
 	// crea un usuario y lo agrega al vector de usuarios
-	public void crearUsuario(String nombre, String apellido, String tipoDoc, int nroDoc,
+	/*public void crearUsuario(String nombre, String apellido, String tipoDoc, int nroDoc,
 			Date fechaNac, String sexo, String hincha, String provincia,
 			String partido, String localidad, String calle, int numero,
 			int piso, String dpto, String cp, int tel, int cel,
@@ -82,5 +82,5 @@ public class SistemaGranDT {
 
 		this.usuarios.addElement(u);
 
-	}
+	}*/
 }
