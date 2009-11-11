@@ -22,7 +22,7 @@ import javax.swing.SwingUtilities;
 * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
-public class CargaMasivaEquiposFrame extends javax.swing.JFrame {
+public class CargaMasivaJugadoresFrame extends javax.swing.JFrame {
 	private JLabel lblSeleccione;
 	private JTextField txtPath;
 	private JButton btnCargar;
@@ -34,14 +34,14 @@ public class CargaMasivaEquiposFrame extends javax.swing.JFrame {
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				CargaMasivaEquiposFrame inst = new CargaMasivaEquiposFrame();
+				CargaMasivaJugadoresFrame inst = new CargaMasivaJugadoresFrame();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
 		});
 	}
 	
-	public CargaMasivaEquiposFrame() {
+	public CargaMasivaJugadoresFrame() {
 		super();
 		initGUI();
 	}
@@ -53,7 +53,7 @@ public class CargaMasivaEquiposFrame extends javax.swing.JFrame {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			{
 				lblSeleccione = new JLabel();
-				lblSeleccione.setText("Seleccione el archivo de Equipos (*.csv)");
+				lblSeleccione.setText("Seleccione el archivo de jugadores (*.csv)");
 			}
 			{
 				txtPath = new JTextField();
@@ -67,29 +67,29 @@ public class CargaMasivaEquiposFrame extends javax.swing.JFrame {
 				btnCargar.setText("Cargar");
 			}
 			thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
-				.addContainerGap()
+				.addContainerGap(19, 19)
 				.addComponent(lblSeleccione, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 				.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 				.addComponent(txtPath, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 				.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 				    .addComponent(btnExaminar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 				    .addComponent(btnCargar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
 				.addContainerGap());
 			thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
-				.addContainerGap(22, 22)
+				.addContainerGap()
 				.addGroup(thisLayout.createParallelGroup()
-				    .addComponent(txtPath, GroupLayout.Alignment.LEADING, 0, 366, Short.MAX_VALUE)
+				    .addComponent(txtPath, GroupLayout.Alignment.LEADING, 0, 376, Short.MAX_VALUE)
 				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
 				        .addGroup(thisLayout.createParallelGroup()
 				            .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				                .addGap(0, 226, Short.MAX_VALUE)
+				                .addGap(0, 223, Short.MAX_VALUE)
 				                .addComponent(btnCargar, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE))
 				            .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				                .addComponent(lblSeleccione, GroupLayout.PREFERRED_SIZE, 243, GroupLayout.PREFERRED_SIZE)
-				                .addGap(45)))
-				        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, GroupLayout.PREFERRED_SIZE)
-				        .addComponent(btnExaminar, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)))
+				                .addComponent(lblSeleccione, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
+				                .addGap(38)))
+				        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED, 1, GroupLayout.PREFERRED_SIZE)
+				        .addComponent(btnExaminar, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)))
 				.addContainerGap());
 			pack();
 		} catch (Exception e) {
