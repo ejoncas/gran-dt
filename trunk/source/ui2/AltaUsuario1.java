@@ -1,4 +1,6 @@
 package ui2;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.swing.ComboBoxModel;
@@ -7,12 +9,15 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
+
+import controlador.AltaUsuarioControlador;
 
 
 /**
@@ -42,12 +47,14 @@ public class AltaUsuario1 extends javax.swing.JFrame {
 	private JTextField txtApellido;
 	private JButton btnAceptar;
 	private JButton btnCancelar;
-	private JTextField jTextField1;
+	private JTextField txtHincha;
 	private JLabel lblHincha;
 	private JComboBox cmbAnios;
 	private JComboBox cmbMeses;
 	private JComboBox cmbDias;
 	private JLabel Apellido;
+	private final AltaUsuarioControlador auc;
+
 
 	/**
 	 * Auto-generated main method to display this JFrame
@@ -55,15 +62,16 @@ public class AltaUsuario1 extends javax.swing.JFrame {
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				AltaUsuario1 inst = new AltaUsuario1();
+				AltaUsuario1 inst = new AltaUsuario1(new AltaUsuarioControlador());
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
 		});
 	}
 
-	public AltaUsuario1() {
+	public AltaUsuario1(AltaUsuarioControlador a) {
 		super();
+		this.auc=a;
 		initGUI();
 	}
 
@@ -147,12 +155,17 @@ public class AltaUsuario1 extends javax.swing.JFrame {
 				lblHincha.setText("Hincha de");
 			}
 			{
-				jTextField1 = new JTextField();
-				jTextField1.setText("Equipo");
+				txtHincha = new JTextField();
+				txtHincha.setText("Equipo");
 			}
 			{
 				btnAceptar = new JButton();
 				btnAceptar.setText("Aceptar");
+				btnAceptar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						btnAceptarActionPerformed(evt);
+					}
+				});
 			}
 			{
 				btnCancelar = new JButton();
@@ -186,7 +199,7 @@ public class AltaUsuario1 extends javax.swing.JFrame {
 															.addComponent(cmbAnios, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
 															.addGap(16)
 															.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-																	.addComponent(jTextField1, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+																	.addComponent(txtHincha, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 																	.addComponent(lblHincha, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
 																	.addGap(32)
 																	.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -215,7 +228,7 @@ public class AltaUsuario1 extends javax.swing.JFrame {
 																	.addGap(7)
 																	.addGroup(thisLayout.createParallelGroup()
 																			.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-																					.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE)
+																					.addComponent(txtHincha, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE)
 																					.addGap(0, 6, Short.MAX_VALUE))
 																					.addGroup(thisLayout.createSequentialGroup()
 																							.addGroup(thisLayout.createParallelGroup()
@@ -257,6 +270,23 @@ public class AltaUsuario1 extends javax.swing.JFrame {
 			pack();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	private void btnAceptarActionPerformed(ActionEvent evt) {
+		System.out.println("btnAceptar.actionPerformed, event="+evt);
+		//TODO add your code for btnAceptar.actionPerformed
+		// TODO implementar regla de ventana que no permita que los dos esten seleccionados y que uno de los dos siempre este seleccionado
+		String r = auc.siguienteAltaUsuario1(txtNombre.getText(), txtApellido.getText(),
+				radioFemenino.isSelected() ? "F" : "M", cmbTipoDoc.getSelectedItem().toString(), 
+						Integer.parseInt(txtNroDoc.getText()), cmbDias.getSelectedIndex()+1, cmbMeses.getSelectedIndex()+1, 
+						Integer.parseInt(cmbAnios.getSelectedItem().toString()), txtHincha.getText());
+		//we show an error message if it exists or we close this windows and create de following frame
+		if(r!=null)
+			JOptionPane.showMessageDialog(null, r);
+		else{
+			new AltaUsuario2(this.auc).setVisible(true);
+			this.dispose();
 		}
 	}
 

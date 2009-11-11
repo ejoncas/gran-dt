@@ -4,18 +4,15 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Vector;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
-
 import logica.Equipo;
 import logica.SistemaGranDT;
 import logica.Torneo;
-import logica.Usuario;
 
 public class AltaUsuarioControlador {
-	
+
 	// referencia al sistema, logica de negocio
-	private SistemaGranDT logica;
-	
+	private final SistemaGranDT logica;
+
 	// para guardar los datos del usuario
 	private String nombre;
 	private String apellido;
@@ -44,88 +41,99 @@ public class AltaUsuarioControlador {
 	private Vector<Torneo> torneos;
 
 	// constructor del controlador
-	public AltaUsuarioControlador (SistemaGranDT sist){
-		this.logica = sist; // referencia al sistema
-		
+	public AltaUsuarioControlador (){
+		this.logica = SistemaGranDT.getInstance(); // referencia al sistema
 	}
-	
+
 	// validaciones de campos
-	
+
 	// si el campo esta vacio devuelve true, si tiene contenido false
 	public boolean isEmpty(String t){
-		return t.equals("");		
+		return t.equals("");
 	}
 	// devuelve true si es entero, false si no
 	public boolean isInteger(String i){
 		boolean es;
 		int n;
 		try {
-		    n = Integer.parseInt(i);
-		    es = true;
-		    } catch(NumberFormatException e) {
-		     es = false;
-		   }
-		
+			n = Integer.parseInt(i);
+			es = true;
+		} catch(NumberFormatException e) {
+			es = false;
+		}
 		return es;
-		
 	}
-	
+
 	////////// verificar q selecciono uno ?
 	public boolean sexoOK(String s){
 		return false;
 	}
-	
-    public boolean validarFecha( int d,  int m,  int y){
-        try{
-            GregorianCalendar gc = new GregorianCalendar();
-            gc.setLenient(false);
-            gc.set(GregorianCalendar.DATE, d);
-            gc.set(GregorianCalendar.MONTH, m-1);
-            gc.set(GregorianCalendar.YEAR, y);
 
-        }catch(Exception e){
-            return false;
-        }
-        return true;      
-    }
-	
+	public boolean validarFecha( int d,  int m,  int y){
+		System.out.println(d+ " " + m + " " + y);
+		try{
+			GregorianCalendar gc = new GregorianCalendar();
+			gc.setLenient(false);
+			gc.set(GregorianCalendar.DATE, d);
+			gc.set(GregorianCalendar.MONTH, m-1);
+			gc.set(GregorianCalendar.YEAR, y);
+
+			System.out.println(gc.getTime());//possible exception
+		}catch(Exception e){
+			System.out.println("Exception parsing date");
+			e.printStackTrace();
+			return false;
+		}
+		return true;      
+	}
+
 	// devuelve true si hay @, sino devuelve false
 	public boolean mailOK(String e){
 		return e.contains("@");
-		
-		
 	}
-	
 
-	
-	
-	
+
+
+
+
 	// validacion de pasos de alta usuario
-	
+
 	// ventana 1
-	
+
 	// devuelve true si todos los datos estan, si falta alguno devuelve false
-	public boolean validarAltaUsuario1(String n, String a, String s, String td, int nd, int dia, int mes, int anio, String h){
+	public String validarAltaUsuario1(String n, String a, String s, String td, int nd, int dia, int mes, int anio, String h){
 		// campos vacios
-		if (isEmpty(n))
-			return false;
-		if (isEmpty(a))
-			return false;
-		if (isEmpty(s))
-			return false;
-		if (isEmpty(td))
-			return false;
-		if (isEmpty(h))
-			return false;
+		if (isEmpty(n)){
+			System.out.println("Error en Nombre");
+			return "Error en Nombre";
+		}
+		if (isEmpty(a)){
+			System.out.println("Error en Apellido");
+			return "Error en Apellido";
+		}
+		if (isEmpty(s)){
+			System.out.println("Error en Sexo");
+			return "Error en Sexo";
+		}
+		if (isEmpty(td)){
+			System.out.println("Error en TipoDoc");
+			return "Error en TipoDoc";
+		}
+		if (isEmpty(h)){
+			System.out.println("Error en Equipo");
+			return "Error en Equipo";
+		}
 		// especificas
-		if (validarFecha(dia, mes, anio))
-			return false;		
-		return true;
-		
+		if (!validarFecha(dia, mes, anio)){
+			System.out.println("Error en Fecha");
+			return "Error en Fecha";
+		}		
+		return null;
 	}
-	
-	public void siguienteAltaUsuario1 (String n, String a, String s, String td, int nd, int dia, int mes, int anio, String h){
-		if (validarAltaUsuario1(n, a, s, td, nd, dia, mes, anio, h)){
+
+	public String siguienteAltaUsuario1 (String n, String a, String s, String td, int nd, int dia, int mes, int anio, String h){
+		String resultado = validarAltaUsuario1(n, a, s, td, nd, dia, mes, anio, h);
+		if (resultado == null){
 			this.nombre=n;
 			this.apellido=a;
 			this.sexo=s;
@@ -133,58 +141,58 @@ public class AltaUsuarioControlador {
 			this.nroDoc=nd;
 			this.fechaNac= new Date(anio, mes, dia);
 			this.hincha=h;
+			return null;
 		}
 		else{
 			// mensaje de error, faltan datos
+			return resultado;
 		}
-		
+
 	}
-	
+
 	// ventana 2
-	
-	public boolean validarAltaUsuario2(String part, String prov, String loc, String c, String num, String piso, String dpto, String cp,
+
+	public String validarAltaUsuario2(String part, String prov, String loc, String c, String num, String piso, String dpto, String cp,
 			String tel, String cel, String provCel, String email){
 		// campos llenos
 		if (isEmpty(part))
-			return false;
+			return "Error en partido";
 		if (isEmpty(prov))
-			return false;
+			return "Error en Provincia";
 		if (isEmpty(loc))
-			return false;
+			return "Error en Localidad";
 		if (isEmpty(c))
-			return false;
+			return "Error en Calle";
 		if (isEmpty(num))
-			return false;
+			return "Error en Numero";
 		//if (isEmpty(piso))
-			//return false;
+		//return false;
 		//if (isEmpty(dpto))
-			//return false;
+		//return false;
 		if (isEmpty(tel))
-			return false;
+			return "Error en Telefono";
 		if (isEmpty(cel))
-			return false;
+			return "Error en Celular";
 		if (isEmpty(provCel))
-			return false;
-		if (isEmpty(email))
-			return false;
+			return "Error en Proveedor de Celular";
 		// validaciones especificas
 		if (!isInteger(num))
-			return false;
+			return "Error en Numero (No es Numerico)";
 		if (!isEmpty(piso) && !isInteger(piso))
-			return false;
+			return "Error en Piso";
 		if (!isInteger(tel))
-			return false;
+			return "Error en Tel (debe ser numerico)";
 		if (!isInteger(cel))
-			return false;
+			return "Error en Cel (debe ser numerico)";
 		if (!mailOK(email))
-			return false;		
-		
-		return true;
+			return "Error en Email";		
+		return null;
 	}
-	
-	public void siguienteAltaUsuario2 (String part, String prov, String loc, String c, String num, String piso, String dpto, String cp,
+
+	public String siguienteAltaUsuario2 (String part, String prov, String loc, String c, String num, String piso, String dpto, String cp,
 			String tel, String cel, String provCel, String email){
-		if (validarAltaUsuario2(part, prov, loc, c, num, piso, dpto, cp, tel, cel, provCel, email)){
+		String r =validarAltaUsuario2(part, prov, loc, c, num, piso, dpto, cp, tel, cel, provCel, email);
+		if (r==null){
 			this.partido=part;
 			this.provincia=prov;
 			this.localidad=loc;
@@ -204,28 +212,31 @@ public class AltaUsuarioControlador {
 			this.proveedorCel=provCel;
 			this.email=email;
 		}
-		
+		else
+			return r;
+		return null;
+
 	}
-	
-	
+
+
 	// ventana 3
-	
+
 	public boolean validarAltaUsuario3(/*parametros de la ventana*/){
-		
+
 		// validaciones
-		
+
 		return true;
 	}
-	
-	
-	
-	
+
+
+
+
 	public void finalizarAltaUsuario3(/*parametros de la ventana*/){
-		
+
 		//obtener los datos (guardar en los atributos del controlador)
-		
-		
+
+
 	}
-	
+
 
 }

@@ -1,15 +1,19 @@
 package ui2;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
-import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
+import controlador.AltaUsuarioControlador;
 
 /**
  * This code was edited or generated using CloudGarden's Jigloo
@@ -50,23 +54,16 @@ public class AltaUsuario2 extends javax.swing.JFrame {
 	private JTextField txtPiso;
 	private JLabel lblNumero;
 	private JLabel lblCalle;
+	private final AltaUsuarioControlador auc;
 
 	/**
 	 * Auto-generated main method to display this JFrame
 	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				AltaUsuario2 inst = new AltaUsuario2();
-				inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
-			}
-		});
-	}
 
-	public AltaUsuario2() {
+	public AltaUsuario2(AltaUsuarioControlador auc) {
 		super();
 		initGUI();
+		this.auc=auc;
 	}
 
 	private void initGUI() {
@@ -126,6 +123,11 @@ public class AltaUsuario2 extends javax.swing.JFrame {
 			{
 				btnAceptar = new JButton();
 				btnAceptar.setText("Aceptar");
+				btnAceptar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						btnAceptarActionPerformed(evt);
+					}
+				});
 			}
 			{
 				btnCancelar = new JButton();
@@ -301,6 +303,21 @@ public class AltaUsuario2 extends javax.swing.JFrame {
 			pack();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	private void btnAceptarActionPerformed(ActionEvent evt) {
+		System.out.println("btnAceptar.actionPerformed, event="+evt);
+		//TODO add your code for btnAceptar.actionPerformed
+		String r = this.auc.siguienteAltaUsuario2(txtPartido.getText(), txtProvincia.getText(), txtLocalidad.getText()
+				, txtCalle.getText(), txtNumero.getText(), txtPiso.getText(), txtDpto.getText(), txtCP.getText(), txtTelefono.getText()
+				, txtCelular.getText(), cmbCompanias.getSelectedItem().toString(), txtEmail.getText());
+		if(r!=null){
+			JOptionPane.showMessageDialog(null, r);
+		}
+		else{
+			new AltaUsuario3(this.auc).setVisible(true);
+			this.dispose();
 		}
 	}
 
