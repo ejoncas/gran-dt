@@ -1,7 +1,10 @@
 package ui2;
+import java.awt.event.ActionEvent;
+
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
@@ -121,5 +124,19 @@ public class AltaUsuario3 extends javax.swing.JFrame {
 			e.printStackTrace();
 		}
 	}
+	
+	private void btnAceptarActionPerformed(ActionEvent evt) {
+		System.out.println("btnAceptar.actionPerformed, event="+evt);
+		//TODO add your code for btnAceptar.actionPerformed
+		String r = this.auc.finalizarAltaUsuario3(txtEquipo.getText(), txtPassword.getText(), txtPassword2.getText());
+		if(r!=null){
+			JOptionPane.showMessageDialog(null, r);
+		}
+		else{
+			new AltaUsuario3(this.auc).setVisible(true);
+			this.dispose();
+		}
+	}
+
 
 }
