@@ -22,12 +22,12 @@ public class Usuario {
 	private int cel;
 	private String proveedorCel;
 	private String email;
-	private String username;
 	private String password;
 	private Equipo equipo;
 	private float montoDisponible;
 	private float montoGastado;
 	private Vector<Torneo> torneos;
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -85,9 +85,6 @@ public class Usuario {
 	public String getEmail() {
 		return email;
 	}
-	public String getUsername() {
-		return username;
-	}
 	public String getPassword() {
 		return password;
 	}
@@ -105,7 +102,7 @@ public class Usuario {
 	}
 	
 	// constructor
-	public Usuario(String nombre, String apellido, String tipoDoc, int nroDoc,
+	/*public Usuario(String nombre, String apellido, String tipoDoc, int nroDoc,
 			Date fechaNac, String sexo, String hincha, String provincia,
 			String partido, String localidad, String calle, int numero,
 			int piso, String dpto, String cp, int tel, int cel,
@@ -131,6 +128,38 @@ public class Usuario {
 		this.proveedorCel = proveedorCel;
 		this.email = email;
 		this.password = password;
+	}*/
+	public Usuario(String nombre, String apellido, String tipoDoc, int nroDoc,
+			Date fechaNac, String sexo, String hincha, String provincia,
+			String partido, String localidad, String calle, int numero,
+			int piso, String dpto, String cp, int tel, int cel,
+			String proveedorCel, String email,
+			String password, Equipo equipo, float montoDisponible,
+			float montoGastado) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.tipoDoc = tipoDoc;
+		this.nroDoc = nroDoc;
+		this.fechaNac = fechaNac;
+		this.sexo = sexo;
+		this.hincha = hincha;
+		this.provincia = provincia;
+		this.partido = partido;
+		this.localidad = localidad;
+		this.calle = calle;
+		this.numero = numero;
+		this.piso = piso;
+		this.dpto = dpto;
+		this.cp = cp;
+		this.tel = tel;
+		this.cel = cel;
+		this.proveedorCel = proveedorCel;
+		this.email = email;
+		this.password = password;
+		this.equipo = equipo;
+		this.montoDisponible = montoDisponible;
+		this.montoGastado = montoGastado;
 	}
 
 	

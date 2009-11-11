@@ -7,6 +7,7 @@ import java.util.Vector;
 import logica.Equipo;
 import logica.SistemaGranDT;
 import logica.Torneo;
+import logica.Usuario;
 
 public class AltaUsuarioControlador {
 
@@ -35,10 +36,10 @@ public class AltaUsuarioControlador {
 	private String email;
 	private String username;
 	private String password;
-	private Equipo equipo;
-	private float montoDisponible;
-	private float montoGastado;
-	private Vector<Torneo> torneos;
+	private String equipo;
+	//private float montoDisponible;
+	//private float montoGastado;
+	//private Vector<Torneo> torneos;
 
 	// constructor del controlador
 	public AltaUsuarioControlador (){
@@ -100,7 +101,6 @@ public class AltaUsuarioControlador {
 
 	// ventana 1
 
-	// devuelve true si todos los datos estan, si falta alguno devuelve false
 	public String validarAltaUsuario1(String n, String a, String s, String td, int nd, int dia, int mes, int anio, String h){
 		// campos vacios
 		if (isEmpty(n)){
@@ -221,19 +221,34 @@ public class AltaUsuarioControlador {
 
 	// ventana 3
 
-	public boolean validarAltaUsuario3(/*parametros de la ventana*/){
-
-		// validaciones
-
-		return true;
+	public String validarAltaUsuario3(String nombequipo, String pass1, String pass2){		
+		if (isEmpty(nombequipo))
+			return "Error en nombre del equipo";
+		if (isEmpty(pass1) || isEmpty(pass2))
+			return "Error de contrase–a";
+		if (!pass1.equals(pass2))
+			return "Las contrase–as deben ser iguales";
+		return null;
 	}
 
 
 
 
-	public void finalizarAltaUsuario3(/*parametros de la ventana*/){
-
-		//obtener los datos (guardar en los atributos del controlador)
+	public String finalizarAltaUsuario3(String nombequipo, String pass1, String pass2){
+		String r = validarAltaUsuario3(nombequipo, pass1, pass2);
+		if (r==null){
+			this.equipo=nombequipo;
+			this.password=pass1;
+			Equipo e = new Equipo(this.equipo);
+			Usuario u = new Usuario(this.nombre, this.apellido, this.tipoDoc, this.nroDoc, this.fechaNac,this.sexo, 
+					this.hincha, this.provincia, this.partido, this.localidad, this.calle, this.numero, this.piso, 
+					this.dpto, this.cp, this.tel, this.cel, this.proveedorCel, this.email, this.password, e, 60000000, 0);
+			logica.getUsuarios().addElement(u);
+			}
+		else
+			return r;
+		
+		return null;
 
 
 	}

@@ -7,4 +7,10 @@ public class Equipo {
 	public String getNombre() {
 		return this.nombre;
 	}
+	
+
+	public Equipo(String nombre) {
+		super();
+		this.nombre = nombre;
+	}
 }
