@@ -6,4 +6,8 @@ public class Defensor extends Jugador {
 		super(n, a, e, year, month, day, p);
 		// TODO Auto-generated constructor stub
 	}
+
+	public Defensor(Jugador jd2) {
+		// TODO Auto-generated constructor stub
+	}
 }

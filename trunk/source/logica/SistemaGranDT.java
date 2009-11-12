@@ -26,6 +26,7 @@ public class SistemaGranDT {
 	private Vector<Torneo> torneos;
 	private JugadorDAO jdao;
 	private EquipoDAO edao;
+	private Usuario usuarioActual;
 	//otros daos
 	private static SistemaGranDT grandt=null;
 
@@ -37,6 +38,7 @@ public class SistemaGranDT {
 		this.torneos=new Vector<Torneo>();
 		this.edao = new EquipoDAO();
 		this.jdao = new JugadorDAO();
+		this.usuarioActual=null;
 	}
 
 	public static SistemaGranDT getInstance(){
@@ -72,6 +74,11 @@ public class SistemaGranDT {
 	public void setEdao(EquipoDAO edao) {
 		this.edao = edao;
 	}
+
+	public Usuario getUsuarioActual() {
+		return usuarioActual;
+	}
+
 
 	/********** validaciones *************/
 	// valida el DNI: si ya existe un usuario con el dni devuelve true, si no false.

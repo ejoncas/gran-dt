@@ -49,8 +49,10 @@ public class AltaUsuarioControlador {
 
 	// si el campo esta vacio devuelve true, si tiene contenido false
 	public boolean isEmpty(String t){
-		return t.equals("");
+		return t.isEmpty();
 	}
+	
+	
 	// devuelve true si es entero, false si no
 	public boolean isInteger(String i){
 		boolean es;
