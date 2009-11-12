@@ -2,11 +2,9 @@ package controlador;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Vector;
 
 import logica.Equipo;
 import logica.SistemaGranDT;
-import logica.Torneo;
 import logica.Usuario;
 
 public class AltaUsuarioControlador {
@@ -44,6 +42,7 @@ public class AltaUsuarioControlador {
 	// constructor del controlador
 	public AltaUsuarioControlador (){
 		this.logica = SistemaGranDT.getInstance(); // referencia al sistema
+		System.out.println(this.logica);
 	}
 
 	// validaciones de campos
@@ -127,7 +126,13 @@ public class AltaUsuarioControlador {
 		if (!validarFecha(dia, mes, anio)){
 			System.out.println("Error en Fecha");
 			return "Error en Fecha";
-		}		
+		}
+		//TODO Agregar a la validacion que ese DNI no exista
+		//TODO para esto falta el UsuarioDAO
+		//		if(dniUsuarioOk(td,nd)){
+		//			System.out.println("El Documento ingresado ya existe. Verificar");
+		//			return "El Documento ingresado ya existe. Verificar";
+		//		}
 		return null;
 	}
 
@@ -171,10 +176,10 @@ public class AltaUsuarioControlador {
 		//return false;
 		if (isEmpty(tel))
 			return "Error en Telefono";
-		if (isEmpty(cel))
-			return "Error en Celular";
-		if (isEmpty(provCel))
-			return "Error en Proveedor de Celular";
+		//		if (isEmpty(cel))
+		//			return "Error en Celular";
+		//		if (isEmpty(provCel))
+		//			return "Error en Proveedor de Celular";
 		// validaciones especificas
 		if (!isInteger(num))
 			return "Error en Numero (No es Numerico)";
@@ -182,7 +187,7 @@ public class AltaUsuarioControlador {
 			return "Error en Piso";
 		if (!isInteger(tel))
 			return "Error en Tel (debe ser numerico)";
-		if (!isInteger(cel))
+		if (!isEmpty(cel) && !isInteger(cel))
 			return "Error en Cel (debe ser numerico)";
 		if (!mailOK(email))
 			return "Error en Email";		
@@ -208,7 +213,11 @@ public class AltaUsuarioControlador {
 				this.dpto=dpto;
 			this.cp=cp;
 			this.tel=Integer.parseInt(tel);
-			this.cel=Integer.parseInt(cel);
+			try{
+				this.cel=Integer.parseInt(cel);
+			}catch(Exception e){
+				this.cel=0;
+			}
 			this.proveedorCel=provCel;
 			this.email=email;
 		}
@@ -221,36 +230,38 @@ public class AltaUsuarioControlador {
 
 	// ventana 3
 
-	public String validarAltaUsuario3(String nombequipo, String pass1, String pass2){		
+	public String validarAltaUsuario3(String nombequipo, String pass1, String pass2, String hasho, String hashe){
 		if (isEmpty(nombequipo))
 			return "Error en nombre del equipo";
 		if (isEmpty(pass1) || isEmpty(pass2))
-			return "Error de contrase–a";
+			return "Error de contraseï¿½a";
 		if (!pass1.equals(pass2))
-			return "Las contrase–as deben ser iguales";
+			return "Las contraseï¿½as deben ser iguales";
+		if(!hasho.equals(hashe))
+			return "El captcha no es correcto. Intente nuevamente";
+		if(this.logica.getEdao().getEquipoPorNombre(nombequipo)!=null)
+			return "El nombre de equipo ingresado ya existe. Intente cambiando el nombre";
 		return null;
 	}
 
 
 
 
-	public String finalizarAltaUsuario3(String nombequipo, String pass1, String pass2){
-		String r = validarAltaUsuario3(nombequipo, pass1, pass2);
+	public String finalizarAltaUsuario3(String nombequipo, String pass1, String pass2, String hasho, String hashe){
+		String r = validarAltaUsuario3(nombequipo, pass1, pass2, hasho, hashe);
 		if (r==null){
+			//si esta todo OK creamos el usuario
 			this.equipo=nombequipo;
 			this.password=pass1;
 			Equipo e = new Equipo(this.equipo);
-			Usuario u = new Usuario(this.nombre, this.apellido, this.tipoDoc, this.nroDoc, this.fechaNac,this.sexo, 
-					this.hincha, this.provincia, this.partido, this.localidad, this.calle, this.numero, this.piso, 
-					this.dpto, this.cp, this.tel, this.cel, this.proveedorCel, this.email, this.password, e, 60000000, 0);
+			Usuario u = new Usuario(this.nombre, this.apellido, this.tipoDoc, this.nroDoc, this.fechaNac,this.sexo,this.hincha, this.provincia, this.partido, this.localidad, this.calle, this.numero, this.piso,this.dpto, this.cp, this.tel, this.cel, this.proveedorCel, this.email, this.password, e, 60000000, 0);
 			logica.getUsuarios().addElement(u);
-			}
-		else
-			return r;
-		
-		return null;
-
-
+			//			System.out.println("LISTANDO TODOS LOS USUARIOS");
+			//			logica.listarUsuarios();
+			//			System.out.println("LISTANDO TODOS LOS EQUIPOS");
+			//			logica.listarEquipos();
+		}
+		return r;
 	}
 
 

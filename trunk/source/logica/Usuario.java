@@ -3,31 +3,31 @@ import java.util.Date;
 import java.util.Vector;
 
 public class Usuario {
-	private String nombre;
-	private String apellido;
-	private String tipoDoc;
-	private int nroDoc;
-	private Date fechaNac;
-	private String sexo;
-	private String hincha;
-	private String provincia;
-	private String partido;
-	private String localidad;
-	private String calle;
-	private int numero;
-	private int piso;
-	private String dpto;
-	private String cp;
-	private int tel;
-	private int cel;
-	private String proveedorCel;
-	private String email;
-	private String password;
-	private Equipo equipo;
-	private float montoDisponible;
-	private float montoGastado;
+	private final String nombre;
+	private final String apellido;
+	private final String tipoDoc;
+	private final int nroDoc;
+	private final Date fechaNac;
+	private final String sexo;
+	private final String hincha;
+	private final String provincia;
+	private final String partido;
+	private final String localidad;
+	private final String calle;
+	private final int numero;
+	private final int piso;
+	private final String dpto;
+	private final String cp;
+	private final int tel;
+	private final int cel;
+	private final String proveedorCel;
+	private final String email;
+	private final String password;
+	private final Equipo equipo;
+	private final float montoDisponible;
+	private final float montoGastado;
 	private Vector<Torneo> torneos;
-	
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -100,7 +100,15 @@ public class Usuario {
 	public Vector<Torneo> getTorneos() {
 		return torneos;
 	}
-	
+
+	@Override
+	public String toString(){
+		return "\nDocumento"+this.tipoDoc+":"+this.nroDoc+
+		"\nNombre:"+this.nombre + 
+		"\nApellido:"+this.apellido;
+	}
+
+
 	// constructor
 	/*public Usuario(String nombre, String apellido, String tipoDoc, int nroDoc,
 			Date fechaNac, String sexo, String hincha, String provincia,
@@ -162,6 +170,6 @@ public class Usuario {
 		this.montoGastado = montoGastado;
 	}
 
-	
 
-	}
+
+}

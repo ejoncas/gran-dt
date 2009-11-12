@@ -11,15 +11,6 @@ import logica.Jugador;
 
 public class JugadorDAO {
 
-
-
-	//	private final String driver = ConfigDB.DRIVER;
-	//	private final String user = ConfigDB.USER;
-	//	private final String password = ConfigDB.PASS;
-	//	private final String defaultdb = ConfigDB.DEFAULT_DB;
-	//	private final String ip = ConfigDB.IP;
-	//	private final String urldb = "jdbc:sqlserver://"+this.ip+":1433;DatabaseName="+this.defaultdb;
-
 	private final DAOConnectionManager DAOCM = DAOConnectionManager.getDAOConectionManager();
 
 	public Jugador getJugadorPorId(int id){

@@ -1,6 +1,8 @@
 package logica;
-import java.util.Date;
 import java.util.Vector;
+
+import logica.dao.EquipoDAO;
+import logica.dao.JugadorDAO;
 
 /**
  * @author jonatan
@@ -19,9 +21,12 @@ import java.util.Vector;
  */
 
 public class SistemaGranDT {
-	private final Vector<Usuario> usuarios;
-	private final Vector<Jugador> jugadores;
-	private final Vector<Torneo> torneos;
+	private Vector<Usuario> usuarios;
+	private Vector<Jugador> jugadores;
+	private Vector<Torneo> torneos;
+	private JugadorDAO jdao;
+	private EquipoDAO edao;
+	//otros daos
 	private static SistemaGranDT grandt=null;
 
 
@@ -30,6 +35,8 @@ public class SistemaGranDT {
 		this.usuarios=new Vector<Usuario>();
 		this.jugadores=new Vector<Jugador>();
 		this.torneos=new Vector<Torneo>();
+		this.edao = new EquipoDAO();
+		this.jdao = new JugadorDAO();
 	}
 
 	public static SistemaGranDT getInstance(){
@@ -38,19 +45,33 @@ public class SistemaGranDT {
 	}
 
 	// getters
-	public Vector getUsuarios() {
+	public Vector<Usuario> getUsuarios() {
 		return usuarios;
 	}
 
-	public Vector getJugadores() {
+	public Vector<Jugador> getJugadores() {
 		return jugadores;
 	}
 
-	public Vector getTorneos() {
+	public Vector<Torneo> getTorneos() {
 		return torneos;
 	}
 
+	public JugadorDAO getJdao() {
+		return jdao;
+	}
 
+	public void setJdao(JugadorDAO jdao) {
+		this.jdao = jdao;
+	}
+
+	public EquipoDAO getEdao() {
+		return edao;
+	}
+
+	public void setEdao(EquipoDAO edao) {
+		this.edao = edao;
+	}
 
 	/********** validaciones *************/
 	// valida el DNI: si ya existe un usuario con el dni devuelve true, si no false.
@@ -67,6 +88,16 @@ public class SistemaGranDT {
 		return false;		
 	}
 
+	public void listarUsuarios(){
+		for(Usuario u : this.usuarios){
+			System.out.println(u.toString());
+		}
+	}
+	public void listarEquipos(){
+		for(Usuario u: this.usuarios){
+			System.out.println(u.getEquipo().toString());
+		}
+	}
 	// crea un usuario y lo agrega al vector de usuarios
 	/*public void crearUsuario(String nombre, String apellido, String tipoDoc, int nroDoc,
 			Date fechaNac, String sexo, String hincha, String provincia,
