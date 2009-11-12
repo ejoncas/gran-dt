@@ -89,11 +89,11 @@ public class AdministrarTorneoAmigosFrame extends javax.swing.JFrame {
 			}
 			{
 				btnAceptar = new JButton();
-				btnAceptar.setText("Aceptar petici�n");
+				btnAceptar.setText("Aceptar peticion");
 			}
 			{
 				btnRechazar = new JButton();
-				btnRechazar.setText("Rechazar petici�n");
+				btnRechazar.setText("Rechazar peticion");
 			}
 			{
 				btnFinalizar = new JButton();
