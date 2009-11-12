@@ -110,6 +110,7 @@ public class JugadorDAO {
 			stmt.setString(4, j.getFechaNacSQLString());
 			stmt.setInt(5, j.getPuntaje());
 			stmt.setFloat(6, j.getPrecio());
+			//TODO Cambiar VOlante
 			stmt.setString(7, "VOL");
 
 			stmt.execute();

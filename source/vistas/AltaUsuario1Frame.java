@@ -98,6 +98,11 @@ public class AltaUsuario1Frame extends javax.swing.JFrame {
 			{
 				radioFemenino = new JRadioButton();
 				radioFemenino.setText("Femenino");
+				radioFemenino.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						radioFemeninoActionPerformed(evt);
+					}
+				});
 			}
 			{
 				lblSexo = new JLabel();
@@ -106,6 +111,11 @@ public class AltaUsuario1Frame extends javax.swing.JFrame {
 			{
 				radioMasculino = new JRadioButton();
 				radioMasculino.setText("Masculino");
+				radioMasculino.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						radioMasculinoActionPerformed(evt);
+					}
+				});
 			}
 			{
 				Documento = new JLabel();
@@ -286,7 +296,7 @@ public class AltaUsuario1Frame extends javax.swing.JFrame {
 		// TODO implementar regla de ventana que no permita que los dos esten seleccionados y que uno de los dos siempre este seleccionado
 		String r = auc.siguienteAltaUsuario1(txtNombre.getText(), txtApellido.getText(),
 				radioFemenino.isSelected() ? "F" : "M", cmbTipoDoc.getSelectedItem().toString(), 
-						Integer.parseInt(txtNroDoc.getText()), cmbDias.getSelectedIndex()+1, cmbMeses.getSelectedIndex()+1, 
+						txtNroDoc.getText(), cmbDias.getSelectedIndex()+1, cmbMeses.getSelectedIndex()+1, 
 						Integer.parseInt(cmbAnios.getSelectedItem().toString()), txtHincha.getText());
 		//we show an error message if it exists or we close this windows and create de following frame
 		if(r!=null)	
@@ -295,6 +305,19 @@ public class AltaUsuario1Frame extends javax.swing.JFrame {
 			new AltaUsuario2Frame(this.auc).setVisible(true);
 			this.dispose();
 		}
+	}
+
+	private void radioFemeninoActionPerformed(ActionEvent evt) {
+		System.out.println("radioFemenino.actionPerformed, event="+evt);
+		if(radioFemenino.isSelected())
+			radioMasculino.setSelected(false);
+	}
+
+	private void radioMasculinoActionPerformed(ActionEvent evt) {
+		System.out.println("radioMasculino.actionPerformed, event="+evt);
+		if(radioMasculino.isSelected())
+			radioFemenino.setSelected(false);
+
 	}
 
 }

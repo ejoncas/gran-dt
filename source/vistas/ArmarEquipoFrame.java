@@ -70,7 +70,7 @@ public class ArmarEquipoFrame extends javax.swing.JFrame {
 				TableModel tblDisponiblesModel = 
 					new DefaultTableModel(
 							new String[][] { { "One", "Two" }, { "Three", "Four" } },
-							new String[] { "Column 1", "Column 2" });
+							new String[] { "Column 1", "Column 2", "Column 3" });
 				tblDisponibles = new JTable();
 				tblDisponibles.setModel(tblDisponiblesModel);
 			}
