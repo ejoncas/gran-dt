@@ -27,6 +27,18 @@ public class Equipo {
 	}
 
 
+	public EquipoTitular getEquipoTitular() {
+		return equipoTitular;
+	}
+	public void setEquipoTitular(EquipoTitular equipoTitular) {
+		this.equipoTitular = equipoTitular;
+	}
+	public EquipoSuplente getEquipoSuplente() {
+		return equipoSuplente;
+	}
+	public void setEquipoSuplente(EquipoSuplente equipoSuplente) {
+		this.equipoSuplente = equipoSuplente;
+	}
 	public String getNombre() {
 		return this.nombre;
 	}

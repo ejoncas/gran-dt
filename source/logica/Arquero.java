@@ -6,4 +6,8 @@ public class Arquero extends Jugador {
 		super(n, a, e, year, month, day, p);
 		// TODO Auto-generated constructor stub
 	}
+
+	public Arquero(Jugador ja) {
+		// TODO Auto-generated constructor stub
+	}
 }
