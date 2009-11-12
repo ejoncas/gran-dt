@@ -83,7 +83,6 @@ public class AltaUsuarioControlador {
 			System.out.println(gc.getTime());//possible exception
 		}catch(Exception e){
 			System.out.println("Exception parsing date");
-			e.printStackTrace();
 			return false;
 		}
 		return true;      
@@ -102,12 +101,14 @@ public class AltaUsuarioControlador {
 
 	// ventana 1
 
-	public String validarAltaUsuario1(String n, String a, String s, String td, int nd, int dia, int mes, int anio, String h){
+	public String validarAltaUsuario1(String n, String a, String s, String td, String nd, int dia, int mes, int anio, String h){
 		// campos vacios
 		if (isEmpty(n)){
 			System.out.println("Error en Nombre");
 			return "Error en Nombre";
 		}
+		if(!isInteger(nd))
+			return "Error en documento. Debe ser numerico";
 		if (isEmpty(a)){
 			System.out.println("Error en Apellido");
 			return "Error en Apellido";
@@ -124,6 +125,7 @@ public class AltaUsuarioControlador {
 			System.out.println("Error en Equipo");
 			return "Error en Equipo";
 		}
+
 		// especificas
 		if (!validarFecha(dia, mes, anio)){
 			System.out.println("Error en Fecha");
@@ -138,14 +140,14 @@ public class AltaUsuarioControlador {
 		return null;
 	}
 
-	public String siguienteAltaUsuario1 (String n, String a, String s, String td, int nd, int dia, int mes, int anio, String h){
+	public String siguienteAltaUsuario1 (String n, String a, String s, String td, String nd, int dia, int mes, int anio, String h){
 		String resultado = validarAltaUsuario1(n, a, s, td, nd, dia, mes, anio, h);
 		if (resultado == null){
 			this.nombre=n;
 			this.apellido=a;
 			this.sexo=s;
 			this.tipoDoc=td;
-			this.nroDoc=nd;
+			this.nroDoc=Integer.parseInt(nd);
 			this.fechaNac= new Date(anio, mes, dia);
 			this.hincha=h;
 			return null;
