@@ -2,7 +2,11 @@
 package main;
 
 
+import java.util.Vector;
+
+import logica.Equipo;
 import logica.Jugador;
+import logica.dao.EquipoDAO;
 import logica.dao.JugadorDAO;
 
 public class Main {
@@ -19,6 +23,14 @@ public class Main {
 		JugadorDAO jdao = new JugadorDAO();
 		Jugador loaded = jdao.getJugadorPorId(1704);
 
+
+
+		System.out.println(loaded.toString());
+
+
+		//TODO Menu Interfaz
+		//new AltaUsuario1Frame(new AltaUsuarioControlador());
+
 		//Vector<Jugador> jugadoresVolantes = jdao.getJugadoresPorPosicion("VOL");
 
 		//jdao.insertJugador(j);
@@ -28,7 +40,20 @@ public class Main {
 		//		System.out.println(jug.toString());
 		//}
 
-		System.out.println(loaded.toString());
+		EquipoDAO edao = new EquipoDAO();
+		Vector<Equipo> equipos = edao.getAllEquipos();
+
+
+		for(Equipo e : equipos){
+			System.out.println(e.toString());
+		}
+
+		Equipo e2=edao.getEquipoPorNombre("Equipo Loco");
+		if(e2!=null)
+			System.out.println("EQUIPILLO LOCO:"+e2.toString());
+		else
+			System.out.println("No se encontro ningun equipo con ese nombre");
+
 
 		//new AltaUsuario1();
 
