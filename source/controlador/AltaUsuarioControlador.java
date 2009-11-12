@@ -234,9 +234,9 @@ public class AltaUsuarioControlador {
 		if (isEmpty(nombequipo))
 			return "Error en nombre del equipo";
 		if (isEmpty(pass1) || isEmpty(pass2))
-			return "Error de contrase�a";
+			return "Error de contrasena";
 		if (!pass1.equals(pass2))
-			return "Las contrase�as deben ser iguales";
+			return "Las contrasenas deben ser iguales";
 		if(!hasho.equals(hashe))
 			return "El captcha no es correcto. Intente nuevamente";
 		if(this.logica.getEdao().getEquipoPorNombre(nombequipo)!=null)

@@ -74,7 +74,7 @@ public class AltaUsuario3Frame extends javax.swing.JFrame {
 			}
 			{
 				lblContrasenia = new JLabel();
-				lblContrasenia.setText("Contraseña");
+				lblContrasenia.setText("Contrasena");
 			}
 
 			{
@@ -82,7 +82,7 @@ public class AltaUsuario3Frame extends javax.swing.JFrame {
 			}
 			{
 				lblContrasenia2 = new JLabel();
-				lblContrasenia2.setText("Repetir Contraseña");
+				lblContrasenia2.setText("Repetir Contrasena");
 			}
 			{
 				txtPassword2 = new JPasswordField();
@@ -99,6 +99,12 @@ public class AltaUsuario3Frame extends javax.swing.JFrame {
 			{
 				btnCancelar = new JButton();
 				btnCancelar.setText("Cancelar");
+				btnCancelar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e)
+					{	dispose();
+						setDefaultCloseOperation(EXIT_ON_CLOSE);
+					}
+				});
 			}
 			thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
 					.addContainerGap()

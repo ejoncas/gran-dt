@@ -170,6 +170,13 @@ public class AltaUsuario1Frame extends javax.swing.JFrame {
 			{
 				btnCancelar = new JButton();
 				btnCancelar.setText("Cancelar");
+				btnCancelar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e)
+					{
+						dispose();
+						setDefaultCloseOperation(EXIT_ON_CLOSE);
+					}
+				});
 			}
 			thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
 					.addContainerGap()
