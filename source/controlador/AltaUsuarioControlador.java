@@ -46,7 +46,7 @@ public class AltaUsuarioControlador {
 	}
 
 	// validaciones de campos
-	
+
 	// devuelve true si es entero, false si no
 	public boolean isInteger(String i){
 		boolean es;
@@ -101,16 +101,11 @@ public class AltaUsuarioControlador {
 			System.out.println("Error en Nombre");
 			return "Error en Nombre";
 		}
-<<<<<<< .mine
 		if (a.isEmpty()){
-=======
-		if(!isInteger(nd))
-			return "Error en documento. Debe ser numerico";
-		if (isEmpty(a)){
->>>>>>> .r43
-			System.out.println("Error en Apellido");
 			return "Error en Apellido";
 		}
+		if(!isInteger(nd))
+			return "Error en documento. Debe ser numerico";
 		if (s.isEmpty()){
 			System.out.println("Error en Sexo");
 			return "Error en Sexo";

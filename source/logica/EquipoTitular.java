@@ -1,12 +1,69 @@
 package logica;
-public class EquipoTitular {
-	private static int CANT_DEF;
-	private static int CANT_VOL;
-	private static int CANT_DEL;
-	private Arquero arquero;
-	private Defensor[] defensores;
-	private Volante[] volantes;
-	private Delantero[] delanteros;
 
-	
+import java.util.Vector;
+
+public class EquipoTitular {
+	private static int CANT_DEF=4;
+	private static int CANT_VOL=4;
+	private static int CANT_DEL=2;
+	private Arquero arquero;
+	private Vector<Defensor> defensores;
+	private Vector<Volante> volantes;
+	private Vector<Delantero> delanteros;
+
+	public EquipoTitular(Arquero arquero, Vector<Defensor> defensores,
+			Vector<Volante> volantes, Vector<Delantero> delanteros) {
+		super();
+		this.arquero = arquero;
+		this.defensores = defensores;
+		this.volantes = volantes;
+		this.delanteros = delanteros;
+	}
+
+	public static int getCANT_DEF() {
+		return CANT_DEF;
+	}
+	public static void setCANT_DEF(int cANTDEF) {
+		CANT_DEF = cANTDEF;
+	}
+	public static int getCANT_VOL() {
+		return CANT_VOL;
+	}
+	public static void setCANT_VOL(int cANTVOL) {
+		CANT_VOL = cANTVOL;
+	}
+	public static int getCANT_DEL() {
+		return CANT_DEL;
+	}
+	public static void setCANT_DEL(int cANTDEL) {
+		CANT_DEL = cANTDEL;
+	}
+	public Arquero getArquero() {
+		return arquero;
+	}
+	public void setArquero(Arquero arquero) {
+		this.arquero = arquero;
+	}
+	public Vector<Defensor> getDefensores() {
+		return defensores;
+	}
+	public void setDefensores(Vector<Defensor> defensores) {
+		this.defensores = defensores;
+	}
+	public Vector<Volante> getVolantes() {
+		return volantes;
+	}
+	public void setVolantes(Vector<Volante> volantes) {
+		this.volantes = volantes;
+	}
+	public Vector<Delantero> getDelanteros() {
+		return delanteros;
+	}
+	public void setDelanteros(Vector<Delantero> delanteros) {
+		this.delanteros = delanteros;
+	}
+
+
+
+
 }

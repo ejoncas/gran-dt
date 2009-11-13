@@ -9,21 +9,21 @@ public class Equipo {
 	public Equipo(String nombre) {
 		super();
 		this.nombre = nombre;
-		this.puntajeacum=0;
+		this.setPuntajeacum(0);
 	}
 	public Equipo(int id,String nombre) {
 		super();
-		this.id=id;
+		this.setId(id);
 		this.nombre = nombre;
-		this.puntajeacum=0;
+		this.setPuntajeacum(0);
 	}
 
 	public Equipo(int id, String nombre, int puntaje) {
 		// TODO Auto-generated constructor stub
 		super();
-		this.id=id;
+		this.setId(id);
 		this.nombre=nombre;
-		this.puntajeacum=puntaje;
+		this.setPuntajeacum(puntaje);
 	}
 
 
@@ -46,6 +46,18 @@ public class Equipo {
 	@Override
 	public String toString(){
 		return "\nNombre Equipo:"+this.nombre;
+	}
+	public void setPuntajeacum(int puntajeacum) {
+		this.puntajeacum = puntajeacum;
+	}
+	public int getPuntajeacum() {
+		return puntajeacum;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getId() {
+		return id;
 	}
 
 

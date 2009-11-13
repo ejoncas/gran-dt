@@ -1,13 +1,18 @@
 package vistas;
+import java.util.Date;
+
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+
+import controlador.ArmarEquipoControlador;
 
 
 /**
@@ -24,7 +29,10 @@ import javax.swing.table.TableModel;
  */
 public class ArmarEquipoFrame extends javax.swing.JFrame {
 	private JLabel lblDisponibles;
-	private JTable tblDisponibles;
+	private JScrollPane jScrollPane1;
+	private JScrollPane jScrollPane2;
+	private JScrollPane jScrollPane3;
+	private JTable tblJugadores;
 	private JButton btnQuitarS;
 	private JButton btnQuitarT;
 	private JLabel lblSuplentes;
@@ -38,6 +46,7 @@ public class ArmarEquipoFrame extends javax.swing.JFrame {
 	private JLabel lblDisponible;
 	private JLabel lblGastado;
 	private JLabel lblTitulares;
+	private ArmarEquipoControlador aec;
 
 	/**
 	 * Auto-generated main method to display this JFrame
@@ -46,6 +55,16 @@ public class ArmarEquipoFrame extends javax.swing.JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				ArmarEquipoFrame inst = new ArmarEquipoFrame();
+				ArmarEquipoControlador aec = new ArmarEquipoControlador(inst);
+				inst.addControlador(aec);
+
+				aec.getLogica().crearUsuario("Manolo", "Loco", "DNI", 3456, new Date(1,1,2001), "F", "River", "Neuquen", "T3F", "JI", "Larrea", 33, 1, "A", "32AC", 3456, 3456, "lala@lalala.com", "1234","12345");
+				aec.getLogica().setUsuarioActual(aec.getLogica().getUsuarios().elementAt(0));
+
+				System.out.println(aec.getLogica().getUsuarioActual().toString());
+
+
+
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
@@ -55,6 +74,10 @@ public class ArmarEquipoFrame extends javax.swing.JFrame {
 	public ArmarEquipoFrame() {
 		super();
 		initGUI();
+	}
+
+	public void addControlador(ArmarEquipoControlador aec){
+		this.aec = aec;
 	}
 
 	private void initGUI() {
@@ -67,20 +90,24 @@ public class ArmarEquipoFrame extends javax.swing.JFrame {
 				lblDisponibles.setText("Jugadores disponibles:");
 			}
 			{
-				TableModel tblDisponiblesModel = 
-					new DefaultTableModel(
-							new String[][] { { "One", "Two" }, { "Three", "Four" } },
-							new String[] { "Column 1", "Column 2", "Column 3" });
-				tblDisponibles = new JTable();
-				tblDisponibles.setModel(tblDisponiblesModel);
-			}
-			{
 				lblTitulares = new JLabel();
 				lblTitulares.setText("Titulares");
 			}
 			{
 				btnQuitarS = new JButton();
 				btnQuitarS.setText("Quitar suplente");
+			}
+			{
+				jScrollPane1 = new JScrollPane();
+				{
+					TableModel tblJugadoresModel = 
+						new DefaultTableModel(
+								new String[][] { { "One", "Two" }, { "Three", "Four" } },
+								new String[] { "Jugador", "Club", "Posicion", "Cotiza" });
+					tblJugadores = new JTable();
+					jScrollPane1.setViewportView(tblJugadores);
+					tblJugadores.setModel(tblJugadoresModel);
+				}
 			}
 			{
 				lblSuplentes = new JLabel();
@@ -103,20 +130,16 @@ public class ArmarEquipoFrame extends javax.swing.JFrame {
 				lblMontoDisponible.setText("<monto disponible>");
 			}
 			{
-				TableModel tblTitularesModel = 
-					new DefaultTableModel(
-							new String[][] { { "One", "Two" }, { "Three", "Four" } },
-							new String[] { "Column 1", "Column 2" });
-				tblTitulares = new JTable();
-				tblTitulares.setModel(tblTitularesModel);
-			}
-			{
-				TableModel tblSuplentesModel = 
-					new DefaultTableModel(
-							new String[][] { { "One", "Two" }, { "Three", "Four" } },
-							new String[] { "Column 1", "Column 2" });
-				tblSuplentes = new JTable();
-				tblSuplentes.setModel(tblSuplentesModel);
+				jScrollPane2 = new JScrollPane();
+				{
+					TableModel tblTitularesModel = 
+						new DefaultTableModel(
+								new String[][] { { "One", "Two" }, { "Three", "Four" } },
+								new String[] { "Jugador", "Posicion" });
+					tblTitulares = new JTable();
+					jScrollPane2.setViewportView(tblTitulares);
+					tblTitulares.setModel(tblTitularesModel);
+				}
 			}
 			{
 				btnConfirmar = new JButton();
@@ -131,97 +154,92 @@ public class ArmarEquipoFrame extends javax.swing.JFrame {
 				btnAgregarS.setText("Agregar suplente");
 			}
 			{
+				jScrollPane3 = new JScrollPane();
+				{
+					TableModel tblSuplentesModel = 
+						new DefaultTableModel(
+								new String[][] { { "One", "Two" }, { "Three", "Four" } },
+								new String[] { "Jugador", "Posicion" });
+					tblSuplentes = new JTable();
+					jScrollPane3.setViewportView(tblSuplentes);
+					tblSuplentes.setModel(tblSuplentesModel);
+				}
+			}
+			{
 				btnQuitarT = new JButton();
 				btnQuitarT.setText("Quitar titular");
 			}
+			thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
+					.addContainerGap(12, 12)
+					.addGroup(thisLayout.createParallelGroup()
+							.addGroup(thisLayout.createSequentialGroup()
+									.addGroup(thisLayout.createParallelGroup()
+											.addComponent(lblDisponible, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
+											.addComponent(lblGastado, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
+											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+											.addGroup(thisLayout.createParallelGroup()
+													.addComponent(lblMontoDisponible, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)
+													.addComponent(lblMontoGastado, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)))
+													.addGroup(thisLayout.createSequentialGroup()
+															.addComponent(btnAgregarT, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+															.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+															.addComponent(btnAgregarS, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
+															.addComponent(lblDisponibles, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+															.addComponent(jScrollPane1, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE))
+															.addGap(45)
+															.addGroup(thisLayout.createParallelGroup()
+																	.addComponent(jScrollPane3, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 242, GroupLayout.PREFERRED_SIZE)
+																	.addComponent(jScrollPane2, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 242, GroupLayout.PREFERRED_SIZE)
+																	.addGroup(thisLayout.createSequentialGroup()
+																			.addGap(8)
+																			.addGroup(thisLayout.createParallelGroup()
+																					.addComponent(lblSuplentes, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
+																					.addGroup(thisLayout.createSequentialGroup()
+																							.addGap(20)
+																							.addGroup(thisLayout.createParallelGroup()
+																									.addGroup(thisLayout.createSequentialGroup()
+																											.addComponent(lblTitulares, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
+																											.addGap(28)
+																											.addGroup(thisLayout.createParallelGroup()
+																													.addComponent(btnQuitarT, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
+																													.addComponent(btnQuitarS, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)))
+																													.addGroup(thisLayout.createSequentialGroup()
+																															.addGap(42)
+																															.addComponent(btnConfirmar, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)))))))
+																															.addContainerGap(11, 11));
 			thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
-					.addContainerGap(21, 21)
-					.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-							.addComponent(lblDisponibles, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
-							.addComponent(lblTitulares, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(12, 12)
+					.addGroup(thisLayout.createParallelGroup()
+							.addComponent(lblDisponibles, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblTitulares, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 							.addGroup(thisLayout.createParallelGroup()
-									.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-											.addComponent(tblTitulares, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+									.addGroup(thisLayout.createSequentialGroup()
+											.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
 											.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-											.addComponent(btnQuitarT, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addComponent(btnQuitarT, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-											.addComponent(lblSuplentes, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addGap(15))
-											.addComponent(tblDisponibles, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE))
+											.addComponent(lblSuplentes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+											.addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+											.addComponent(jScrollPane1, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE))
+											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 											.addGroup(thisLayout.createParallelGroup()
-													.addComponent(tblSuplentes, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
-													.addGroup(thisLayout.createSequentialGroup()
-															.addGap(18)
-															.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-																	.addComponent(btnAgregarT, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-																	.addComponent(btnAgregarS, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-																	.addGap(23)))
-																	.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-																	.addComponent(btnQuitarS, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-																	.addGap(0, 18, Short.MAX_VALUE)
-																	.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-																			.addComponent(lblGastado, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-																			.addComponent(lblMontoGastado, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-																			.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-																			.addGroup(thisLayout.createParallelGroup()
-																					.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-																							.addComponent(lblDisponible, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-																							.addComponent(lblMontoDisponible, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-																							.addComponent(btnConfirmar, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-																							.addContainerGap());
-			thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
-					.addContainerGap(16, 16)
-					.addGroup(thisLayout.createParallelGroup()
-							.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-									.addComponent(btnAgregarT, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(btnAgregarS, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
-									.addComponent(tblDisponibles, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 256, GroupLayout.PREFERRED_SIZE)
-									.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-											.addComponent(lblDisponibles, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
-											.addGap(97))
-											.addGroup(thisLayout.createSequentialGroup()
-													.addPreferredGap(btnAgregarT, lblDisponible, LayoutStyle.ComponentPlacement.INDENT)
+													.addComponent(btnAgregarT, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+													.addComponent(btnAgregarS, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+													.addComponent(btnQuitarS, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+													.addGap(28)
 													.addGroup(thisLayout.createParallelGroup()
-															.addComponent(lblDisponible, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
-															.addComponent(lblGastado, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
-															.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+															.addComponent(lblGastado, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+															.addComponent(lblMontoGastado, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 															.addGroup(thisLayout.createParallelGroup()
-																	.addComponent(lblMontoDisponible, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)
-																	.addComponent(lblMontoGastado, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE))))
-																	.addGap(38)
-																	.addGroup(thisLayout.createParallelGroup()
-																			.addGroup(thisLayout.createSequentialGroup()
-																					.addComponent(tblSuplentes, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-																					.addGap(0, 0, Short.MAX_VALUE))
-																					.addGroup(thisLayout.createSequentialGroup()
-																							.addComponent(tblTitulares, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-																							.addGap(0, 0, Short.MAX_VALUE))
-																							.addGroup(thisLayout.createSequentialGroup()
-																									.addGap(16)
-																									.addGroup(thisLayout.createParallelGroup()
-																											.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-																													.addComponent(lblSuplentes, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
-																													.addGap(19)
-																													.addGroup(thisLayout.createParallelGroup()
-																															.addGroup(thisLayout.createSequentialGroup()
-																																	.addComponent(btnQuitarT, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))
-																																	.addGroup(thisLayout.createSequentialGroup()
-																																			.addComponent(btnQuitarS, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)))
-																																			.addGap(0, 0, Short.MAX_VALUE))
-																																			.addGroup(thisLayout.createSequentialGroup()
-																																					.addPreferredGap(lblSuplentes, lblTitulares, LayoutStyle.ComponentPlacement.INDENT)
-																																					.addGroup(thisLayout.createParallelGroup()
-																																							.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-																																									.addComponent(lblTitulares, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
-																																									.addGap(0, 137, Short.MAX_VALUE))
-																																									.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-																																											.addGap(32)
-																																											.addComponent(btnConfirmar, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
-																																											.addGap(0, 0, Short.MAX_VALUE)))))
-																																											.addGap(23)))
-																																											.addContainerGap(24, 24));
+																	.addComponent(btnConfirmar, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+																	.addGroup(thisLayout.createSequentialGroup()
+																			.addGap(7)
+																			.addGroup(thisLayout.createParallelGroup()
+																					.addComponent(lblDisponible, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+																					.addComponent(lblMontoDisponible, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+																					.addContainerGap(12, 12));
 			pack();
 		} catch (Exception e) {
 			e.printStackTrace();
