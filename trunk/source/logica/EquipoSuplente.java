@@ -2,9 +2,10 @@ package logica;
 public class EquipoSuplente {
 	private static int CANT_DEL;
 	private Arquero arquero;
-	private Defensor[] defensor;
+	private Defensor defensor;
 	private Volante volante;
 	private Delantero[] delanteros;
+	
 	public Arquero getArquero() {
 		return arquero;
 	}
@@ -33,9 +34,9 @@ public class EquipoSuplente {
 		super();
 		this.CANT_DEL=2;
 		this.arquero = new Arquero(ja);
-		this.defensor = new Defensor[this.CANT_DEL] {new Defensor(jd1),new Defensor(jd2)};
+		this.defensor = new Defensor(jd);
 		this.volante = volante;
-		this.delanteros = delanteros;
+		this.delanteros = new Delantero[] {new Delantero(jd1), new Delantero(jd2)};
 	}
 	
 	

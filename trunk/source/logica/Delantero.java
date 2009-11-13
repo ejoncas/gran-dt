@@ -6,4 +6,9 @@ public class Delantero extends Jugador {
 		super(n, a, e, year, month, day, p);
 		// TODO Auto-generated constructor stub
 	}
+
+	public Delantero(Jugador jd1) {
+		
+		// TODO Auto-generated constructor stub
+	}
 }

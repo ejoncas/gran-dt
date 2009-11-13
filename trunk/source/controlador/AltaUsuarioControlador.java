@@ -46,12 +46,6 @@ public class AltaUsuarioControlador {
 	}
 
 	// validaciones de campos
-
-	// si el campo esta vacio devuelve true, si tiene contenido false
-	public boolean isEmpty(String t){
-		return t.isEmpty();
-	}
-	
 	
 	// devuelve true si es entero, false si no
 	public boolean isInteger(String i){
@@ -103,25 +97,29 @@ public class AltaUsuarioControlador {
 
 	public String validarAltaUsuario1(String n, String a, String s, String td, String nd, int dia, int mes, int anio, String h){
 		// campos vacios
-		if (isEmpty(n)){
+		if (n.isEmpty()){
 			System.out.println("Error en Nombre");
 			return "Error en Nombre";
 		}
+<<<<<<< .mine
+		if (a.isEmpty()){
+=======
 		if(!isInteger(nd))
 			return "Error en documento. Debe ser numerico";
 		if (isEmpty(a)){
+>>>>>>> .r43
 			System.out.println("Error en Apellido");
 			return "Error en Apellido";
 		}
-		if (isEmpty(s)){
+		if (s.isEmpty()){
 			System.out.println("Error en Sexo");
 			return "Error en Sexo";
 		}
-		if (isEmpty(td)){
+		if (td.isEmpty()){
 			System.out.println("Error en TipoDoc");
 			return "Error en TipoDoc";
 		}
-		if (isEmpty(h)){
+		if (h.isEmpty()){
 			System.out.println("Error en Equipo");
 			return "Error en Equipo";
 		}
@@ -164,21 +162,21 @@ public class AltaUsuarioControlador {
 	public String validarAltaUsuario2(String part, String prov, String loc, String c, String num, String piso, String dpto, String cp,
 			String tel, String cel, String provCel, String email){
 		// campos llenos
-		if (isEmpty(part))
+		if (part.isEmpty())
 			return "Error en partido";
-		if (isEmpty(prov))
+		if (prov.isEmpty())
 			return "Error en Provincia";
-		if (isEmpty(loc))
+		if (loc.isEmpty())
 			return "Error en Localidad";
-		if (isEmpty(c))
+		if (c.isEmpty())
 			return "Error en Calle";
-		if (isEmpty(num))
+		if (num.isEmpty())
 			return "Error en Numero";
 		//if (isEmpty(piso))
 		//return false;
 		//if (isEmpty(dpto))
 		//return false;
-		if (isEmpty(tel))
+		if (tel.isEmpty())
 			return "Error en Telefono";
 		//		if (isEmpty(cel))
 		//			return "Error en Celular";
@@ -187,11 +185,11 @@ public class AltaUsuarioControlador {
 		// validaciones especificas
 		if (!isInteger(num))
 			return "Error en Numero (No es Numerico)";
-		if (!isEmpty(piso) && !isInteger(piso))
+		if (!piso.isEmpty() && !isInteger(piso))
 			return "Error en Piso";
 		if (!isInteger(tel))
 			return "Error en Tel (debe ser numerico)";
-		if (!isEmpty(cel) && !isInteger(cel))
+		if (!cel.isEmpty() && !isInteger(cel))
 			return "Error en Cel (debe ser numerico)";
 		if (!mailOK(email))
 			return "Error en Email";		
@@ -207,11 +205,11 @@ public class AltaUsuarioControlador {
 			this.localidad=loc;
 			this.calle=c;
 			this.numero=Integer.parseInt(num);
-			if (isEmpty(piso))
+			if (piso.isEmpty())
 				this.piso=0;
 			else
 				this.piso=Integer.parseInt(piso);
-			if (isEmpty(dpto))
+			if (dpto.isEmpty())
 				this.dpto="-";
 			else
 				this.dpto=dpto;
@@ -235,9 +233,9 @@ public class AltaUsuarioControlador {
 	// ventana 3
 
 	public String validarAltaUsuario3(String nombequipo, String pass1, String pass2, String hasho, String hashe){
-		if (isEmpty(nombequipo))
+		if (nombequipo.isEmpty())
 			return "Error en nombre del equipo";
-		if (isEmpty(pass1) || isEmpty(pass2))
+		if (pass1.isEmpty() || pass2.isEmpty())
 			return "Error de contrasena";
 		if (!pass1.equals(pass2))
 			return "Las contrasenas deben ser iguales";
