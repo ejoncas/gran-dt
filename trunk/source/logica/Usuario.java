@@ -109,34 +109,36 @@ public class Usuario {
 	}
 
 
-	// constructor
-	/*public Usuario(String nombre, String apellido, String tipoDoc, int nroDoc,
-			Date fechaNac, String sexo, String hincha, String provincia,
-			String partido, String localidad, String calle, int numero,
-			int piso, String dpto, String cp, int tel, int cel,
-			String proveedorCel, String email, String password) {
-		super();
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.tipoDoc = tipoDoc;
-		this.nroDoc = nroDoc;
-		this.fechaNac = fechaNac;
-		this.sexo = sexo;
-		this.hincha = hincha;
-		this.provincia = provincia;
-		this.partido = partido;
-		this.localidad = localidad;
-		this.calle = calle;
-		this.numero = numero;
-		this.piso = piso;
-		this.dpto = dpto;
-		this.cp = cp;
-		this.tel = tel;
-		this.cel = cel;
-		this.proveedorCel = proveedorCel;
-		this.email = email;
-		this.password = password;
-	}*/
+
+	//	public Usuario(String nombre, String apellido, String tipoDoc, int nroDoc,
+	//			Date fechaNac, String sexo, String hincha, String provincia,
+	//			String partido, String localidad, String calle, int numero,
+	//			int piso, String dpto, String cp, int tel, int cel,
+	//			String proveedorCel, String email, String password) {
+	//		super();
+	//		this.nombre = nombre;
+	//		this.apellido = apellido;
+	//		this.tipoDoc = tipoDoc;
+	//		this.nroDoc = nroDoc;
+	//		this.fechaNac = fechaNac;
+	//		this.sexo = sexo;
+	//		this.hincha = hincha;
+	//		this.provincia = provincia;
+	//		this.partido = partido;
+	//		this.localidad = localidad;
+	//		this.calle = calle;
+	//		this.numero = numero;
+	//		this.piso = piso;
+	//		this.dpto = dpto;
+	//		this.cp = cp;
+	//		this.tel = tel;
+	//		this.cel = cel;
+	//		this.proveedorCel = proveedorCel;
+	//		this.email = email;
+	//		this.password = password;
+	//	}
+	//	
+
 	public Usuario(String nombre, String apellido, String tipoDoc, int nroDoc,
 			Date fechaNac, String sexo, String hincha, String provincia,
 			String partido, String localidad, String calle, int numero,
@@ -170,6 +172,37 @@ public class Usuario {
 		this.montoGastado = montoGastado;
 	}
 
+	public Usuario(String nombre, String apellido, String tipoDoc, int nroDoc,
+			Date fechaNac, String sexo, String hincha, String provincia,
+			String partido, String localidad, String calle, int numero,
+			int piso, String dpto, String cp, int tel, int cel,
+			String proveedorCel, String email,
+			String password) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.tipoDoc = tipoDoc;
+		this.nroDoc = nroDoc;
+		this.fechaNac = fechaNac;
+		this.sexo = sexo;
+		this.hincha = hincha;
+		this.provincia = provincia;
+		this.partido = partido;
+		this.localidad = localidad;
+		this.calle = calle;
+		this.numero = numero;
+		this.piso = piso;
+		this.dpto = dpto;
+		this.cp = cp;
+		this.tel = tel;
+		this.cel = cel;
+		this.proveedorCel = proveedorCel;
+		this.email = email;
+		this.password = password;
+		this.montoDisponible=0;
+		this.montoGastado=0;
+		this.equipo=null;
+	}
 
 
 }

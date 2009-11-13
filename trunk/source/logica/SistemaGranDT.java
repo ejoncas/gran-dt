@@ -1,4 +1,5 @@
 package logica;
+import java.util.Date;
 import java.util.Vector;
 
 import logica.dao.EquipoDAO;
@@ -106,7 +107,7 @@ public class SistemaGranDT {
 		}
 	}
 	// crea un usuario y lo agrega al vector de usuarios
-	/*public void crearUsuario(String nombre, String apellido, String tipoDoc, int nroDoc,
+	public void crearUsuario(String nombre, String apellido, String tipoDoc, int nroDoc,
 			Date fechaNac, String sexo, String hincha, String provincia,
 			String partido, String localidad, String calle, int numero,
 			int piso, String dpto, String cp, int tel, int cel,
@@ -118,7 +119,28 @@ public class SistemaGranDT {
 				piso,  dpto,  cp,  tel,  cel,
 				proveedorCel,  email,  password);
 
+		//TODO Agregarlo a la BD... aca o en el costructor, as you wish. 
+		// Pero que la base no quede inconsistente!!!
+
 		this.usuarios.addElement(u);
 
-	}*/
+	}
+
+	public void setUsuarios(Vector<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public void setJugadores(Vector<Jugador> jugadores) {
+		this.jugadores = jugadores;
+	}
+
+	public void setTorneos(Vector<Torneo> torneos) {
+		this.torneos = torneos;
+	}
+
+	public void setUsuarioActual(Usuario usuarioActual) {
+		this.usuarioActual = usuarioActual;
+	}
+
+
 }

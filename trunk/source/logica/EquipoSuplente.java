@@ -1,11 +1,14 @@
 package logica;
+
+import java.util.Vector;
+
 public class EquipoSuplente {
-	private static int CANT_DEL;
+	private static int CANT_DEL=2;
 	private Arquero arquero;
 	private Defensor defensor;
 	private Volante volante;
-	private Delantero[] delanteros;
-	
+	private Vector<Delantero> delanteros;
+
 	public Arquero getArquero() {
 		return arquero;
 	}
@@ -24,20 +27,52 @@ public class EquipoSuplente {
 	public void setVolante(Volante volante) {
 		this.volante = volante;
 	}
-	public Delantero[] getDelanteros() {
+
+	public Vector<Delantero> getDelanteros() {
 		return delanteros;
 	}
-	public void setDelanteros(Delantero[] delanteros) {
+	public void setDelanteros(Vector<Delantero> delanteros) {
 		this.delanteros = delanteros;
 	}
-	public EquipoSuplente(Jugador ja, Jugador jd1,Jugador jd2) {
+
+	public EquipoSuplente(Arquero arquero, Defensor defensor, Volante volante,
+			Vector<Delantero> delanteros) {
 		super();
-		this.CANT_DEL=2;
-		this.arquero = new Arquero(ja);
-		this.defensor = new Defensor(jd);
+		this.arquero = arquero;
+		this.defensor = defensor;
 		this.volante = volante;
-		this.delanteros = new Delantero[] {new Delantero(jd1), new Delantero(jd2)};
+		this.delanteros = delanteros;
 	}
-	
-	
+
+
+	public EquipoSuplente(Jugador ja,Jugador jdf, Jugador jv, Jugador jd1,Jugador jd2) {
+		super();
+		this.arquero = (Arquero) ja;
+		this.defensor = (Defensor) jdf;
+		this.volante = (Volante) jv;
+		this.delanteros.setSize(EquipoSuplente.getCANT_DEL());
+		this.delanteros.addElement((Delantero)jd1);
+		this.delanteros.addElement((Delantero)jd2);
+	}
+
+	//recibiendo los parametros casteados
+	public EquipoSuplente(Arquero ja,Defensor jdf, Volante jv, Delantero jd1,Delantero jd2) {
+		super();
+		this.arquero = ja;
+		this.defensor = jdf;
+		this.volante = jv;
+		//fixed size vector
+		this.delanteros = new Vector<Delantero>();
+		this.delanteros.setSize(EquipoSuplente.getCANT_DEL());
+		this.delanteros.addElement(jd1);
+		this.delanteros.addElement(jd2);
+	}
+
+	public static void setCANT_DEL(int cANT_DEL) {
+		CANT_DEL = cANT_DEL;
+	}
+	public static int getCANT_DEL() {
+		return CANT_DEL;
+	}
+
 }

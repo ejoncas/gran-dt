@@ -5,6 +5,7 @@ package main;
 import java.util.Vector;
 
 import logica.Equipo;
+import logica.EquipoSuplente;
 import logica.Jugador;
 import logica.dao.EquipoDAO;
 import logica.dao.JugadorDAO;
@@ -18,6 +19,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		Jugador j = new Jugador("Jonatan", "Castro", "Almagro",2000,10,12,10000);
 
+		System.out.println(EquipoSuplente.getCANT_DEL());
 		//System.out.println(j.getEdad());
 
 		JugadorDAO jdao = new JugadorDAO();

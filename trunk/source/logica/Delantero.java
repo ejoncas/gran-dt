@@ -1,14 +1,22 @@
 package logica;
 public class Delantero extends Jugador {
+	private int golesConvertidos;
 
 	public Delantero(String n, String a, String e, int year, int month,
 			int day, float p) {
 		super(n, a, e, year, month, day, p);
 		// TODO Auto-generated constructor stub
+		this.golesConvertidos = 0;
 	}
 
-	public Delantero(Jugador jd1) {
-		
-		// TODO Auto-generated constructor stub
+	public int getGolesConvertidos() {
+		return golesConvertidos;
 	}
+
+	public void setGolesConvertidos(int golesConvertidos) {
+		this.golesConvertidos = golesConvertidos;
+	}
+
+
+
 }
