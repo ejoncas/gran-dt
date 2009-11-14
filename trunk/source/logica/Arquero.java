@@ -5,6 +5,7 @@ public class Arquero extends Jugador {
 	public Arquero(String n, String a, String e, int year, int month, int day,
 			float p) {
 		super(n, a, e, year, month, day, p);
+		super.setPosicion("ARQ");
 		// TODO Auto-generated constructor stub
 		this.golesAtajados=0;
 	}

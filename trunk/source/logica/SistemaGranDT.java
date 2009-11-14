@@ -44,7 +44,7 @@ public class SistemaGranDT {
 
 	public static SistemaGranDT getInstance(){
 		//This method return the unique instance - SINGLETON
-		return grandt==null ? new SistemaGranDT() : grandt;		
+		return grandt==null ? grandt = new SistemaGranDT() : grandt;		
 	}
 
 	// getters

@@ -6,10 +6,11 @@ import logica.EquipoSuplente;
 import logica.EquipoTitular;
 import logica.Jugador;
 import logica.SistemaGranDT;
-import vistas.ArmarEquipoFrame;
+import vistas.ArmarEquipoFrame2;
+import vistas.JugadorTableModel;
 
 public class ArmarEquipoControlador {
-	private ArmarEquipoFrame frame;
+	private ArmarEquipoFrame2 frame;
 	private SistemaGranDT logica;
 
 	private Vector<Jugador> disponibles;
@@ -18,40 +19,36 @@ public class ArmarEquipoControlador {
 	private float montoGastado;
 	private float montoDisponible;
 
-	public ArmarEquipoControlador(ArmarEquipoFrame frame) {
+	public ArmarEquipoControlador() {
 		super();
-		this.frame = frame;
+
+		//obtenemos referencia al sistema
 		this.logica = SistemaGranDT.getInstance();
 
 		//levantamos todos los jugadores para llenar la pantalla
-		this.disponibles = logica.getJugadores(); 
-		//this.disponibles = logica.getJdao().getAllJugadores();
+		this.disponibles = logica.getJugadores();
 
+		//TODO Descomentar lo siguiente, solo fue para testear
 		//levantamos el equipo titular del usuario logueado
-		this.titulares=this.logica.getUsuarioActual().getEquipo().getEquipoTitular();
+		//this.titulares=this.logica.getUsuarioActual().getEquipo().getEquipoTitular();
+
 		//levantamos el equipo suplente del usuario logueado
-		this.suplentes=this.logica.getUsuarioActual().getEquipo().getEquipoSuplente();
+		//this.suplentes=this.logica.getUsuarioActual().getEquipo().getEquipoSuplente();
 
 		//obtenemos los demas datos relevantes para la ventana
-		this.montoDisponible = this.logica.getUsuarioActual().getMontoDisponible();
-		this.montoGastado = this.logica.getUsuarioActual().getMontoGastado();
+		//this.montoDisponible = this.logica.getUsuarioActual().getMontoDisponible();
+		//this.montoGastado = this.logica.getUsuarioActual().getMontoGastado();
 
-	}
+		//Creamos los tables models para completar las vistas
+		JugadorTableModel jug = new JugadorTableModel(this.logica.getJugadores());
+		JugadorTableModel et = new JugadorTableModel();
+		JugadorTableModel es = new JugadorTableModel();
 
-	public ArmarEquipoFrame getFrame() {
-		return frame;
-	}
-
-	public void setFrame(ArmarEquipoFrame frame) {
-		this.frame = frame;
-	}
-
-	public SistemaGranDT getLogica() {
-		return logica;
-	}
-
-	public void setLogica(SistemaGranDT logica) {
-		this.logica = logica;
+		//Creamos la ventana y la ponemos visible
+		this.frame = new ArmarEquipoFrame2(jug, et, es);
+		//le seteamos esta misma clase como controlador
+		this.frame.setControlador(this);
+		this.frame.setVisible(true);
 	}
 
 	public Vector<Jugador> getDisponibles() {

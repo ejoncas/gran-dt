@@ -16,8 +16,11 @@ public class EquipoTitular {
 		super();
 		this.arquero = arquero;
 		this.defensores = defensores;
+		this.defensores.setSize(getCANT_DEF());
 		this.volantes = volantes;
+		this.volantes.setSize(getCANT_VOL());
 		this.delanteros = delanteros;
+		this.delanteros.setSize(getCANT_DEL());
 	}
 
 	public static int getCANT_DEF() {
@@ -61,6 +64,15 @@ public class EquipoTitular {
 	}
 	public void setDelanteros(Vector<Delantero> delanteros) {
 		this.delanteros = delanteros;
+	}
+
+	public Vector<Jugador> toVector(){
+		Vector<Jugador> aux = new Vector<Jugador>();
+		aux.addElement(this.arquero);
+		aux.addAll(this.defensores);
+		aux.addAll(this.volantes);
+		aux.addAll(this.delanteros);
+		return aux;
 	}
 
 
