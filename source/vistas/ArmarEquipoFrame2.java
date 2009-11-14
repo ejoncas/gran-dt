@@ -1,4 +1,7 @@
 package vistas;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -8,10 +11,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle;
-import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
+
+import logica.Jugador;
+import controlador.ArmarEquipoControlador;
 
 
 /**
@@ -49,22 +52,54 @@ public class ArmarEquipoFrame2 extends javax.swing.JFrame {
 	private JTable tableEquipoT;
 	private JSeparator separatorEquipoT;
 	private JTable tableJugadores;
+	//TODO link the TableModels with the controller
+	private JugadorTableModel tableJugadoresModel;
+	private JugadorTableModel tableEquipoTModel;
+	private JugadorTableModel tableEquipoSModel;
+	//referencia al controlador
+	private ArmarEquipoControlador aec;
+
+
+
+	public ArmarEquipoControlador getControlador() {
+		return aec;
+	}
+
+	public void setControlador(ArmarEquipoControlador aec) {
+		this.aec = aec;
+	}
 
 	/**
 	 * Auto-generated main method to display this JFrame
 	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				ArmarEquipoFrame2 inst = new ArmarEquipoFrame2();
-				inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
-			}
-		});
-	}
+	//	public static void main(String[] args) {
+	//		SwingUtilities.invokeLater(new Runnable() {
+	//			public void run() {
+	//
+	//				ArmarEquipoFrame2 inst = new ArmarEquipoFrame2();
+	//				inst.setLocationRelativeTo(null);
+	//				inst.setVisible(true);
+	//			}
+	//		});
+	//	}
+
+
 
 	public ArmarEquipoFrame2() {
 		super();
+		//creamos las listas vacias
+		this.tableJugadoresModel=new JugadorTableModel();
+		this.tableEquipoSModel=new JugadorTableModel();
+		this.tableEquipoTModel= new JugadorTableModel();
+		initGUI();
+	}
+
+	public ArmarEquipoFrame2(JugadorTableModel j, JugadorTableModel et, JugadorTableModel es) {
+		super();
+		//Creamos las tablas cargadas
+		this.tableJugadoresModel=j;
+		this.tableEquipoSModel=es;
+		this.tableEquipoTModel=et;
 		initGUI();
 	}
 
@@ -86,13 +121,18 @@ public class ArmarEquipoFrame2 extends javax.swing.JFrame {
 					{
 						jScrollPane1 = new JScrollPane();
 						{
-							TableModel tableJugadoresModel = 
-								new DefaultTableModel(
-										new String[][] { { "One", "Two" }, { "Three", "Four" } },
-										new String[] { "Jugador", "Equipo", "Posicion", "Cotiza" });
 							tableJugadores = new JTable();
-							jScrollPane1.setViewportView(tableJugadores);
+
+							//we configure the table
+							tableJugadores.setAutoCreateColumnsFromModel(true);
 							tableJugadores.setModel(tableJugadoresModel);
+							tableJugadores.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+							tableJugadores.setRowSelectionAllowed(true);
+
+							jScrollPane1.setViewportView(tableJugadores);
+							//tableJugadores.setPreferredSize(new java.awt.Dimension(386, 121));
+							//tableJugadores.setPreferredSize(new java.awt.Dimension(375, 32));
+
 						}
 					}
 					{
@@ -114,10 +154,20 @@ public class ArmarEquipoFrame2 extends javax.swing.JFrame {
 					{
 						btnAgregarS = new JButton();
 						btnAgregarS.setText("Agregar Suplente ->");
+						btnAgregarS.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								btnAgregarSActionPerformed(evt);
+							}
+						});
 					}
 					{
 						btnAgregarT = new JButton();
 						btnAgregarT.setText("Agregar Titular ->");
+						btnAgregarT.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								btnAgregarTActionPerformed(evt);
+							}
+						});
 					}
 					pnlJugadoresLayout.setHorizontalGroup(pnlJugadoresLayout.createSequentialGroup()
 							.addContainerGap()
@@ -179,11 +229,12 @@ public class ArmarEquipoFrame2 extends javax.swing.JFrame {
 					{
 						jScrollPane3 = new JScrollPane();
 						{
-							TableModel tableEquipoSModel = 
-								new DefaultTableModel(
-										new String[][] { { "One", "Two" }, { "Three", "Four" } },
-										new String[] { "Jugador", "Posicion" });
 							tableEquipoS = new JTable();
+							tableEquipoS.setAutoCreateColumnsFromModel(true);
+							tableEquipoS.setModel(tableEquipoSModel);
+							tableEquipoS.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+							tableEquipoS.setRowSelectionAllowed(true);
+
 							jScrollPane3.setViewportView(tableEquipoS);
 							tableEquipoS.setModel(tableEquipoSModel);
 						}
@@ -191,6 +242,11 @@ public class ArmarEquipoFrame2 extends javax.swing.JFrame {
 					{
 						btnQuitarS = new JButton();
 						btnQuitarS.setText("<- Quitar Suplente");
+						btnQuitarS.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								btnQuitarSActionPerformed(evt);
+							}
+						});
 					}
 					panelEquipoSLayout.setHorizontalGroup(panelEquipoSLayout.createSequentialGroup()
 							.addContainerGap()
@@ -222,18 +278,25 @@ public class ArmarEquipoFrame2 extends javax.swing.JFrame {
 					{
 						jScrollPane2 = new JScrollPane();
 						{
-							TableModel tableEquipoTModel = 
-								new DefaultTableModel(
-										new String[][] { { "One", "Two" }, { "Three", "Four" } },
-										new String[] { "Jugador", "Posicion" });
 							tableEquipoT = new JTable();
+							tableEquipoT.setAutoCreateColumnsFromModel(true);
+							tableEquipoT.setModel(tableEquipoTModel);
+							tableEquipoT.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+							tableEquipoS.setRowSelectionAllowed(true);
+
 							jScrollPane2.setViewportView(tableEquipoT);
 							tableEquipoT.setModel(tableEquipoTModel);
+							//tableEquipoT.setPreferredSize(new java.awt.Dimension(283, 32));
 						}
 					}
 					{
 						btnQuitarT = new JButton();
 						btnQuitarT.setText("<- Quitar Titular");
+						btnQuitarT.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								btnQuitarTActionPerformed(evt);
+							}
+						});
 					}
 					panelEquipoTLayout.setHorizontalGroup(panelEquipoTLayout.createSequentialGroup()
 							.addContainerGap()
@@ -282,6 +345,36 @@ public class ArmarEquipoFrame2 extends javax.swing.JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+
+	//TODO Agregar Validaciones!!!!! Ahora puede meter todos los jugadores que quiera en cualquier equipo!
+	//Agregar Titular
+	private void btnAgregarTActionPerformed(ActionEvent evt) {
+		System.out.println("btnAgregarT.actionPerformed, event="+evt);
+		Jugador removed = tableJugadoresModel.removeJugadorAt(tableJugadores.getSelectedRow());
+		tableEquipoTModel.addJugador(removed);
+	}
+	//Agregar Suplente
+	private void btnAgregarSActionPerformed(ActionEvent evt) {
+		System.out.println("btnAgregarS.actionPerformed, event="+evt);
+		//TODO add your code for btnAgregarS.actionPerformed
+		Jugador removed = tableJugadoresModel.removeJugadorAt(tableJugadores.getSelectedRow());
+		tableEquipoSModel.addJugador(removed);
+	}
+	//Quitar Titular
+	private void btnQuitarTActionPerformed(ActionEvent evt) {
+		System.out.println("btnQuitarT.actionPerformed, event="+evt);
+		//TODO add your code for btnQuitarT.actionPerformed
+		Jugador removed = tableEquipoTModel.removeJugadorAt(tableEquipoT.getSelectedRow());
+		tableJugadoresModel.addJugador(removed);
+	}
+	//Quitar Suplente
+	private void btnQuitarSActionPerformed(ActionEvent evt) {
+		System.out.println("btnQuitarS.actionPerformed, event="+evt);
+		//TODO add your code for btnQuitarS.actionPerformed
+		Jugador removed = tableEquipoSModel.removeJugadorAt(tableEquipoS.getSelectedRow());
+		tableJugadoresModel.addJugador(removed);
 	}
 
 }

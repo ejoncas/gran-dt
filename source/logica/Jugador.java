@@ -5,13 +5,22 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Jugador {
-	private final String nombre;
-	private final String equipo;
-	private final String apellido;
-	private final Date fechaNac;
-	private final int puntaje;
-	private final float precio;
+	private String nombre;
+	private String equipo;
+	private String apellido;
+	private Date fechaNac;
+	private int puntaje;
+	private float precio;
+	private String posicion;
 
+
+	public String getPosicion() {
+		return posicion;
+	}
+
+	public void setPosicion(String posicion) {
+		this.posicion = posicion;
+	}
 
 	public Jugador(String n, String a, String e, int year, int month, int day, float p){
 		this.nombre=n;
