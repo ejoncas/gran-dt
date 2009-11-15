@@ -29,7 +29,7 @@ import controlador.ArmarEquipoControlador;
  * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
  * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
-public class ArmarEquipoFrame2 extends javax.swing.JFrame {
+public class ArmarEquipoFrame extends javax.swing.JFrame {
 	private JSeparator separatorJugadores;
 	private JPanel pnlJugadores;
 	private JScrollPane jScrollPane1;
@@ -85,7 +85,7 @@ public class ArmarEquipoFrame2 extends javax.swing.JFrame {
 
 
 
-	public ArmarEquipoFrame2() {
+	public ArmarEquipoFrame() {
 		super();
 		//creamos las listas vacias
 		this.tableJugadoresModel=new JugadorTableModel();
@@ -94,7 +94,7 @@ public class ArmarEquipoFrame2 extends javax.swing.JFrame {
 		initGUI();
 	}
 
-	public ArmarEquipoFrame2(JugadorTableModel j, JugadorTableModel et, JugadorTableModel es) {
+	public ArmarEquipoFrame(JugadorTableModel j, JugadorTableModel et, JugadorTableModel es) {
 		super();
 		//Creamos las tablas cargadas
 		this.tableJugadoresModel=j;

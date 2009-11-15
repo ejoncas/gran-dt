@@ -6,11 +6,11 @@ import logica.EquipoSuplente;
 import logica.EquipoTitular;
 import logica.Jugador;
 import logica.SistemaGranDT;
-import vistas.ArmarEquipoFrame2;
+import vistas.ArmarEquipoFrame;
 import vistas.JugadorTableModel;
 
 public class ArmarEquipoControlador {
-	private ArmarEquipoFrame2 frame;
+	private ArmarEquipoFrame frame;
 	private SistemaGranDT logica;
 
 	private Vector<Jugador> disponibles;
@@ -45,7 +45,7 @@ public class ArmarEquipoControlador {
 		JugadorTableModel es = new JugadorTableModel();
 
 		//Creamos la ventana y la ponemos visible
-		this.frame = new ArmarEquipoFrame2(jug, et, es);
+		this.frame = new ArmarEquipoFrame(jug, et, es);
 		//le seteamos esta misma clase como controlador
 		this.frame.setControlador(this);
 		this.frame.setVisible(true);
