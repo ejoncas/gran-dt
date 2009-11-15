@@ -81,7 +81,6 @@ public class SistemaGranDT {
 	}
 
 
-	/********** validaciones *************/
 	// valida el DNI: si ya existe un usuario con el dni devuelve true, si no false.
 	public boolean validarDNI (String tipo, int nro){
 		String t;
@@ -94,6 +93,21 @@ public class SistemaGranDT {
 				return true;
 		}			
 		return false;		
+	}
+	
+	// debe validarse previamente que el nro y doc existan
+	public Usuario getUsuarioByDoc(String tipo, int nro){
+		String t;
+		int n;
+		for(int i=0; i<usuarios.size();i++){
+			Usuario u = usuarios.elementAt(i);
+			n = u.getNroDoc();
+			t = u.getTipoDoc();
+			if (tipo.equals(t) && nro == n)
+				return u;
+		}			
+		return null;	
+		
 	}
 
 	public void listarUsuarios(){
