@@ -35,9 +35,6 @@ public class AltaUsuarioControlador {
 	private String username;
 	private String password;
 	private String equipo;
-	//private float montoDisponible;
-	//private float montoGastado;
-	//private Vector<Torneo> torneos;
 
 	// constructor del controlador
 	public AltaUsuarioControlador (){
@@ -60,7 +57,6 @@ public class AltaUsuarioControlador {
 		return es;
 	}
 
-	////////// verificar q selecciono uno ?
 	public boolean sexoOK(String s){
 		return false;
 	}
