@@ -3,8 +3,10 @@ package main;
 import java.io.IOException;
 import java.util.Date;
 
+import logica.Equipo;
 import logica.SistemaGranDT;
 import logica.Usuario;
+import logica.dao.EquipoDAO;
 import vistas.LoginFrame;
 import controlador.LoginControlador;
 
@@ -35,7 +37,7 @@ public class Main {
 		//TESTING LoginFrame
 		Usuario u = new Usuario("admin", "admin", "DNI", 345678, new Date(2009,1,1), "F", "admin", "admin", "admin", "admin", "admin", 1, 1, "A","AB", 345, 34567, "Movistar", "admin@admin.com", "1234");
 		sys.getUsuarios().addElement(u);
-		new LoginFrame(new LoginControlador()).setVisible(true);
+//		new LoginFrame(new LoginControlador()).setVisible(true);
 
 		//		sys.setUsuarioActual(u);
 		//		sys.getUsuarios().addElement(u);
@@ -147,6 +149,17 @@ public class Main {
 		//			System.out.println("Precio: "+r.get(3));
 		//			System.out.println("Posicion: "+r.get(4));
 		//		}
+		
+		Equipo e = new Equipo("EDU");
+		EquipoDAO  edao = new EquipoDAO();
+		System.out.println(e.getId());
+		edao.insertEquipo(e);
+		System.out.println(e.getId());
+		
+//		
+//		Equipo e2 = edao.getEquipoPorNombre("Sarasa");
+//		System.out.println(e2.getId() + e2.getNombre());
+//		
 
 	}
 
