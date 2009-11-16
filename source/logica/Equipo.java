@@ -11,12 +11,12 @@ public class Equipo {
 		this.nombre = nombre;
 		this.setPuntajeacum(0);
 	}
-	public Equipo(int id,String nombre) {
-		super();
-		this.setId(id);
-		this.nombre = nombre;
-		this.setPuntajeacum(0);
-	}
+//	public Equipo(int id,String nombre) {
+//		super();
+//		this.setId(id);
+//		this.nombre = nombre;
+//		this.setPuntajeacum(0);
+//	}
 
 	public Equipo(int id, String nombre, int puntaje) {
 		// TODO Auto-generated constructor stub

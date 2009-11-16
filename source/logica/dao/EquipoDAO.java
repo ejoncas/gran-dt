@@ -1,6 +1,8 @@
 package logica.dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -53,7 +55,6 @@ public class EquipoDAO {
 
 	//retorna null si no lo encuentra. Otherwise retorna el Equipo
 	public Equipo getEquipoPorNombre(String nombre){
-		System.out.println("Validando contra la BD");
 		Equipo e;
 		try{
 			//connect to db
@@ -69,7 +70,6 @@ public class EquipoDAO {
 
 			if(rs.next()){
 				e=new Equipo(rs.getInt("id"), rs.getString("nombre"), rs.getInt("puntaje"));
-				System.out.println(rs.getInt("id")+" " + rs.getString("nombre")+ " " + rs.getInt("puntaje"));
 			}
 			else
 				e=null;
@@ -91,6 +91,31 @@ public class EquipoDAO {
 			return null;
 		}
 
+	}
+	
+	public void insertEquipo(Equipo e){
+		ResultSet rs = null;
+		Statement stmt = null;
+		
+		try {
+			Connection connection = DAOCM.getConnection();
+			String query = "INSERT INTO Equipo (nombre, puntaje) VALUES ('"+e.getNombre()+"',"+e.getPuntajeacum()+");SELECT @@IDENTITY;";
+			stmt = connection.createStatement();
+
+			rs = stmt.executeQuery(query);
+				
+			if (rs.next()){
+				System.out.println("ADENTRO DEL IF");
+				e.setId(rs.getInt(0));
+			}
+		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+		}
+	
 	}
 
 }
