@@ -155,6 +155,13 @@ public class SistemaGranDT {
 	public void setUsuarioActual(Usuario usuarioActual) {
 		this.usuarioActual = usuarioActual;
 	}
+	
+//	public Torneo buscarTorneo(String nombre){
+//		for (int i=0; i<this.getTorneos().;
+//		
+//		
+//		return t;
+//	}
 
 
 }

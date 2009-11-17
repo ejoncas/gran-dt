@@ -150,7 +150,7 @@ public class Main {
 		//			System.out.println("Posicion: "+r.get(4));
 		//		}
 		
-		Equipo e = new Equipo("EDU");
+		Equipo e = new Equipo("rdfghjk");
 		EquipoDAO  edao = new EquipoDAO();
 		System.out.println(e.getId());
 		edao.insertEquipo(e);

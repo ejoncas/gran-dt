@@ -62,6 +62,12 @@ public class CrearTorneoAmigosFrame extends javax.swing.JFrame {
 			{
 				btnCrear = new JButton();
 				btnCrear.setText("Crear");
+				btnCrear.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						System.out.println("btnCrear.actionPerformed, event="+evt);
+						//TODO add your code for btnCrear.actionPerformed
+					}
+				});
 			}
 			{
 				btnCancelar = new JButton();
