@@ -94,26 +94,41 @@ public class EquipoDAO {
 	}
 	
 	public void insertEquipo(Equipo e){
-		ResultSet rs = null;
-		Statement stmt = null;
+		ResultSet rs2 = null;
+		PreparedStatement stmt = null;
+		Statement stmt2 = null;
 		
 		try {
 			Connection connection = DAOCM.getConnection();
-			String query = "INSERT INTO Equipo (nombre, puntaje) VALUES ('"+e.getNombre()+"',"+e.getPuntajeacum()+");SELECT @@IDENTITY;";
-			stmt = connection.createStatement();
+			String query = "INSERT INTO Equipo VALUES (?,?)";
+			stmt = connection.prepareStatement(query);
+			stmt.setString(1, e.getNombre());
+			stmt.setInt(2, e.getPuntajeacum());
+			//stmt = connection.createStatement();
 
-			rs = stmt.executeQuery(query);
-				
-			if (rs.next()){
+			stmt.execute();
+			
+			String query2 =  "SELECT @@IDENTITY";
+			stmt2 = connection.createStatement();
+			rs2 = stmt2.executeQuery(query2);
+			
+			if (rs2.next()){
 				System.out.println("ADENTRO DEL IF");
-				e.setId(rs.getInt(0));
+				e.setId(rs2.getInt(1));
+				
 			}
+			stmt.close();
+			stmt2.close();
+			rs2.close();
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
 		}catch (Exception ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
+		}finally{
+			
+			//DAOCM.getConnection().close();
 		}
 	
 	}
