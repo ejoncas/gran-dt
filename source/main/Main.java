@@ -156,6 +156,8 @@ public class Main {
 		edao.insertEquipo(e);
 		System.out.println(e.getId());
 		
+	
+		
 //		
 //		Equipo e2 = edao.getEquipoPorNombre("Sarasa");
 //		System.out.println(e2.getId() + e2.getNombre());
