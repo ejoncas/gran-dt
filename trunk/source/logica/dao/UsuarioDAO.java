@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import logica.Equipo;
 import logica.Jugador;
 import logica.Usuario;
 
@@ -63,6 +64,48 @@ public class UsuarioDAO {
 			e.printStackTrace();
 			//return null;
 		}
+	}
+	
+	public Usuario getUsuarioPorDoc(String tipoDoc, int nroDoc) {
+		
+		Usuario u;
+		try{
+			//conexion a la bd
+			Connection connection = DAOCM.getConnection();
+			//creacion del statement
+			Statement stmt = connection.createStatement();
+			// armado del query
+			String query = "SELECT tipo_doc, nro_doc, password, monto, monto_gastado, equipo_fk FROM Usuario WHERE tipo_doc = '"+tipoDoc+"' AND nro_doc = '"+nroDoc+"'";
+			//ejecucion del query
+			ResultSet rs = stmt.executeQuery(query);
+
+			// creacion del usuario con los datos indispensables
+
+			if(rs.next()){
+				u=new Usuario(rs.getString("tipo_doc"), rs.getInt("nro_doc"), rs.getString("password"));
+			}
+			else
+				u=null;
+
+			// cierre de conexiones
+			connection.close();
+			stmt.close();
+			rs.close();
+
+			// devolucion del usuario encontrado
+			return u;
+		}catch (SQLException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+			return null;
+		}catch (Exception ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+			return null;
+		}
+
+
+		
 	}
 
 

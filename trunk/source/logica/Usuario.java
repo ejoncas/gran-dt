@@ -203,6 +203,34 @@ public class Usuario {
 		this.montoGastado=0;
 		this.equipo=null;
 	}
+	public Usuario (String tipo, int nro, String pass) {
+		this.tipoDoc=tipo;
+		this.nroDoc=nro;
+		this.password=pass;
+		
+		//en blanco		
+		this.nombre = null;
+		this.apellido = null;
+		this.fechaNac = null;
+		this.sexo = null;
+		this.hincha = null;
+		this.provincia = null;
+		this.partido = null;
+		this.localidad = null;
+		this.calle = null;
+		this.numero = 0;
+		this.piso = 0;
+		this.dpto = null;
+		this.cp = null;
+		this.tel=0;
+		this.cel=0;
+		this.proveedorCel = null;
+		this.email = null;
+		this.montoDisponible=0;
+		this.montoGastado=0;
+		this.equipo=null;
+		
+}
 
 
 }
