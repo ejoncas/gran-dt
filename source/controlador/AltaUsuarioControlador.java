@@ -142,7 +142,8 @@ public class AltaUsuarioControlador {
 			this.sexo=s;
 			this.tipoDoc=td;
 			this.nroDoc=Integer.parseInt(nd);
-			this.fechaNac= new Date(anio, mes, dia);
+			//this.fechaNac= new Date(anio, mes, dia);
+			this.fechaNac= new Date(anio-1900, mes-1, dia);
 			this.hincha=h;
 			return null;
 		}
@@ -258,13 +259,13 @@ public class AltaUsuarioControlador {
 			//			logica.listarUsuarios();
 			//			System.out.println("LISTANDO TODOS LOS EQUIPOS");
 			//			logica.listarEquipos();
-			
+
 			// guardar en la BD
 			System.out.println("Datos del usuario recien creado: \n" + u.toString());
 			edao.insertEquipo(e);
 			System.out.println(e.getId());
 			udao.guardarUsuario(u, e.getId());
-			
+
 			//udao.guardarUsuario(u, e.getId());
 		}
 		return r;

@@ -45,8 +45,8 @@ public class LoginControlador {
 		String resultado = validarLogin(tipo, nro, pass);
 
 		if (resultado==null){ // si todos los datos son correctos
-				Usuario u = udao.getUsuarioPorDoc(tipo, Integer.parseInt(nro));
-				if (u!=null){
+			Usuario u = udao.getUsuarioPorDoc(tipo, Integer.parseInt(nro));
+			if (u!=null){
 				if (pass.equals(u.getPassword())){ // contrasenia ok
 					logica.setUsuarioActual(u); // setea el usuario
 					return null; // porque todo salio bien
@@ -60,26 +60,32 @@ public class LoginControlador {
 
 		return resultado;
 	}
-// version anterior: si los usuarios estuvieran cargados en memoria
-//	public String loguearUsuario(String tipo, String nro, String pass){
-//		String resultado = validarLogin(tipo, nro, pass);
-//
-//		if (resultado==null){ // si todos los datos son correctos
-//			boolean existeDoc =logica.validarDNI(tipo, Integer.parseInt(nro));	// validar que existe el tipo y nro de documento
-//			if (existeDoc){ // si existe el dni ingresado en el sistema
-//				Usuario u = logica.getUsuarioByDoc(tipo, Integer.parseInt(nro));
-//				if (pass.equals(u.getPassword())){ // contrasenia ok
-//					logica.setUsuarioActual(u); // setea el usuario
-//					return null; // porque todo salio bien
-//				}
-//				else
-//					return "Error en la contrasena";				
-//			}
-//			else // si no existe
-//				return "El documento ingresado no se encuentra registrado en el sistema. Debe registrarse para poder ingresar.";			
-//		}
-//
-//		return resultado;
-//	}
+
+	public boolean isAdmin(){
+		//TODO ... si queda tiempo hacer algo mas copado. Por ahora con el insert en la base de un usuario que se llame admin funciona		
+		return logica.getUsuarioActual().getNombre().equals("admin"); 
+	}
+
+	// version anterior: si los usuarios estuvieran cargados en memoria
+	//	public String loguearUsuario(String tipo, String nro, String pass){
+	//		String resultado = validarLogin(tipo, nro, pass);
+	//
+	//		if (resultado==null){ // si todos los datos son correctos
+	//			boolean existeDoc =logica.validarDNI(tipo, Integer.parseInt(nro));	// validar que existe el tipo y nro de documento
+	//			if (existeDoc){ // si existe el dni ingresado en el sistema
+	//				Usuario u = logica.getUsuarioByDoc(tipo, Integer.parseInt(nro));
+	//				if (pass.equals(u.getPassword())){ // contrasenia ok
+	//					logica.setUsuarioActual(u); // setea el usuario
+	//					return null; // porque todo salio bien
+	//				}
+	//				else
+	//					return "Error en la contrasena";				
+	//			}
+	//			else // si no existe
+	//				return "El documento ingresado no se encuentra registrado en el sistema. Debe registrarse para poder ingresar.";			
+	//		}
+	//
+	//		return resultado;
+	//	}
 
 }
