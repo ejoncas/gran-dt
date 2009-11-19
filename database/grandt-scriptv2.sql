@@ -25,7 +25,7 @@ create table Contacto (
 	numero int not null,
 	piso int,
 	depto char(1),
-	codigo_postal int not null,
+	codigo_postal varchar(10) not null,
 	telefono_particular bigint not null,
 	celular bigint,
 	proveedor_celular varchar(30)

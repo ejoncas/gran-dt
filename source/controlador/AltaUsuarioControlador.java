@@ -6,11 +6,15 @@ import java.util.GregorianCalendar;
 import logica.Equipo;
 import logica.SistemaGranDT;
 import logica.Usuario;
+import logica.dao.EquipoDAO;
+import logica.dao.UsuarioDAO;
 
 public class AltaUsuarioControlador {
 
 	// referencia al sistema, logica de negocio
 	private final SistemaGranDT logica;
+	private final UsuarioDAO udao;
+	private final EquipoDAO edao;
 
 	// para guardar los datos del usuario
 	private String nombre;
@@ -32,13 +36,14 @@ public class AltaUsuarioControlador {
 	private int cel;
 	private String proveedorCel;
 	private String email;
-	private String username;
 	private String password;
 	private String equipo;
 
 	// constructor del controlador
 	public AltaUsuarioControlador (){
 		this.logica = SistemaGranDT.getInstance(); // referencia al sistema
+		this.udao=new UsuarioDAO();
+		this.edao=new EquipoDAO();
 		System.out.println(this.logica);
 	}
 
@@ -253,6 +258,14 @@ public class AltaUsuarioControlador {
 			//			logica.listarUsuarios();
 			//			System.out.println("LISTANDO TODOS LOS EQUIPOS");
 			//			logica.listarEquipos();
+			
+			// guardar en la BD
+			System.out.println("Datos del usuario recien creado: \n" + u.toString());
+			edao.insertEquipo(e);
+			System.out.println(e.getId());
+			udao.guardarUsuario(u, e.getId());
+			
+			//udao.guardarUsuario(u, e.getId());
 		}
 		return r;
 	}

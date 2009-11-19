@@ -10,6 +10,8 @@ public class Equipo {
 		super();
 		this.nombre = nombre;
 		this.setPuntajeacum(0);
+		this.equipoSuplente=null;
+		this.equipoTitular=null;
 	}
 //	public Equipo(int id,String nombre) {
 //		super();
