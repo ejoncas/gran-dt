@@ -80,6 +80,7 @@ public class LoginFrame extends javax.swing.JFrame {
 			GroupLayout thisLayout = new GroupLayout(getContentPane());
 			getContentPane().setLayout(thisLayout);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+			this.setTitle("GRAN DT - Login");
 			{
 				lblTipoDoc = new JLabel();
 				lblTipoDoc.setText("Tipo doc:");
@@ -111,7 +112,7 @@ public class LoginFrame extends javax.swing.JFrame {
 			}
 			{
 				lblNoRegistrado = new JLabel();
-				lblNoRegistrado.setText("No est‡ registrado?");
+				lblNoRegistrado.setText("No estï¿½ registrado?");
 			}
 			{
 				btnRegistrarse = new JButton();
@@ -120,7 +121,10 @@ public class LoginFrame extends javax.swing.JFrame {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("btnRegistrarse.actionPerformed, event="+evt);
 						new AltaUsuario1Frame(new AltaUsuarioControlador()).setVisible(true);
-						dispose();					}
+						/*
+						 * no la cerramos para que despues pueda loguearse 
+						 * dispose();
+						 */					}
 				});
 			}
 			{
@@ -138,6 +142,15 @@ public class LoginFrame extends javax.swing.JFrame {
 								JOptionPane.showMessageDialog(null, r2); //imprime el error
 							else {// si devolvio null, todo ok \u00a9 es el caracter unicode del copyright
 								JOptionPane.showMessageDialog(null, "Bienvenido al GranDT!\n\n \u00a9by Jonatan y Candelas");
+								//Aca estoy seguro que puso los datos bien, detecto si es admin o usuario
+								if(lc.isAdmin()){
+									System.out.println("ES ADMIN");
+									new MenuAdminFrame().setVisible(true);
+								}
+								else{
+									System.out.println("ES USER");
+									new MenuUsuarioFrame().setVisible(true);
+								}
 								dispose(); // cierra la ventana
 							}
 						}
@@ -161,66 +174,64 @@ public class LoginFrame extends javax.swing.JFrame {
 				});
 			}
 			thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
-				.addGap(6)
-				.addComponent(lblIngrese, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-				.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-				    .addComponent(cmbTipoDoc, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(lblTipoDoc, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-				.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-				    .addComponent(txtNroDoc, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(lblNroDoc, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-				.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-				    .addComponent(jPasswordField1, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(lblPassword, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-				.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-				    .addComponent(btnIngresar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(btnCancelar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
-				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-				.addComponent(lblNoRegistrado, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, Short.MAX_VALUE)
-				.addComponent(btnRegistrarse, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addContainerGap());
+					.addGap(6)
+					.addComponent(lblIngrese, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+					.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+							.addComponent(cmbTipoDoc, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblTipoDoc, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+							.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+									.addComponent(txtNroDoc, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(lblNroDoc, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+											.addComponent(jPasswordField1, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addComponent(lblPassword, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+											.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED, 1, Short.MAX_VALUE)
+											.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+													.addComponent(btnIngresar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+													.addComponent(btnCancelar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+													.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+													.addComponent(lblNoRegistrado, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+													.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+													.addComponent(btnRegistrarse, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+													.addContainerGap());
 			thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
-				.addContainerGap()
-				.addGroup(thisLayout.createParallelGroup()
-				    .addGroup(thisLayout.createSequentialGroup()
-				        .addGroup(thisLayout.createParallelGroup()
-				            .addComponent(lblPassword, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
-				            .addComponent(lblNroDoc, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
-				            .addComponent(lblTipoDoc, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))
-				        .addGap(22)
-				        .addGroup(thisLayout.createParallelGroup()
-				            .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				                .addComponent(jPasswordField1, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
-				                .addGap(0, 10, Short.MAX_VALUE))
-				            .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				                .addComponent(txtNroDoc, 0, 202, Short.MAX_VALUE)
-				                .addGap(10))
-				            .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				                .addComponent(cmbTipoDoc, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				                .addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
-				                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-				                .addComponent(btnIngresar, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-				                .addGap(0, 0, Short.MAX_VALUE))))
-				    .addGroup(thisLayout.createSequentialGroup()
-				        .addPreferredGap(lblPassword, lblIngrese, LayoutStyle.ComponentPlacement.INDENT)
-				        .addGroup(thisLayout.createParallelGroup()
-				            .addGroup(thisLayout.createSequentialGroup()
-				                .addComponent(lblIngrese, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
-				                .addGap(0, 0, Short.MAX_VALUE))
-				            .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				                .addComponent(lblNoRegistrado, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE)
-				                .addGap(0, 26, Short.MAX_VALUE))
-				            .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				                .addPreferredGap(lblIngrese, btnRegistrarse, LayoutStyle.ComponentPlacement.INDENT)
-				                .addComponent(btnRegistrarse, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-				                .addGap(0, 62, Short.MAX_VALUE)))
-				        .addGap(136)))
-				.addContainerGap(23, 23));
+					.addContainerGap()
+					.addGroup(thisLayout.createParallelGroup()
+							.addGroup(thisLayout.createSequentialGroup()
+									.addGroup(thisLayout.createParallelGroup()
+											.addComponent(lblPassword, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+											.addComponent(lblNroDoc, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+											.addComponent(lblTipoDoc, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))
+											.addGap(22)
+											.addGroup(thisLayout.createParallelGroup()
+													.addGroup(thisLayout.createSequentialGroup()
+															.addComponent(jPasswordField1, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)
+															.addGap(0, 0, Short.MAX_VALUE))
+															.addComponent(txtNroDoc, GroupLayout.Alignment.LEADING, 0, 212, Short.MAX_VALUE)
+															.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+																	.addComponent(cmbTipoDoc, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+																	.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
+																	.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+																	.addComponent(btnIngresar, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+																	.addGap(0, 0, Short.MAX_VALUE))))
+																	.addGroup(thisLayout.createSequentialGroup()
+																			.addPreferredGap(lblPassword, lblIngrese, LayoutStyle.ComponentPlacement.INDENT)
+																			.addGroup(thisLayout.createParallelGroup()
+																					.addGroup(thisLayout.createSequentialGroup()
+																							.addComponent(lblIngrese, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
+																							.addGap(0, 0, Short.MAX_VALUE))
+																							.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+																									.addComponent(lblNoRegistrado, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE)
+																									.addGap(0, 26, Short.MAX_VALUE))
+																									.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+																											.addPreferredGap(lblIngrese, btnRegistrarse, LayoutStyle.ComponentPlacement.INDENT)
+																											.addComponent(btnRegistrarse, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+																											.addGap(0, 56, Short.MAX_VALUE)))
+																											.addGap(130)))
+																											.addContainerGap(15, 15));
 			pack();
 		} catch (Exception e) {
 			e.printStackTrace();

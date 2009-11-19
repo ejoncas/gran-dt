@@ -1,39 +1,36 @@
 package logica.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import logica.Equipo;
-import logica.Jugador;
 import logica.Usuario;
 
 public class UsuarioDAO {
-	
+
 	private final DAOConnectionManager DAOCM = DAOConnectionManager.getDAOConectionManager();
-	
-	
+
+
 	// metodos
-	
+
 	public void guardarUsuario(Usuario u, int idEquipo){
 		try{
 			//connect to db
 			Connection connection = DAOCM.getConnection();
 
 			String query = "INSERT INTO Usuario (tipo_doc,nro_doc,password,nacimiento,nombre," +
-					"apellido,sexo,equipo_hincha,monto,monto_gastado,equipo_fk) " +
-					"VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-			
+			"apellido,sexo,equipo_hincha,monto,monto_gastado,equipo_fk) " +
+			"VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+
 			String query2 = "INSERT INTO Contacto (tipo_doc,nro_doc,email,provincia,partido,"+
-					"localidad,calle,numero,piso,depto,codigo_postal,telefono_particular,"+
-					"celular,proveedor_celular) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-			
+			"localidad,calle,numero,piso,depto,codigo_postal,telefono_particular,"+
+			"celular,proveedor_celular) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
 			PreparedStatement stmt = connection.prepareStatement(query);
 			PreparedStatement stmt2 = connection.prepareStatement(query2);
-			
+
 			stmt.setString(1, u.getTipoDoc());
 			stmt.setInt(2, u.getNroDoc());
 			stmt.setString(3, u.getPassword());
@@ -45,7 +42,7 @@ public class UsuarioDAO {
 			stmt.setFloat(9, u.getMontoDisponible());  // ver
 			stmt.setFloat(10, u.getMontoGastado());
 			stmt.setInt(11, idEquipo);
-			
+
 			stmt2.setString(1,u.getTipoDoc());
 			stmt2.setInt(2, u.getNroDoc());
 			stmt2.setString(3, u.getEmail());
@@ -60,24 +57,24 @@ public class UsuarioDAO {
 			stmt2.setInt(12, u.getTel());
 			stmt2.setInt(13, u.getCel());
 			stmt2.setString(14, u.getProveedorCel());
-			
+
 			stmt2.execute();
-			
+
 			stmt.execute();
 
 			//ResultSet rs = stmt.executeQuery(query);
 
-			
-			
+
+
 			//we move to the first row - ResultSet starts "before first"
-//			rs.next();
-//
-//			
-//
-//			// cerrar
-//			connection.close();
-//			stmt.close();
-//			rs.close();
+			//			rs.next();
+			//
+			//			
+			//
+			//			// cerrar
+			//			connection.close();
+			//			stmt.close();
+			//			rs.close();
 
 
 		}catch (SQLException e) {
@@ -90,9 +87,9 @@ public class UsuarioDAO {
 			//return null;
 		}
 	}
-	
+
 	public Usuario getUsuarioPorDoc(String tipoDoc, int nroDoc) {
-		
+
 		Usuario u;
 		try{
 			//conexion a la bd
@@ -100,14 +97,33 @@ public class UsuarioDAO {
 			//creacion del statement
 			Statement stmt = connection.createStatement();
 			// armado del query
-			String query = "SELECT tipo_doc, nro_doc, password, monto, monto_gastado, equipo_fk FROM Usuario WHERE tipo_doc = '"+tipoDoc+"' AND nro_doc = '"+nroDoc+"'";
+			String query = 
+				"SELECT u.tipo_doc, u.nro_doc, u.password, " +
+				"u.nacimiento, u.nombre, u.apellido, u.sexo," +
+				" u.equipo_hincha, u.monto, u.monto_gastado," +
+				" u.equipo_fk, c.email, c.provincia, c.partido," +
+				" c.localidad, c.calle, c.numero, c.piso, c.depto," +
+				" c.codigo_postal, c.telefono_particular, c.celular," +
+				" c.proveedor_celular " +
+				"FROM Usuario u " +
+				"INNER JOIN Contacto c " +
+				"ON (u.tipo_doc = c.tipo_doc and u.nro_doc = c.nro_doc) " +
+				"WHERE u.tipo_doc = '"+tipoDoc+"' AND c.nro_doc = '"+nroDoc+"'";
+
 			//ejecucion del query
 			ResultSet rs = stmt.executeQuery(query);
 
 			// creacion del usuario con los datos indispensables
 
 			if(rs.next()){
-				u=new Usuario(rs.getString("tipo_doc"), rs.getInt("nro_doc"), rs.getString("password"));
+				//Cande's version
+				//u=new Usuario(rs.getString("tipo_doc"), rs.getInt("nro_doc"), rs.getString("password"));
+				u = new Usuario(rs.getString("nombre"), rs.getString("apellido"), rs.getString("tipo_doc"),
+						rs.getInt("nro_doc"), rs.getDate("nacimiento"), rs.getString("sexo"), rs.getString("equipo_hincha"),
+						rs.getString("provincia"), rs.getString("partido"), rs.getString("localidad"), rs.getString("calle"),
+						rs.getInt("numero"), rs.getInt("piso"), rs.getString("depto"), 
+						rs.getString("codigo_postal"), rs.getInt("telefono_particular"), rs.getInt("celular"), rs.getString("proveedor_celular"),
+						rs.getString("email"), rs.getString("password"));
 			}
 			else
 				u=null;
@@ -130,7 +146,7 @@ public class UsuarioDAO {
 		}
 
 
-		
+
 	}
 
 
