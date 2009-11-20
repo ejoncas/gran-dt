@@ -9,6 +9,8 @@ import javax.swing.JMenuItem;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
+import logica.SistemaGranDT;
+
 
 /**
  * This code was edited or generated using CloudGarden's Jigloo
@@ -31,6 +33,15 @@ public class MenuAdminFrame extends javax.swing.JFrame {
 	private JMenuItem btnPuntajesJug;
 	private JMenu jMenu1;
 	private JMenuBar barMenu;
+	
+	// la ventana del menu es Singleton
+	private static MenuAdminFrame menuadmin=null;
+	
+	public static MenuAdminFrame getInstance(){
+		//This method return the unique instance - SINGLETON
+		return menuadmin==null ? menuadmin = new MenuAdminFrame() : menuadmin;		
+	}
+
 
 	/**
 	 * Auto-generated main method to display this JFrame
@@ -130,6 +141,10 @@ public class MenuAdminFrame extends javax.swing.JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public JDesktopPane getDesktopPane(){
+		return this.desktopPane;
 	}
 
 }

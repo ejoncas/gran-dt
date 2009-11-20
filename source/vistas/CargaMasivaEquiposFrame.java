@@ -9,6 +9,8 @@ import javax.swing.LayoutStyle;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
+import controlador.CargaMasivaEquiposControlador;
+
 
 /**
  * This code was edited or generated using CloudGarden's Jigloo
@@ -27,6 +29,9 @@ public class CargaMasivaEquiposFrame extends javax.swing.JInternalFrame {
 	private JTextField txtPath;
 	private JButton btnCargar;
 	private JButton btnExaminar;
+	
+	// referencia al controlador
+	private CargaMasivaEquiposControlador cmec;
 
 	/**
 	 * Auto-generated main method to display this JFrame
@@ -43,6 +48,7 @@ public class CargaMasivaEquiposFrame extends javax.swing.JInternalFrame {
 
 	public CargaMasivaEquiposFrame() {
 		super("Carga masiva de equipos", true, true, true, true);
+		this.cmec = new CargaMasivaEquiposControlador();
 		initGUI();
 	}
 
@@ -65,8 +71,9 @@ public class CargaMasivaEquiposFrame extends javax.swing.JInternalFrame {
 				btnExaminar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("btnExaminar.actionPerformed, event="+evt);
-						ExaminarEquiposFrame frame = new ExaminarEquiposFrame();
-						frame.setVisible(true);
+						cmec.procesarExaminar();
+						//ExaminarEquiposFrame frame = new ExaminarEquiposFrame();
+						//frame.setVisible(true);
 						//desktopPane.add(frame);//TODO add your code for btnExaminar.actionPerformed
 					}
 				});

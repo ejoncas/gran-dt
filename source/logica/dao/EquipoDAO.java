@@ -93,6 +93,48 @@ public class EquipoDAO {
 
 	}
 	
+	//Busca un equipo segun el tipo y nro de documento del usuario.
+	// Si lo encuentra lo retorna, sino retorna null.
+	public Equipo getEquipoPorUsuario(String tipoDoc, int nroDoc){
+		Equipo e;
+		try{
+			//connect to db
+			Connection connection = DAOCM.getConnection();
+			//create statement
+			Statement stmt = connection.createStatement();
+
+			String query = "SELECT e.id, e.nombre, e.puntaje FROM Equipo e, Usuario u WHERE " +
+					"u.nro_doc = "+nroDoc+" AND u.tipo_doc = '"+tipoDoc+"'";
+			//execute query
+			ResultSet rs = stmt.executeQuery(query);
+
+			if(rs.next()){
+				e=new Equipo(rs.getInt("id"), rs.getString("nombre"), rs.getInt("puntaje"));
+			}
+			else
+				e=null;
+
+			// cerrar conexiones
+			connection.close();
+			stmt.close();
+			rs.close();
+
+			// devuelve el equipo
+			return e;
+		}catch (SQLException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+			return null;
+		}catch (Exception ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+			return null;
+		}
+
+	}
+	
+
+	
 	public void insertEquipo(Equipo e){
 		ResultSet rs2 = null;
 		PreparedStatement stmt = null;
