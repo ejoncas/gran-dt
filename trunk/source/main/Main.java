@@ -2,7 +2,9 @@ package main;
 
 import java.io.IOException;
 
+import logica.Equipo;
 import logica.SistemaGranDT;
+import logica.dao.EquipoDAO;
 import vistas.LoginFrame;
 import controlador.LoginControlador;
 
@@ -155,6 +157,10 @@ public class Main {
 		System.out.println(sys.getUsuarios().toString());
 
 		new LoginFrame(new LoginControlador()).setVisible(true);
+		
+		EquipoDAO edao = new EquipoDAO();
+		Equipo e = edao.getEquipoPorUsuario("DNI", 123123);
+		System.out.println(e.toString());
 
 		//System.out.println(sys.getUsuarios().toString());
 		//		Equipo equipoCande = new Equipo("equipo de cande");
