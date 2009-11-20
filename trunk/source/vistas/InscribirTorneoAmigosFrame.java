@@ -24,7 +24,7 @@ import javax.swing.WindowConstants;
  * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
  * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
-public class InscribirTorneoAmigosFrame extends javax.swing.JFrame {
+public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 	private JLabel lblSeleccione;
 	private JRadioButton jrbDuenio;
 	private JRadioButton jrbNombre;
@@ -40,14 +40,14 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				InscribirTorneoAmigosFrame inst = new InscribirTorneoAmigosFrame();
-				inst.setLocationRelativeTo(null);
+	//			inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
 		});
 	}
 
 	public InscribirTorneoAmigosFrame() {
-		super();
+		super("Inscribir en torneo de amigos", true, true, true, true);
 		initGUI();
 	}
 

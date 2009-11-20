@@ -1,4 +1,6 @@
 package vistas;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.JDesktopPane;
 import javax.swing.JMenu;
@@ -65,11 +67,25 @@ public class MenuAdminFrame extends javax.swing.JFrame {
 						btnPuntajesJug = new JMenuItem();
 						jMenu1.add(btnPuntajesJug);
 						btnPuntajesJug.setText("Cargar Puntajes Jugadores...");
+						btnPuntajesJug.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								System.out.println("btnPuntajesJug.actionPerformed, event="+evt);
+								RegistrarPuntajesJugadoresFrame frame = new RegistrarPuntajesJugadoresFrame();
+								frame.setVisible(true);
+								desktopPane.add(frame);							}
+						});
 					}
 					{
 						btnGenerarTabla = new JMenuItem();
 						jMenu1.add(btnGenerarTabla);
 						btnGenerarTabla.setText("Generar Tabla de Posiciones...");
+						btnGenerarTabla.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								System.out.println("btnGenerarTabla.actionPerformed, event="+evt);
+								TablasPosicionesFrame frame = new TablasPosicionesFrame();
+								frame.setVisible(true);
+								desktopPane.add(frame);							}
+						});
 					}
 				}
 				{
@@ -80,11 +96,25 @@ public class MenuAdminFrame extends javax.swing.JFrame {
 						btnCMJugadores = new JMenuItem();
 						jMenu2.add(btnCMJugadores);
 						btnCMJugadores.setText("...de Jugadores");
+						btnCMJugadores.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								System.out.println("btnCMJugadores.actionPerformed, event="+evt);
+								CargaMasivaJugadoresFrame frame = new CargaMasivaJugadoresFrame();
+								frame.setVisible(true);
+								desktopPane.add(frame);							}
+						});
 					}
 					{
 						btnCMEquipos = new JMenuItem();
 						jMenu2.add(btnCMEquipos);
 						btnCMEquipos.setText("...de Equipos");
+						btnCMEquipos.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								System.out.println("btnCMEquipos.actionPerformed, event="+evt);
+								CargaMasivaEquiposFrame frame = new CargaMasivaEquiposFrame();
+								frame.setVisible(true);
+								desktopPane.add(frame);							}
+						});
 					}
 				}
 			}

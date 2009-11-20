@@ -22,7 +22,7 @@ import javax.swing.WindowConstants;
  * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
  * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
-public class MostrarEquipoFrame extends javax.swing.JFrame {
+public class MostrarEquipoFrame extends javax.swing.JInternalFrame {
 	private JLabel lblJugadores;
 	private JList listJugadores;
 	private JLabel lblAcumulado;
@@ -38,14 +38,14 @@ public class MostrarEquipoFrame extends javax.swing.JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				MostrarEquipoFrame inst = new MostrarEquipoFrame();
-				inst.setLocationRelativeTo(null);
+	//			inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
 		});
 	}
 
 	public MostrarEquipoFrame() {
-		super();
+		super("Ver equipo", true, true, true, true);
 		initGUI();
 	}
 

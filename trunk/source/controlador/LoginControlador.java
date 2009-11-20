@@ -6,7 +6,7 @@ import logica.dao.UsuarioDAO;
 
 public class LoginControlador {
 	private final SistemaGranDT logica;
-	private final UsuarioDAO udao;
+	private final UsuarioDAO udao; // reemplazar por usuario administrador
 
 	// constructor del controlador
 	public LoginControlador (){

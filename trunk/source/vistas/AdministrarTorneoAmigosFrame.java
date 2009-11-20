@@ -22,7 +22,7 @@ import javax.swing.WindowConstants;
  * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
  * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
-public class AdministrarTorneoAmigosFrame extends javax.swing.JFrame {
+public class AdministrarTorneoAmigosFrame extends javax.swing.JInternalFrame {
 	private JLabel lblNombreTorneo;
 	private JLabel lblPostulados;
 	private JList listParticipantes;
@@ -40,14 +40,14 @@ public class AdministrarTorneoAmigosFrame extends javax.swing.JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				AdministrarTorneoAmigosFrame inst = new AdministrarTorneoAmigosFrame();
-				inst.setLocationRelativeTo(null);
+				//inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
 		});
 	}
 
 	public AdministrarTorneoAmigosFrame() {
-		super();
+		super("Administrar torneo de amigos", true, true, true, true);
 		initGUI();
 	}
 
