@@ -22,7 +22,7 @@ import javax.swing.WindowConstants;
  * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
  * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
-public class CrearTorneoAmigosFrame extends javax.swing.JFrame {
+public class CrearTorneoAmigosFrame extends javax.swing.JInternalFrame {
 	private JLabel lblIngrese;
 	private JTextField txtNombreTorneo;
 	private JButton btnCrear;
@@ -35,14 +35,14 @@ public class CrearTorneoAmigosFrame extends javax.swing.JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				CrearTorneoAmigosFrame inst = new CrearTorneoAmigosFrame();
-				inst.setLocationRelativeTo(null);
+	//			inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
 		});
 	}
 
 	public CrearTorneoAmigosFrame() {
-		super();
+		super("Crear toreo de amigos", true, true, true, true);
 		initGUI();
 	}
 

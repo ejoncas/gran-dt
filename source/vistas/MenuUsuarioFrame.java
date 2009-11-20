@@ -79,6 +79,13 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
 						btnEquipoEstado = new JMenuItem();
 						jMenu1.add(btnEquipoEstado);
 						btnEquipoEstado.setText("Mi Equipo - Estado");
+						btnEquipoEstado.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								System.out.println("btnEquipoEstado.actionPerformed, event="+evt);
+								MostrarEquipoFrame frame = new MostrarEquipoFrame();
+								frame.setVisible(true);
+								desktopPane.add(frame);							}
+						});
 					}
 				}
 				{
@@ -89,16 +96,37 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
 						btnCrear = new JMenuItem();
 						jMenu2.add(btnCrear);
 						btnCrear.setText("Crear Torneo...");
+						btnCrear.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								System.out.println("btnCrear.actionPerformed, event="+evt);
+								CrearTorneoAmigosFrame frame = new CrearTorneoAmigosFrame();
+								frame.setVisible(true);
+								desktopPane.add(frame);							}
+						});
 					}
 					{
 						btnInscribir = new JMenuItem();
 						jMenu2.add(btnInscribir);
 						btnInscribir.setText("Inscribir usuario en torneo");
+						btnInscribir.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								System.out.println("btnInscribir.actionPerformed, event="+evt);
+								InscribirTorneoAmigosFrame frame = new InscribirTorneoAmigosFrame();
+								frame.setVisible(true);
+								desktopPane.add(frame);							}
+						});
 					}
 					{
 						btnAceptar = new JMenuItem();
 						jMenu2.add(btnAceptar);
 						btnAceptar.setText("Aceptar usuario en torneo");
+						btnAceptar.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								System.out.println("btnAceptar.actionPerformed, event="+evt);
+								AdministrarTorneoAmigosFrame frame = new AdministrarTorneoAmigosFrame();
+								frame.setVisible(true);
+								desktopPane.add(frame);							}
+						});
 					}
 				}
 			}

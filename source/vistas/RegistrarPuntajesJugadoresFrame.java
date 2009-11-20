@@ -23,7 +23,7 @@ import javax.swing.WindowConstants;
  * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
  * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
-public class RegistrarPuntajesJugadoresFrame extends javax.swing.JFrame {
+public class RegistrarPuntajesJugadoresFrame extends javax.swing.JInternalFrame {
 	private JLabel lblJugadores;
 	private JList listJugadores;
 	private JLabel lblJug;
@@ -43,14 +43,14 @@ public class RegistrarPuntajesJugadoresFrame extends javax.swing.JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				RegistrarPuntajesJugadoresFrame inst = new RegistrarPuntajesJugadoresFrame();
-				inst.setLocationRelativeTo(null);
+	//			inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
 		});
 	}
 
 	public RegistrarPuntajesJugadoresFrame() {
-		super();
+		super("Cargar puntajes de jugadores", true, true, true, true);
 		initGUI();
 	}
 

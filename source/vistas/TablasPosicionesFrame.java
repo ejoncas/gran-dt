@@ -23,7 +23,7 @@ import javax.swing.WindowConstants;
  * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
  * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
-public class TablasPosicionesFrame extends javax.swing.JFrame {
+public class TablasPosicionesFrame extends javax.swing.JInternalFrame {
 	private JButton btnAceptar;
 	private JLabel lblTitulo;
 	private JList listEquipos;
@@ -35,14 +35,14 @@ public class TablasPosicionesFrame extends javax.swing.JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				TablasPosicionesFrame inst = new TablasPosicionesFrame();
-				inst.setLocationRelativeTo(null);
+//				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
 		});
 	}
 
 	public TablasPosicionesFrame() {
-		super();
+		super("Generar tablas de posiciones", true, true, true, true);
 		initGUI();
 	}
 
