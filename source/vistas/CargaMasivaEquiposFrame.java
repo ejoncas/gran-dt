@@ -1,13 +1,16 @@
 package vistas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
-import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
+import javax.swing.filechooser.FileFilter;
 
 import controlador.CargaMasivaEquiposControlador;
 
@@ -29,22 +32,11 @@ public class CargaMasivaEquiposFrame extends javax.swing.JInternalFrame {
 	private JTextField txtPath;
 	private JButton btnCargar;
 	private JButton btnExaminar;
-	
+	private JFileChooser fc;
+	private File file=null; 
+
 	// referencia al controlador
 	private CargaMasivaEquiposControlador cmec;
-
-	/**
-	 * Auto-generated main method to display this JFrame
-	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				CargaMasivaEquiposFrame inst = new CargaMasivaEquiposFrame();
-	//			inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
-			}
-		});
-	}
 
 	public CargaMasivaEquiposFrame() {
 		super("Carga masiva de equipos", true, true, true, true);
@@ -62,6 +54,23 @@ public class CargaMasivaEquiposFrame extends javax.swing.JInternalFrame {
 				lblSeleccione.setText("Seleccione el archivo de Equipos (*.csv)");
 			}
 			{
+				fc = new JFileChooser();
+				fc.setFileFilter(new FileFilter() {
+
+					@Override
+					public String getDescription() {
+						return ".csv (Comma separated files)";
+					}
+
+					@Override
+					public boolean accept(File f) {
+						//muestra solo directorios y archivos csv
+						return f.isDirectory() || f.getName().toLowerCase().endsWith(".csv");
+					}
+				});
+				fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+			}
+			{
 				txtPath = new JTextField();
 			}
 			{
@@ -70,11 +79,7 @@ public class CargaMasivaEquiposFrame extends javax.swing.JInternalFrame {
 				btnExaminar.setSize(110, 25);
 				btnExaminar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
-						System.out.println("btnExaminar.actionPerformed, event="+evt);
-						cmec.procesarExaminar();
-						//ExaminarEquiposFrame frame = new ExaminarEquiposFrame();
-						//frame.setVisible(true);
-						//desktopPane.add(frame);//TODO add your code for btnExaminar.actionPerformed
+						btnExaminarActionPerformed(evt);
 					}
 				});
 			}
@@ -82,32 +87,58 @@ public class CargaMasivaEquiposFrame extends javax.swing.JInternalFrame {
 				btnCargar = new JButton();
 				btnCargar.setText("Cargar");
 				btnCargar.setSize(110, 25);
+				btnCargar.setEnabled(false);
+				btnCargar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						btnCargarActionPerformed(evt);
+					}
+				});
 			}
 			thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
-				.addContainerGap()
-				.addComponent(lblSeleccione, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-				.addComponent(txtPath, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-				.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-				    .addComponent(btnExaminar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(btnCargar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
-				.addContainerGap());
+					.addContainerGap()
+					.addComponent(lblSeleccione, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+					.addComponent(txtPath, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+					.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+							.addComponent(btnExaminar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnCargar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+							.addContainerGap());
 			thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
-				.addContainerGap(22, 22)
-				.addGroup(thisLayout.createParallelGroup()
-				    .addComponent(lblSeleccione, GroupLayout.Alignment.LEADING, 0, 366, Short.MAX_VALUE)
-				    .addComponent(txtPath, GroupLayout.Alignment.LEADING, 0, 366, Short.MAX_VALUE)
-				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				        .addGap(0, 125, Short.MAX_VALUE)
-				        .addComponent(btnCargar, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
-				        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-				        .addComponent(btnExaminar, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)))
-				.addContainerGap());
+					.addContainerGap(22, 22)
+					.addGroup(thisLayout.createParallelGroup()
+							.addComponent(lblSeleccione, GroupLayout.Alignment.LEADING, 0, 366, Short.MAX_VALUE)
+							.addComponent(txtPath, GroupLayout.Alignment.LEADING, 0, 366, Short.MAX_VALUE)
+							.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+									.addGap(0, 125, Short.MAX_VALUE)
+									.addComponent(btnCargar, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(btnExaminar, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)))
+									.addContainerGap());
 			pack();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void btnExaminarActionPerformed(ActionEvent evt) {
+		System.out.println("btnExaminar.actionPerformed, event="+evt);
+		//we need to pass the parent window
+		int returnVal = fc.showOpenDialog(CargaMasivaEquiposFrame.this);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			file = fc.getSelectedFile();
+			btnCargar.setEnabled(true);
+			System.out.println("Abriendo el archivo: " + file.getName());
+			System.out.println("Absolute Path: " + file.getAbsolutePath());
+			txtPath.setText(file.getAbsolutePath());
+		} else {
+			System.out.println("File Chooser cerrado por el usuario");
+		}
+	}
+
+	private void btnCargarActionPerformed(ActionEvent evt) {
+		System.out.println("btnCargar.actionPerformed, event="+evt);
+		System.out.println("Parseando el archivo");
 	}
 
 }
