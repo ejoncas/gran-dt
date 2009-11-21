@@ -4,10 +4,13 @@ import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
+
+import controlador.CrearTorneoAmigosControlador;
 
 
 /**
@@ -27,6 +30,7 @@ public class CrearTorneoAmigosFrame extends javax.swing.JInternalFrame {
 	private JTextField txtNombreTorneo;
 	private JButton btnCrear;
 	private JButton btnCancelar;
+	private CrearTorneoAmigosControlador ctac;
 
 	/**
 	 * Auto-generated main method to display this JFrame
@@ -43,6 +47,7 @@ public class CrearTorneoAmigosFrame extends javax.swing.JInternalFrame {
 
 	public CrearTorneoAmigosFrame() {
 		super("Crear toreo de amigos", true, true, true, true);
+		this.ctac = new CrearTorneoAmigosControlador();
 		initGUI();
 	}
 
@@ -57,7 +62,6 @@ public class CrearTorneoAmigosFrame extends javax.swing.JInternalFrame {
 			}
 			{
 				txtNombreTorneo = new JTextField();
-				txtNombreTorneo.setText("<nombre del torneo>");
 			}
 			{
 				btnCrear = new JButton();
@@ -65,7 +69,15 @@ public class CrearTorneoAmigosFrame extends javax.swing.JInternalFrame {
 				btnCrear.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("btnCrear.actionPerformed, event="+evt);
-						//TODO add your code for btnCrear.actionPerformed
+						String nombre = txtNombreTorneo.getText();
+						String r = ctac.validarCrearTorneo(nombre);
+						if(r!=null)	
+							JOptionPane.showMessageDialog(null, r);
+						else{
+							ctac.validarCrearTorneo(nombre);
+							dispose();
+						}				
+						
 					}
 				});
 			}

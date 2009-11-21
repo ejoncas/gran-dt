@@ -29,6 +29,7 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 	private JRadioButton jrbDuenio;
 	private JRadioButton jrbNombre;
 	private JTextField txtBuscar;
+	private JButton btnCancelar;
 	private JButton btnPostularse;
 	private JList listEncontrados;
 	private JButton btnBuscar;
@@ -58,11 +59,11 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			{
 				lblSeleccione = new JLabel();
-				lblSeleccione.setText("Seleccione el criterio de b�squeda para el torneo:");
+				lblSeleccione.setText("Seleccione el criterio de busqueda para el torneo:");
 			}
 			{
 				jrbDuenio = new JRadioButton();
-				jrbDuenio.setText("Buscar por due�o");
+				jrbDuenio.setText("Buscar por dueno");
 			}
 			{
 				jrbNombre = new JRadioButton();
@@ -86,52 +87,62 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 				btnPostularse = new JButton();
 				btnPostularse.setText("Postularse");
 			}
+			{
+				btnCancelar = new JButton();
+				btnCancelar.setText("Cancelar");
+			}
 			thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblSeleccione, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(17)
-					.addComponent(jrbDuenio, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-					.addComponent(jrbNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-					.addComponent(txtBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-					.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(22)
-					.addComponent(listEncontrados, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, GroupLayout.PREFERRED_SIZE)
-					.addComponent(btnPostularse, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+				.addContainerGap()
+				.addComponent(lblSeleccione, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+				.addGap(17)
+				.addComponent(jrbDuenio, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+				.addComponent(jrbNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+				.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+				.addComponent(txtBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+				.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+				.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+				.addGap(22)
+				.addComponent(listEncontrados, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
+				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+				.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+				    .addComponent(btnPostularse, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+				    .addComponent(btnCancelar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+				.addContainerGap(48, 48));
 			thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
-					.addContainerGap(22, 22)
-					.addGroup(thisLayout.createParallelGroup()
-							.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-									.addComponent(lblSeleccione, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE)
-									.addGap(0, 54, Short.MAX_VALUE))
-									.addGroup(thisLayout.createSequentialGroup()
-											.addGroup(thisLayout.createParallelGroup()
-													.addComponent(jrbNombre, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
-													.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-															.addComponent(jrbDuenio, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-															.addGap(65)))
-															.addGap(78)
-															.addGroup(thisLayout.createParallelGroup()
-																	.addGroup(thisLayout.createSequentialGroup()
-																			.addComponent(btnPostularse, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
-																			.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-																					.addGap(25)
-																					.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)))
-																					.addGap(0, 0, Short.MAX_VALUE))
-																					.addGroup(thisLayout.createSequentialGroup()
-																							.addComponent(txtBuscar, GroupLayout.PREFERRED_SIZE, 359, GroupLayout.PREFERRED_SIZE)
-																							.addGap(0, 0, Short.MAX_VALUE))
-																							.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-																									.addPreferredGap(lblSeleccione, listEncontrados, LayoutStyle.ComponentPlacement.INDENT)
-																									.addComponent(listEncontrados, GroupLayout.PREFERRED_SIZE, 353, GroupLayout.PREFERRED_SIZE)
-																									.addGap(0, 0, Short.MAX_VALUE)))
-																									.addContainerGap(19, 19));
+				.addContainerGap(21, 21)
+				.addGroup(thisLayout.createParallelGroup()
+				    .addGroup(thisLayout.createSequentialGroup()
+				        .addComponent(lblSeleccione, GroupLayout.PREFERRED_SIZE, 359, GroupLayout.PREFERRED_SIZE)
+				        .addGap(0, 0, Short.MAX_VALUE))
+				    .addGroup(thisLayout.createSequentialGroup()
+				        .addComponent(jrbDuenio, GroupLayout.PREFERRED_SIZE, 359, GroupLayout.PREFERRED_SIZE)
+				        .addGap(0, 0, Short.MAX_VALUE))
+				    .addGroup(thisLayout.createSequentialGroup()
+				        .addComponent(jrbNombre, GroupLayout.PREFERRED_SIZE, 359, GroupLayout.PREFERRED_SIZE)
+				        .addGap(0, 0, Short.MAX_VALUE))
+				    .addGroup(thisLayout.createSequentialGroup()
+				        .addComponent(txtBuscar, GroupLayout.PREFERRED_SIZE, 359, GroupLayout.PREFERRED_SIZE)
+				        .addGap(0, 0, Short.MAX_VALUE))
+				    .addGroup(thisLayout.createSequentialGroup()
+				        .addPreferredGap(lblSeleccione, listEncontrados, LayoutStyle.ComponentPlacement.INDENT)
+				        .addGroup(thisLayout.createParallelGroup()
+				            .addGroup(thisLayout.createSequentialGroup()
+				                .addComponent(listEncontrados, GroupLayout.PREFERRED_SIZE, 353, GroupLayout.PREFERRED_SIZE)
+				                .addGap(0, 0, Short.MAX_VALUE))
+				            .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+				                .addGap(92)
+				                .addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+				                .addGap(19)
+				                .addGroup(thisLayout.createParallelGroup()
+				                    .addGroup(thisLayout.createSequentialGroup()
+				                        .addComponent(btnPostularse, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
+				                        .addGap(0, 0, Short.MAX_VALUE))
+				                    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+				                        .addGap(13)
+				                        .addComponent(btnBuscar, 0, 106, Short.MAX_VALUE)))))))
+				.addContainerGap(37, 37));
 			pack();
-			setSize(400, 300);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
