@@ -7,8 +7,9 @@ import javax.swing.JDesktopPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
+
+import controlador.ArmarEquipoControlador;
 
 
 /**
@@ -44,18 +45,6 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
 	private JMenu jMenu2;
 	private JMenu jMenu1;
 
-	/**
-	 * Auto-generated main method to display this JFrame
-	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				MenuUsuarioFrame inst = new MenuUsuarioFrame();
-				inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
-			}
-		});
-	}
 
 	public MenuUsuarioFrame() {
 		super();
@@ -148,7 +137,7 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
 			thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
 					.addComponent(desktopPane, 0, 394, Short.MAX_VALUE));
 			pack();
-			this.setSize(800, 600);
+			this.setSize(920, 700);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -157,9 +146,9 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
 	private void btnArmarEquipoActionPerformed(ActionEvent evt) {
 		System.out.println("btnArmarEquipo.actionPerformed, event="+evt);
 		//TODO Ver de llamarlos como corresponde
-		ArmarEquipoFrame frame = new ArmarEquipoFrame();
-		frame.setVisible(true);
-		desktopPane.add(frame);
+		ArmarEquipoControlador aec = new ArmarEquipoControlador();
+		//creo el controlador, que tambien crea la ventana, y agrego todo al desktop
+		desktopPane.add(aec.getFrame());
 	}
 
 }

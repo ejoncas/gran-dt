@@ -2,8 +2,6 @@ package controlador;
 
 import java.util.Vector;
 
-import logica.EquipoSuplente;
-import logica.EquipoTitular;
 import logica.Jugador;
 import logica.SistemaGranDT;
 import vistas.ArmarEquipoFrame;
@@ -14,8 +12,10 @@ public class ArmarEquipoControlador {
 	private SistemaGranDT logica;
 
 	private Vector<Jugador> disponibles;
-	private EquipoTitular titulares;
-	private EquipoSuplente suplentes;
+	//	private EquipoTitular titulares;
+	//	private EquipoSuplente suplentes;
+	private Vector<Jugador> titulares;
+	private Vector<Jugador> suplentes;
 	private float montoGastado;
 	private float montoDisponible;
 
@@ -26,7 +26,14 @@ public class ArmarEquipoControlador {
 		this.logica = SistemaGranDT.getInstance();
 
 		//levantamos todos los jugadores para llenar la pantalla
+		//levantamos todos los jugadores de la BD
+		logica.cargarJugadores();
+		//pasasrselos al table model y luego a la ventana
 		this.disponibles = logica.getJugadores();
+
+		//this.titulares = logica.getUsuarioActual().getEquipo().getEquipoTitular().toVector();
+
+		//this.suplentes = logica.getUsuarioActual().getEquipo().getEquipoSuplente().toVector();
 
 		//TODO Descomentar lo siguiente, solo fue para testear
 		//levantamos el equipo titular del usuario logueado
@@ -40,9 +47,17 @@ public class ArmarEquipoControlador {
 		//this.montoGastado = this.logica.getUsuarioActual().getMontoGastado();
 
 		//Creamos los tables models para completar las vistas
-		JugadorTableModel jug = new JugadorTableModel(this.logica.getJugadores());
-		JugadorTableModel et = new JugadorTableModel();
-		JugadorTableModel es = new JugadorTableModel();
+		JugadorTableModel jug = new JugadorTableModel(this.disponibles);
+		JugadorTableModel et = null;
+		JugadorTableModel es = null;
+		if(this.titulares != null)
+			et = new JugadorTableModel(this.titulares);
+		else
+			et = new JugadorTableModel();
+		if(this.suplentes != null)
+			es = new JugadorTableModel(this.suplentes);
+		else
+			es = new JugadorTableModel();
 
 		//Creamos la ventana y la ponemos visible
 		this.frame = new ArmarEquipoFrame(jug, et, es);
@@ -59,19 +74,20 @@ public class ArmarEquipoControlador {
 		this.disponibles = disponibles;
 	}
 
-	public EquipoTitular getTitulares() {
+	public Vector<Jugador> getTitulares() {
 		return titulares;
 	}
 
-	public void setTitulares(EquipoTitular titulares) {
+	public void setTitulares(Vector<Jugador> titulares) {
+		//TODO validar que sea la cantidad correcta
 		this.titulares = titulares;
 	}
 
-	public EquipoSuplente getSuplentes() {
+	public Vector<Jugador> getSuplentes() {
 		return suplentes;
 	}
 
-	public void setSuplentes(EquipoSuplente suplentes) {
+	public void setSuplentes(Vector<Jugador> suplentes) {
 		this.suplentes = suplentes;
 	}
 
@@ -91,12 +107,10 @@ public class ArmarEquipoControlador {
 		this.montoDisponible = montoDisponible;
 	}
 
-
-
-
-
-
-
+	public ArmarEquipoFrame getFrame() {
+		// TODO Auto-generated method stub
+		return frame;
+	}
 
 
 }
