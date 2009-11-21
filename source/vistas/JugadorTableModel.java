@@ -1,6 +1,5 @@
 package vistas;
 
-import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.table.AbstractTableModel;
@@ -10,7 +9,7 @@ import logica.Jugador;
 public class JugadorTableModel extends AbstractTableModel {
 
 	private String [] columnNames = {"Jugador","Equipo", "Posicion", "Cotiza"};
-	private ArrayList<Jugador> datalist = new ArrayList<Jugador>();
+	private Vector<Jugador> datalist = new Vector<Jugador>();
 
 
 	public JugadorTableModel() {
@@ -67,6 +66,11 @@ public class JugadorTableModel extends AbstractTableModel {
 		default:
 			return null;
 		}
+	}
+
+
+	public Vector<Jugador> getDatalist() {
+		return datalist;
 	}
 
 	@Override

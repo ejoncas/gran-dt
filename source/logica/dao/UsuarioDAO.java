@@ -124,6 +124,9 @@ public class UsuarioDAO {
 						rs.getInt("numero"), rs.getInt("piso"), rs.getString("depto"), 
 						rs.getString("codigo_postal"), rs.getInt("telefono_particular"), rs.getInt("celular"), rs.getString("proveedor_celular"),
 						rs.getString("email"), rs.getString("password"));
+				//TODO, USAR EL CONSTRUCTOR QUE LEVANTA TAMBIEN EL EQUIPO
+				u.setMontoDisponible(rs.getFloat("monto"));
+				u.setMontoGastado(rs.getFloat("monto_gastado"));
 			}
 			else
 				u=null;
