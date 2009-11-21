@@ -1,6 +1,7 @@
 package vistas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.GroupLayout;
 import javax.swing.JDesktopPane;
 import javax.swing.JMenu;
@@ -8,8 +9,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
-
-import logica.SistemaGranDT;
 
 
 /**
@@ -26,6 +25,7 @@ import logica.SistemaGranDT;
  */
 public class MenuAdminFrame extends javax.swing.JFrame {
 	private JDesktopPane desktopPane;
+	private JMenuItem btnCMPuntajes;
 	private JMenuItem btnCMEquipos;
 	private JMenuItem btnCMJugadores;
 	private JMenu jMenu2;
@@ -33,10 +33,10 @@ public class MenuAdminFrame extends javax.swing.JFrame {
 	private JMenuItem btnPuntajesJug;
 	private JMenu jMenu1;
 	private JMenuBar barMenu;
-	
+
 	// la ventana del menu es Singleton
 	private static MenuAdminFrame menuadmin=null;
-	
+
 	public static MenuAdminFrame getInstance(){
 		//This method return the unique instance - SINGLETON
 		return menuadmin==null ? menuadmin = new MenuAdminFrame() : menuadmin;		
@@ -127,6 +127,11 @@ public class MenuAdminFrame extends javax.swing.JFrame {
 								desktopPane.add(frame);							}
 						});
 					}
+					{
+						btnCMPuntajes = new JMenuItem();
+						jMenu2.add(btnCMPuntajes);
+						btnCMPuntajes.setText("...de Puntajes");
+					}
 				}
 			}
 			{
@@ -142,7 +147,7 @@ public class MenuAdminFrame extends javax.swing.JFrame {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public JDesktopPane getDesktopPane(){
 		return this.desktopPane;
 	}

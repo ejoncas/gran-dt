@@ -7,7 +7,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+import logica.Arquero;
+import logica.Defensor;
+import logica.Delantero;
 import logica.Jugador;
+import logica.Volante;
 
 public class JugadorDAO {
 
@@ -33,7 +37,6 @@ public class JugadorDAO {
 					rs.getInt("puntaje"),rs.getFloat("precio"));
 
 			//we close all the connections
-			connection.close();
 			stmt.close();
 			rs.close();
 
@@ -73,8 +76,8 @@ public class JugadorDAO {
 						rs.getInt("puntaje"),rs.getFloat("precio"));
 				jugadores.addElement(r);
 			}
+
 			//we close all the connections
-			connection.close();
 			stmt.close();
 			rs.close();
 
@@ -91,6 +94,47 @@ public class JugadorDAO {
 			return null;
 		}
 	}
+
+	public Vector<Jugador> getJugadoresTodos(){
+		try{
+			//connect to db
+			Connection connection = DAOCM.getConnection();
+			//create statment
+			Statement stmt = connection.createStatement();
+
+			String query = "SELECT * FROM Jugador";
+			//execute query
+			ResultSet rs = stmt.executeQuery(query);
+
+			Vector<Jugador> jugadores = new Vector<Jugador>();
+
+			//we move to the first row - ResultSet starts "before first"
+			while(rs.next()){
+				//we create the new player
+				Jugador r = new Jugador(rs.getString("nombre"), rs.getString("apellido"),
+						rs.getString("equipo"),rs.getDate("nacimiento"),
+						rs.getInt("puntaje"),rs.getFloat("precio"));
+				jugadores.addElement(r);
+			}
+
+			//we close all the connections
+			stmt.close();
+			rs.close();
+
+			//Return the player
+			return jugadores;
+
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 
 
 	public void insertJugador(Jugador j){
@@ -110,14 +154,17 @@ public class JugadorDAO {
 			stmt.setString(4, j.getFechaNacSQLString());
 			stmt.setInt(5, j.getPuntaje());
 			stmt.setFloat(6, j.getPrecio());
-			//TODO Cambiar VOlante
-			stmt.setString(7, "VOL");
+			//seteamos acorde a la instancia que es
+			if(j instanceof Volante)
+				stmt.setString(7, "VOL");
+			else if (j instanceof Defensor)
+				stmt.setString(7, "DEF");
+			else if (j instanceof Delantero)
+				stmt.setString(7, "DEL");
+			else if (j instanceof Arquero)
+				stmt.setString(7, "ARQ");
 
 			stmt.execute();
-
-			//we close all the connections
-			connection.close();
-			stmt.close();
 
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block

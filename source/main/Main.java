@@ -53,6 +53,7 @@ public class Main {
 		//		Jugador j1 = new Jugador("Jona", "Castro", "Almagro",2000,10,12,10000);
 		//		j1.setPosicion("DEF");
 		//		Jugador j2 = new Jugador("Roberto", "Carlos", "Brasil",2000,10,12,10000);
+		//		j2.getFechaNacSQLString();
 		//		Jugador j3 = new Jugador("LaGata", "Fernandez", "River",2000,10,12,10000);
 		//		Jugador j4 = new Jugador("Lisandro", "Lopez", "River",2000,10,12,10000);
 		//		Jugador j5 = new Jugador("Gauyo","Ronaldinho", "River",2000,10,12,10000);
@@ -152,8 +153,7 @@ public class Main {
 		//		edao.insertEquipo(e);
 		//		System.out.println(e.getId());
 
-		System.out.println(sys.getUsuarios().toString());
-
+		//LA POSTA
 		new LoginFrame(new LoginControlador()).setVisible(true);
 
 		//		EquipoDAO edao = new EquipoDAO();
