@@ -129,7 +129,6 @@ public class UsuarioDAO {
 				u=null;
 
 			// cierre de conexiones
-			connection.close();
 			stmt.close();
 			rs.close();
 

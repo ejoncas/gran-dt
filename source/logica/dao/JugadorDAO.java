@@ -111,10 +111,26 @@ public class JugadorDAO {
 			//we move to the first row - ResultSet starts "before first"
 			while(rs.next()){
 				//we create the new player
-				Jugador r = new Jugador(rs.getString("nombre"), rs.getString("apellido"),
-						rs.getString("equipo"),rs.getDate("nacimiento"),
-						rs.getInt("puntaje"),rs.getFloat("precio"));
-				jugadores.addElement(r);
+				Jugador r=null;
+				if(rs.getString("posicion").equals("DEF"))
+					r = new Defensor(rs.getString("nombre"), rs.getString("apellido"),
+							rs.getString("equipo"),rs.getDate("nacimiento"),
+							rs.getInt("puntaje"),rs.getFloat("precio"));
+				else if (rs.getString("posicion").equals("VOL"))
+					r = new Volante(rs.getString("nombre"), rs.getString("apellido"),
+							rs.getString("equipo"),rs.getDate("nacimiento"),
+							rs.getInt("puntaje"),rs.getFloat("precio"));
+				else if (rs.getString("posicion").equals("DEL"))
+					r = new Delantero(rs.getString("nombre"), rs.getString("apellido"),
+							rs.getString("equipo"),rs.getDate("nacimiento"),
+							rs.getInt("puntaje"),rs.getFloat("precio"));
+				else if (rs.getString("posicion").equals("ARQ"))
+					r = new Arquero(rs.getString("nombre"), rs.getString("apellido"),
+							rs.getString("equipo"),rs.getDate("nacimiento"),
+							rs.getInt("puntaje"),rs.getFloat("precio"));
+
+				if(r!=null){jugadores.addElement(r);}
+
 			}
 
 			//we close all the connections

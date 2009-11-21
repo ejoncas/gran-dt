@@ -11,16 +11,9 @@ public class Jugador {
 	private Date fechaNac;
 	private int puntaje;
 	private float precio;
-	private String posicion;
 
 
-	public String getPosicion() {
-		return posicion;
-	}
 
-	public void setPosicion(String posicion) {
-		this.posicion = posicion;
-	}
 
 	public Jugador(String n, String a, String e, int year, int month, int day, float p){
 		this.nombre=n;
@@ -37,7 +30,7 @@ public class Jugador {
 		this.apellido=a;
 		this.fechaNac=f;
 		this.precio=p;
-		this.puntaje=0;		
+		this.puntaje=pj;		
 	}
 
 
@@ -86,6 +79,10 @@ public class Jugador {
 
 	public float getPrecio() {
 		return precio;
+	}
+
+	public String getPosicion() {
+		return "N/A";
 	}
 
 }

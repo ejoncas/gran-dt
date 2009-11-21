@@ -3,30 +3,35 @@ import java.util.Date;
 import java.util.Vector;
 
 public class Usuario {
-	private final String nombre;
-	private final String apellido;
-	private final String tipoDoc;
-	private final int nroDoc;
-	private final Date fechaNac;
-	private final String sexo;
-	private final String hincha;
-	private final String provincia;
-	private final String partido;
-	private final String localidad;
-	private final String calle;
-	private final int numero;
-	private final int piso;
-	private final String dpto;
-	private final String cp;
-	private final int tel;
-	private final int cel;
-	private final String proveedorCel;
-	private final String email;
-	private final String password;
-	private final Equipo equipo;
-	private final float montoDisponible;
-	private final float montoGastado;
+	private String nombre;
+	private String apellido;
+	private String tipoDoc;
+	private int nroDoc;
+	private Date fechaNac;
+	private String sexo;
+	private String hincha;
+	private String provincia;
+	private String partido;
+	private String localidad;
+	private String calle;
+	private int numero;
+	private int piso;
+	private String dpto;
+	private  String cp;
+	private int tel;
+	private int cel;
+	private String proveedorCel;
+	private String email;
+	private String password;
+	private Equipo equipo;
+	private float montoDisponible;
+	private float montoGastado;
 	private Vector<Torneo> torneos;
+
+
+	public void setEquipo(Equipo e){
+		this.equipo = e;
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -207,7 +212,7 @@ public class Usuario {
 		this.tipoDoc=tipo;
 		this.nroDoc=nro;
 		this.password=pass;
-		
+
 		//en blanco		
 		this.nombre = null;
 		this.apellido = null;
@@ -229,8 +234,8 @@ public class Usuario {
 		this.montoDisponible=0;
 		this.montoGastado=0;
 		this.equipo=null;
-		
-}
+
+	}
 
 
 }

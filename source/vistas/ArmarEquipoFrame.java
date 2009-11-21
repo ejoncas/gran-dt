@@ -69,33 +69,18 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 		this.aec = aec;
 	}
 
-	/**
-	 * Auto-generated main method to display this JFrame
-	 */
-	//	public static void main(String[] args) {
-	//		SwingUtilities.invokeLater(new Runnable() {
-	//			public void run() {
-	//
-	//				ArmarEquipoFrame2 inst = new ArmarEquipoFrame2();
-	//				inst.setLocationRelativeTo(null);
-	//				inst.setVisible(true);
-	//			}
-	//		});
-	//	}
-
-
-
 	public ArmarEquipoFrame() {
 		super("Armar Equipo", true, true, true, true);
 		//creamos las listas vacias
 		this.tableJugadoresModel=new JugadorTableModel();
 		this.tableEquipoSModel=new JugadorTableModel();
 		this.tableEquipoTModel= new JugadorTableModel();
+
 		initGUI();
 	}
 
 	public ArmarEquipoFrame(JugadorTableModel j, JugadorTableModel et, JugadorTableModel es) {
-		super();
+		super("Armar Equipo", true, true, true, true);
 		//Creamos las tablas cargadas
 		this.tableJugadoresModel=j;
 		this.tableEquipoSModel=es;
@@ -117,7 +102,7 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 					GroupLayout pnlJugadoresLayout = new GroupLayout(pnlJugadores);
 					pnlJugadores.setLayout(pnlJugadoresLayout);
 					separatorJugadores.add(pnlJugadores);
-					pnlJugadores.setBounds(5, 20, 413, 376);
+					pnlJugadores.setBounds(11, 20, 460, 405);
 					{
 						jScrollPane1 = new JScrollPane();
 						{
@@ -126,12 +111,11 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 							//we configure the table
 							tableJugadores.setAutoCreateColumnsFromModel(true);
 							tableJugadores.setModel(tableJugadoresModel);
+							tableJugadores.doLayout();
 							tableJugadores.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 							tableJugadores.setRowSelectionAllowed(true);
 
 							jScrollPane1.setViewportView(tableJugadores);
-							//tableJugadores.setPreferredSize(new java.awt.Dimension(386, 121));
-							//tableJugadores.setPreferredSize(new java.awt.Dimension(375, 32));
 
 						}
 					}
@@ -180,33 +164,28 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 													.addGroup(pnlJugadoresLayout.createParallelGroup()
 															.addComponent(lblMD, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
 															.addComponent(lblMG, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
-															.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+															.addGap(57)
 															.addGroup(pnlJugadoresLayout.createParallelGroup()
 																	.addGroup(pnlJugadoresLayout.createSequentialGroup()
-																			.addComponent(btnAgregarS, GroupLayout.PREFERRED_SIZE, 171, GroupLayout.PREFERRED_SIZE)
-																			.addGap(0, 0, Short.MAX_VALUE))
-																			.addComponent(btnAgregarT, GroupLayout.Alignment.LEADING, 0, 171, Short.MAX_VALUE)))
-																			.addGroup(pnlJugadoresLayout.createSequentialGroup()
-																					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 389, GroupLayout.PREFERRED_SIZE)
-																					.addGap(0, 0, Short.MAX_VALUE)))
-																					.addContainerGap());
+																			.addGap(0, 0, Short.MAX_VALUE)
+																			.addComponent(btnAgregarS, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE))
+																			.addComponent(btnAgregarT, GroupLayout.Alignment.LEADING, 0, 177, Short.MAX_VALUE)))
+																			.addComponent(jScrollPane1, GroupLayout.Alignment.LEADING, 0, 441, Short.MAX_VALUE))
+																			.addGap(7));
 					pnlJugadoresLayout.setVerticalGroup(pnlJugadoresLayout.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 299, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(jScrollPane1, 0, 321, Short.MAX_VALUE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 							.addGroup(pnlJugadoresLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 									.addComponent(btnAgregarT, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addComponent(lblMD, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addComponent(lblMontoD, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addGroup(pnlJugadoresLayout.createParallelGroup()
-											.addGroup(GroupLayout.Alignment.LEADING, pnlJugadoresLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-													.addComponent(lblMontoG, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-													.addComponent(lblMG, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-													.addGroup(GroupLayout.Alignment.LEADING, pnlJugadoresLayout.createSequentialGroup()
-															.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-															.addComponent(btnAgregarS, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-															.addGap(0, 0, Short.MAX_VALUE)))
-															.addContainerGap());
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addGroup(pnlJugadoresLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+											.addComponent(btnAgregarS, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addComponent(lblMG, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addComponent(lblMontoG, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+											.addContainerGap());
 				}
 			}
 			{
@@ -225,7 +204,7 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 					GroupLayout panelEquipoSLayout = new GroupLayout(panelEquipoS);
 					panelEquipoS.setLayout(panelEquipoSLayout);
 					separatorEquipoS.add(panelEquipoS);
-					panelEquipoS.setBounds(5, 20, 310, 159);
+					panelEquipoS.setBounds(10, 20, 359, 154);
 					{
 						jScrollPane3 = new JScrollPane();
 						{
@@ -251,18 +230,16 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 					panelEquipoSLayout.setHorizontalGroup(panelEquipoSLayout.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(panelEquipoSLayout.createParallelGroup()
-									.addGroup(panelEquipoSLayout.createSequentialGroup()
-											.addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, 286, GroupLayout.PREFERRED_SIZE)
-											.addGap(0, 0, Short.MAX_VALUE))
-											.addGroup(GroupLayout.Alignment.LEADING, panelEquipoSLayout.createSequentialGroup()
-													.addGap(0, 114, Short.MAX_VALUE)
-													.addComponent(btnQuitarS, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)))
-													.addContainerGap());
+									.addGroup(GroupLayout.Alignment.LEADING, panelEquipoSLayout.createSequentialGroup()
+											.addComponent(btnQuitarS, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
+											.addGap(0, 172, Short.MAX_VALUE))
+											.addComponent(jScrollPane3, GroupLayout.Alignment.LEADING, 0, 345, Short.MAX_VALUE))
+											.addContainerGap());
 					panelEquipoSLayout.setVerticalGroup(panelEquipoSLayout.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED, 1, Short.MAX_VALUE)
-							.addComponent(btnQuitarS, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnQuitarS, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap());
 				}
 			}
@@ -274,7 +251,7 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 					GroupLayout panelEquipoTLayout = new GroupLayout(panelEquipoT);
 					panelEquipoT.setLayout(panelEquipoTLayout);
 					separatorEquipoT.add(panelEquipoT);
-					panelEquipoT.setBounds(5, 20, 310, 166);
+					panelEquipoT.setBounds(12, 20, 355, 161);
 					{
 						jScrollPane2 = new JScrollPane();
 						{
@@ -301,17 +278,16 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 					panelEquipoTLayout.setHorizontalGroup(panelEquipoTLayout.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(panelEquipoTLayout.createParallelGroup()
-									.addGroup(panelEquipoTLayout.createSequentialGroup()
-											.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 286, GroupLayout.PREFERRED_SIZE))
-											.addGroup(GroupLayout.Alignment.LEADING, panelEquipoTLayout.createSequentialGroup()
-													.addGap(113)
-													.addComponent(btnQuitarT, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)))
-													.addContainerGap(12, Short.MAX_VALUE));
+									.addGroup(GroupLayout.Alignment.LEADING, panelEquipoTLayout.createSequentialGroup()
+											.addComponent(btnQuitarT, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
+											.addGap(0, 172, Short.MAX_VALUE))
+											.addComponent(jScrollPane2, GroupLayout.Alignment.LEADING, 0, 345, Short.MAX_VALUE))
+											.addContainerGap());
 					panelEquipoTLayout.setVerticalGroup(panelEquipoTLayout.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED, 1, Short.MAX_VALUE)
-							.addComponent(btnQuitarT, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnQuitarT, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap());
 				}
 			}
@@ -321,25 +297,28 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 							.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
 									.addComponent(separatorEquipoT, GroupLayout.PREFERRED_SIZE, 193, GroupLayout.PREFERRED_SIZE)
 									.addGap(22)
-									.addComponent(separatorEquipoS, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE))
-									.addComponent(separatorJugadores, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 399, GroupLayout.PREFERRED_SIZE))
+									.addComponent(separatorEquipoS, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)
 									.addGap(26)
 									.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 											.addComponent(btnConfirmar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addComponent(btnCancelar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-											.addContainerGap());
+											.addComponent(btnCancelar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)))
+											.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+													.addComponent(separatorJugadores, GroupLayout.PREFERRED_SIZE, 442, GroupLayout.PREFERRED_SIZE)
+													.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, Short.MAX_VALUE)))
+													.addContainerGap(107, 107));
 			thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(separatorJugadores, GroupLayout.PREFERRED_SIZE, 423, GroupLayout.PREFERRED_SIZE)
+					.addComponent(separatorJugadores, GroupLayout.PREFERRED_SIZE, 483, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 					.addGroup(thisLayout.createParallelGroup()
-							.addComponent(separatorEquipoT, GroupLayout.Alignment.LEADING, 0, 320, Short.MAX_VALUE)
-							.addComponent(separatorEquipoS, GroupLayout.Alignment.LEADING, 0, 320, Short.MAX_VALUE)
+							.addComponent(separatorEquipoT, GroupLayout.Alignment.LEADING, 0, 379, Short.MAX_VALUE)
+							.addComponent(separatorEquipoS, GroupLayout.Alignment.LEADING, 0, 379, Short.MAX_VALUE)
 							.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-									.addGap(0, 56, Short.MAX_VALUE)
+									.addGap(115)
 									.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED, 1, GroupLayout.PREFERRED_SIZE)
-									.addComponent(btnConfirmar, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)))
+									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+									.addComponent(btnConfirmar, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
+									.addGap(0, 0, Short.MAX_VALUE)))
 									.addContainerGap());
 			pack();
 		} catch (Exception e) {

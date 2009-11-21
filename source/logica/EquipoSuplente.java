@@ -75,4 +75,14 @@ public class EquipoSuplente {
 		return CANT_DEL;
 	}
 
+	public Vector<Jugador> toVector(){
+		Vector<Jugador> j = new Vector<Jugador>();
+		j.addElement(this.arquero);
+		j.addElement(this.defensor);
+		j.addElement(this.volante);
+		j.addAll(this.delanteros);
+
+		return j;
+	}
+
 }

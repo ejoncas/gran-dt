@@ -1,4 +1,7 @@
 package logica;
+
+import java.sql.Date;
+
 public class Defensor extends Jugador {
 
 	private int golesBloqueados;
@@ -6,9 +9,13 @@ public class Defensor extends Jugador {
 	public Defensor(String n, String a, String e, int year, int month, int day,
 			float p) {
 		super(n, a, e, year, month, day, p);
-		super.setPosicion("DEF");
 		// TODO Auto-generated constructor stub
 		this.golesBloqueados=0;
+	}
+
+	public Defensor(String string, String string2, String string3, Date date,
+			int int1, float float1) {
+		super(string, string2, string3, date, int1, float1);
 	}
 
 	public int getGolesBloqueados() {
@@ -17,6 +24,12 @@ public class Defensor extends Jugador {
 
 	public void setGolesBloqueados(int golesBloqueados) {
 		this.golesBloqueados = golesBloqueados;
+	}
+
+	@Override
+	public String getPosicion() {
+		// TODO Auto-generated method stub
+		return "DEF";
 	}
 
 

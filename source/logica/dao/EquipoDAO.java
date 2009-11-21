@@ -1,7 +1,6 @@
 package logica.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,7 +34,6 @@ public class EquipoDAO {
 			}
 
 			//we close all the connections
-			connection.close();
 			stmt.close();
 			rs.close();
 
@@ -75,7 +73,6 @@ public class EquipoDAO {
 				e=null;
 
 			//we close all the connections
-			connection.close();
 			stmt.close();
 			rs.close();
 
@@ -92,7 +89,7 @@ public class EquipoDAO {
 		}
 
 	}
-	
+
 	//Busca un equipo segun el tipo y nro de documento del usuario.
 	// Si lo encuentra lo retorna, sino retorna null.
 	public Equipo getEquipoPorUsuario(String tipoDoc, int nroDoc){
@@ -104,7 +101,7 @@ public class EquipoDAO {
 			Statement stmt = connection.createStatement();
 
 			String query = "SELECT e.id, e.nombre, e.puntaje FROM Equipo e, Usuario u WHERE " +
-					"u.nro_doc = "+nroDoc+" AND u.tipo_doc = '"+tipoDoc+"'";
+			"u.nro_doc = "+nroDoc+" AND u.tipo_doc = '"+tipoDoc+"'";
 			//execute query
 			ResultSet rs = stmt.executeQuery(query);
 
@@ -115,7 +112,7 @@ public class EquipoDAO {
 				e=null;
 
 			// cerrar conexiones
-			connection.close();
+
 			stmt.close();
 			rs.close();
 
@@ -132,14 +129,14 @@ public class EquipoDAO {
 		}
 
 	}
-	
 
-	
+
+
 	public void insertEquipo(Equipo e){
 		ResultSet rs2 = null;
 		PreparedStatement stmt = null;
 		Statement stmt2 = null;
-		
+
 		try {
 			Connection connection = DAOCM.getConnection();
 			String query = "INSERT INTO Equipo VALUES (?,?)";
@@ -149,15 +146,15 @@ public class EquipoDAO {
 			//stmt = connection.createStatement();
 
 			stmt.execute();
-			
+
 			String query2 =  "SELECT @@IDENTITY";
 			stmt2 = connection.createStatement();
 			rs2 = stmt2.executeQuery(query2);
-			
+
 			if (rs2.next()){
 				System.out.println("ADENTRO DEL IF");
 				e.setId(rs2.getInt(1));
-				
+
 			}
 			stmt.close();
 			stmt2.close();
@@ -169,10 +166,10 @@ public class EquipoDAO {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
 		}finally{
-			
+
 			//DAOCM.getConnection().close();
 		}
-	
+
 	}
 
 }

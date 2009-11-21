@@ -2,6 +2,7 @@ package logica;
 import java.util.Date;
 import java.util.Vector;
 
+import logica.administradores.AdministradorDAOs;
 import logica.dao.EquipoDAO;
 import logica.dao.JugadorDAO;
 
@@ -27,6 +28,7 @@ public class SistemaGranDT {
 	private Vector<Torneo> torneos;
 	private JugadorDAO jdao;
 	private EquipoDAO edao;
+	private AdministradorDAOs adminDAO;
 	private Usuario usuarioActual;
 	//otros daos
 	private static SistemaGranDT grandt=null;
@@ -39,6 +41,7 @@ public class SistemaGranDT {
 		this.torneos=new Vector<Torneo>();
 		this.edao = new EquipoDAO();
 		this.jdao = new JugadorDAO();
+		this.adminDAO = new AdministradorDAOs();
 		this.usuarioActual=null;
 	}
 
@@ -81,6 +84,15 @@ public class SistemaGranDT {
 	}
 
 
+
+	public AdministradorDAOs getAdminDAO() {
+		return adminDAO;
+	}
+
+	public void setAdminDAO(AdministradorDAOs adminDAO) {
+		this.adminDAO = adminDAO;
+	}
+
 	// valida el DNI: si ya existe un usuario con el dni devuelve true, si no false.
 	public boolean validarDNI (String tipo, int nro){
 		String t;
@@ -94,7 +106,7 @@ public class SistemaGranDT {
 		}			
 		return false;		
 	}
-	
+
 	// debe validarse previamente que el nro y doc existan
 	public Usuario getUsuarioByDoc(String tipo, int nro){
 		String t;
@@ -107,7 +119,11 @@ public class SistemaGranDT {
 				return u;
 		}			
 		return null;	
-		
+
+	}
+
+	public void cargarJugadores(){
+		this.jugadores = this.adminDAO.obtenerTodosJugadores();
 	}
 
 	public void listarUsuarios(){
@@ -155,13 +171,15 @@ public class SistemaGranDT {
 	public void setUsuarioActual(Usuario usuarioActual) {
 		this.usuarioActual = usuarioActual;
 	}
-	
-//	public Torneo buscarTorneo(String nombre){
-//		for (int i=0; i<this.getTorneos().;
-//		
-//		
-//		return t;
-//	}
+
+
+
+	//	public Torneo buscarTorneo(String nombre){
+	//		for (int i=0; i<this.getTorneos().;
+	//		
+	//		
+	//		return t;
+	//	}
 
 
 }

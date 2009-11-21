@@ -2,20 +2,15 @@ package controlador;
 
 import logica.SistemaGranDT;
 import logica.Usuario;
-import logica.dao.UsuarioDAO;
 
 public class LoginControlador {
 	private final SistemaGranDT logica;
-	private final UsuarioDAO udao; // reemplazar por usuario administrador
 
 	// constructor del controlador
 	public LoginControlador (){
 		this.logica = SistemaGranDT.getInstance(); // referencia al sistema
-		this.udao = new UsuarioDAO();
 		System.out.println(this.logica);
 	}
-
-
 
 	// devuelve true si es entero, false si no
 	public boolean isInteger(String i){
@@ -45,10 +40,13 @@ public class LoginControlador {
 		String resultado = validarLogin(tipo, nro, pass);
 
 		if (resultado==null){ // si todos los datos son correctos
-			Usuario u = udao.getUsuarioPorDoc(tipo, Integer.parseInt(nro));
+			//Usuario u = udao.getUsuarioPorDoc(tipo, Integer.parseInt(nro));
+			Usuario u = logica.getAdminDAO().getUsuarioPorDoc(tipo, Integer.parseInt(nro));
 			if (u!=null){
 				if (pass.equals(u.getPassword())){ // contrasenia ok
+					//Usuario logueado correctamente - guardamos todos sus datos
 					logica.setUsuarioActual(u); // setea el usuario
+					logica.getUsuarioActual().setEquipo(logica.getAdminDAO().getEquipoPorDoc(tipo, Integer.parseInt(nro)));
 					return null; // porque todo salio bien
 				}
 				else
