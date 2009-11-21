@@ -29,9 +29,11 @@ public class TorneoDAO {
 			Connection connection = DAOCM.getConnection();
 
 			// insercion del torneo
-			String query = "INSERT INTO Torneo (nombre) VALUES (?)";
+			String query = "INSERT INTO Torneo (nombre, tipo_doc, nro_doc) VALUES (?,?,?)";
 			stmt = connection.prepareStatement(query);
 			stmt.setString(1, (t.getNombre()));
+			stmt.setString(2, t.getCreador().getTipoDoc());
+			stmt.setInt(3, t.getCreador().getNroDoc());
 			stmt.execute();
 			
 			// recuperacion del id del torneo			
@@ -71,6 +73,7 @@ public class TorneoDAO {
 			//we create the new team
 
 			if(rs.next()){
+				
 				t=new Torneo(rs.getString(1)); //TODO aca deberiamos agregar si es necesario el tipo y nro doc del usuario creador y despues los participantes
 			}
 			else
