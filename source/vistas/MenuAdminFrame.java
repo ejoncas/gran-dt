@@ -24,6 +24,16 @@ import javax.swing.WindowConstants;
  * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
 public class MenuAdminFrame extends javax.swing.JFrame {
+
+	{
+		//Set Look & Feel
+		try {
+			javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	private JDesktopPane desktopPane;
 	private JMenuItem btnCMPuntajes;
 	private JMenuItem btnCMEquipos;

@@ -24,6 +24,16 @@ import javax.swing.WindowConstants;
  * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
 public class MenuUsuarioFrame extends javax.swing.JFrame {
+
+	{
+		//Set Look & Feel
+		try {
+			javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	private JDesktopPane desktopPane;
 	private JMenuBar jMenuBar1;
 	private JMenuItem btnArmarEquipo;
@@ -150,7 +160,6 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
 		ArmarEquipoFrame frame = new ArmarEquipoFrame();
 		frame.setVisible(true);
 		desktopPane.add(frame);
-		//TODO add your code for btnArmarEquipo.actionPerformed
 	}
 
 }

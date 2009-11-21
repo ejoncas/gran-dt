@@ -142,6 +142,7 @@ public class CargaMasivaJugadoresFrame extends javax.swing.JInternalFrame {
 		this.getContentPane().setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		JOptionPane.showMessageDialog(this, cmc.cargarJugadores(file.getAbsolutePath()));
 		this.getContentPane().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		this.dispose();
 	}
 
 }

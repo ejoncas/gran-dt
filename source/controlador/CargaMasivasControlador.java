@@ -74,7 +74,7 @@ public class CargaMasivasControlador {
 
 			adminDAO.insertarJugadores(jugadores);
 
-			return jugadores.size()+" guardados.";
+			return jugadores.size()+" jugadores guardados.";
 
 		}catch (FileNotFoundException e){
 			System.out.println("Archivo no encontrado por el parser");
