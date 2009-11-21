@@ -26,7 +26,7 @@ public class Jugador {
 		this.nombre=n;
 		this.equipo=e;
 		this.apellido=a;
-		this.fechaNac=new GregorianCalendar(year,month,day).getTime();
+		this.fechaNac=new GregorianCalendar(year,month-1,day).getTime();
 		this.precio=p;
 		this.puntaje=0;		
 	}
@@ -77,8 +77,7 @@ public class Jugador {
 
 	public String getFechaNacSQLString(){
 		Format formatter = new SimpleDateFormat("yyyyMMdd");
-		System.out.println(formatter.format(this.fechaNac));
-		return formatter.format(this.fechaNac);
+		return formatter.format(this.fechaNac.getTime());
 	}
 
 	public int getPuntaje() {

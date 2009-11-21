@@ -12,7 +12,7 @@ import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 import javax.swing.filechooser.FileFilter;
 
-import controlador.CargaMasivaEquiposControlador;
+import controlador.CargaMasivasControlador;
 
 
 /**
@@ -36,11 +36,10 @@ public class CargaMasivaEquiposFrame extends javax.swing.JInternalFrame {
 	private File file=null; 
 
 	// referencia al controlador
-	private CargaMasivaEquiposControlador cmec;
+	private CargaMasivasControlador cmec;
 
 	public CargaMasivaEquiposFrame() {
 		super("Carga masiva de equipos", true, true, true, true);
-		this.cmec = new CargaMasivaEquiposControlador();
 		initGUI();
 	}
 
