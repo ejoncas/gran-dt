@@ -237,5 +237,14 @@ public class Usuario {
 
 	}
 
+	public void setMontoDisponible(float montoDisponible) {
+		this.montoDisponible = montoDisponible;
+	}
+
+	public void setMontoGastado(float montoGastado) {
+		this.montoGastado = montoGastado;
+	}
+
+
 
 }
