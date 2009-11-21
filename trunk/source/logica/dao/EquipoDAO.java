@@ -152,7 +152,7 @@ public class EquipoDAO {
 			rs2 = stmt2.executeQuery(query2);
 
 			if (rs2.next()){
-				System.out.println("ADENTRO DEL IF");
+				System.out.println("Hubo result set");
 				e.setId(rs2.getInt(1));
 
 			}
