@@ -2,6 +2,7 @@ package controlador;
 
 import logica.SistemaGranDT;
 import logica.Torneo;
+import logica.Usuario;
 import logica.dao.TorneoDAO;
 
 public class CrearTorneoAmigosControlador {	
@@ -9,7 +10,7 @@ public class CrearTorneoAmigosControlador {
 	// referencia al sistema, logica de negocio
 	private final SistemaGranDT logica;
 	private final TorneoDAO tdao;
-
+	
 	// para guardar el nombre del torneo
 	private String nombre;
 
@@ -28,14 +29,15 @@ public class CrearTorneoAmigosControlador {
 		return null;
 	}
 	
-	public String validarExisterTorneo(String n){
+	public String crearTorneo(String n){
 		String resultado = validarCrearTorneo(n);
-		if (resultado==null){
-			if (tdao.getTorneoPorNombre(n)==null){ // si no existe un torneo con ese nombre
+		if (resultado==null){ // si el ingreso del nombre del torneo esta ok
+			if (tdao.getTorneoPorNombre(n)==null){ // si no existe un torneo con ese nombre				
 				Torneo t = new Torneo(n); // crea el torneo
+				t.setCreador(logica.getUsuarioActual());
 				logica.getTorneos().addElement(t); // lo agrega al vector
 				tdao.guardarTorneo(t); // lo guarda en la bd
-				return "El torneo '"+n+"' ha sido creado con exito";
+				return null; // si se creo ok devuelve null
 			}
 			else
 				return "El nombre de torneo ingresado ya existe"; // mensaje de error			
@@ -43,4 +45,13 @@ public class CrearTorneoAmigosControlador {
 		else
 			return resultado; // devuelve el mensaje de error
 	}
+	
+//	public String crearTorneo(String n, Usuario u){
+//		String resultado = validarExisteTorneo(String n);
+//		if (resultado==null)
+//			
+//		
+//		return null;
+//		
+//	}
 }

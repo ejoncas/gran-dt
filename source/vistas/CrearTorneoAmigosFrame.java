@@ -70,13 +70,14 @@ public class CrearTorneoAmigosFrame extends javax.swing.JInternalFrame {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("btnCrear.actionPerformed, event="+evt);
 						String nombre = txtNombreTorneo.getText();
-						String r = ctac.validarCrearTorneo(nombre);
+						String r = ctac.crearTorneo(nombre);
 						if(r!=null)	
 							JOptionPane.showMessageDialog(null, r);
 						else{
-							ctac.validarCrearTorneo(nombre);
+
+							JOptionPane.showMessageDialog(null, "El torneo '"+nombre+ "' se ha creado con exito.");
 							dispose();
-						}				
+						}
 						
 					}
 				});
