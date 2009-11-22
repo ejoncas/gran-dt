@@ -50,6 +50,7 @@ public class CargaMasivasControlador {
 					precio = 0;
 				}
 				//Nacen todos el 1/1/1999. El CSV no me da esa data
+				//tambien se crean todos sin ids
 				if(csvParser.get(3).equals("ARQ")){
 					j = new Arquero(csvParser.get(0).split(",")[1],
 							csvParser.get(0).split(",")[0], 
@@ -68,6 +69,7 @@ public class CargaMasivasControlador {
 							csvParser.get(1), 1999,1,1, precio);
 				}
 				//agregamos el jugador
+				//esta funcion llama al dao el cual tambien les asigna un id
 				jugadores.addElement(j);
 			}
 

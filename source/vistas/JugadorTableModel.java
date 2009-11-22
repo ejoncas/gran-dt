@@ -25,7 +25,6 @@ public class JugadorTableModel extends AbstractTableModel {
 	}
 
 	public int getRowCount() {
-		System.out.println(this.datalist.size());
 		return this.datalist.size();
 	}
 
