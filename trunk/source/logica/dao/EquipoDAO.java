@@ -100,8 +100,14 @@ public class EquipoDAO {
 			//create statement
 			Statement stmt = connection.createStatement();
 
-			String query = "SELECT e.id, e.nombre, e.puntaje FROM Equipo e, Usuario u WHERE " +
-			"u.nro_doc = "+nroDoc+" AND u.tipo_doc = '"+tipoDoc+"'";
+
+			String query = 
+				"SELECT e.id, e.nombre, e.puntaje " +
+				"FROM Equipo e " +
+				"INNER JOIN Usuario u " +
+				"ON u.equipo_fk = e.id "+
+				"WHERE u.nro_doc = "+nroDoc+" " +
+				"AND u.tipo_doc = '"+tipoDoc+"'";
 			//execute query
 			ResultSet rs = stmt.executeQuery(query);
 
@@ -129,6 +135,7 @@ public class EquipoDAO {
 		}
 
 	}
+
 
 
 

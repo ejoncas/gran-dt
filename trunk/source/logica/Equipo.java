@@ -13,17 +13,17 @@ public class Equipo {
 		this.equipoSuplente=null;
 		this.equipoTitular=null;
 	}
-//	public Equipo(int id,String nombre) {
-//		super();
-//		this.setId(id);
-//		this.nombre = nombre;
-//		this.setPuntajeacum(0);
-//	}
+	//	public Equipo(int id,String nombre) {
+	//		super();
+	//		this.setId(id);
+	//		this.nombre = nombre;
+	//		this.setPuntajeacum(0);
+	//	}
 
 	public Equipo(int id, String nombre, int puntaje) {
 		// TODO Auto-generated constructor stub
 		super();
-		this.setId(id);
+		this.id = id;
 		this.nombre=nombre;
 		this.setPuntajeacum(puntaje);
 	}
@@ -47,7 +47,7 @@ public class Equipo {
 
 	@Override
 	public String toString(){
-		return "\nNombre Equipo:"+this.nombre;
+		return "\nID Equipo: "+this.id+"\nNombre Equipo:"+this.nombre;
 	}
 	public void setPuntajeacum(int puntajeacum) {
 		this.puntajeacum = puntajeacum;

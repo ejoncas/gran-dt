@@ -15,7 +15,7 @@ import logica.Volante;
 
 public class JugadorDAO {
 
-	private final DAOConnectionManager DAOCM = DAOConnectionManager.getDAOConectionManager();
+	private DAOConnectionManager DAOCM = DAOConnectionManager.getDAOConectionManager();
 
 	public Jugador getJugadorPorId(int id){
 		try{
@@ -32,7 +32,7 @@ public class JugadorDAO {
 			rs.next();
 
 			//we create the new player
-			Jugador r = new Jugador(rs.getString("nombre"), rs.getString("apellido"),
+			Jugador r = new Jugador(rs.getInt("id"),rs.getString("nombre"), rs.getString("apellido"),
 					rs.getString("equipo"),rs.getDate("nacimiento"),
 					rs.getInt("puntaje"),rs.getFloat("precio"));
 
@@ -71,7 +71,7 @@ public class JugadorDAO {
 			//we move to the first row - ResultSet starts "before first"
 			while(rs.next()){
 				//we create the new player
-				Jugador r = new Jugador(rs.getString("nombre"), rs.getString("apellido"),
+				Jugador r = new Jugador(rs.getInt("id"),rs.getString("nombre"), rs.getString("apellido"),
 						rs.getString("equipo"),rs.getDate("nacimiento"),
 						rs.getInt("puntaje"),rs.getFloat("precio"));
 				jugadores.addElement(r);
@@ -113,19 +113,19 @@ public class JugadorDAO {
 				//we create the new player
 				Jugador r=null;
 				if(rs.getString("posicion").equals("DEF"))
-					r = new Defensor(rs.getString("nombre"), rs.getString("apellido"),
+					r = new Defensor(rs.getInt("id"),rs.getString("nombre"), rs.getString("apellido"),
 							rs.getString("equipo"),rs.getDate("nacimiento"),
 							rs.getInt("puntaje"),rs.getFloat("precio"));
 				else if (rs.getString("posicion").equals("VOL"))
-					r = new Volante(rs.getString("nombre"), rs.getString("apellido"),
+					r = new Volante(rs.getInt("id"),rs.getString("nombre"), rs.getString("apellido"),
 							rs.getString("equipo"),rs.getDate("nacimiento"),
 							rs.getInt("puntaje"),rs.getFloat("precio"));
 				else if (rs.getString("posicion").equals("DEL"))
-					r = new Delantero(rs.getString("nombre"), rs.getString("apellido"),
+					r = new Delantero(rs.getInt("id"),rs.getString("nombre"), rs.getString("apellido"),
 							rs.getString("equipo"),rs.getDate("nacimiento"),
 							rs.getInt("puntaje"),rs.getFloat("precio"));
 				else if (rs.getString("posicion").equals("ARQ"))
-					r = new Arquero(rs.getString("nombre"), rs.getString("apellido"),
+					r = new Arquero(rs.getInt("id"),rs.getString("nombre"), rs.getString("apellido"),
 							rs.getString("equipo"),rs.getDate("nacimiento"),
 							rs.getInt("puntaje"),rs.getFloat("precio"));
 
@@ -182,6 +182,19 @@ public class JugadorDAO {
 
 			stmt.execute();
 
+			String query2 = "select @@IDENTITY";
+			Statement stmt2 = connection.createStatement();
+			ResultSet rs2 = stmt2.executeQuery(query2);
+
+			if (rs2.next()){
+				//le guardamos el ID otorgado por la BD
+				j.setId(rs2.getInt(1));
+			}
+
+			//cerramos todo
+			stmt.close();
+			stmt2.close();
+			rs2.close();
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

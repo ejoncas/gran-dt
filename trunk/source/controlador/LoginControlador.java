@@ -47,6 +47,9 @@ public class LoginControlador {
 					//Usuario logueado correctamente - guardamos todos sus datos
 					logica.setUsuarioActual(u); // setea el usuario
 					logica.getUsuarioActual().setEquipo(logica.getAdminDAO().getEquipoPorDoc(tipo, Integer.parseInt(nro)));
+					//cargamos el equipo actual del usuario;
+					//logica.getUsuarioActual().getEquipo().setEquipoTitular(logica.getAdminDAO().obtenerEquipoTitular(logica.getUsuarioActual()));
+					//Equipo titular cargado en memoria OK!!!
 					return null; // porque todo salio bien
 				}
 				else

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Jugador {
+	private int id;
 	private String nombre;
 	private String equipo;
 	private String apellido;
@@ -15,7 +16,8 @@ public class Jugador {
 
 
 
-	public Jugador(String n, String a, String e, int year, int month, int day, float p){
+	public Jugador(int id, String n, String a, String e, int year, int month, int day, float p){
+		this.id = id;
 		this.nombre=n;
 		this.equipo=e;
 		this.apellido=a;
@@ -24,7 +26,18 @@ public class Jugador {
 		this.puntaje=0;		
 	}
 
-	public Jugador(String n, String a, String e, Date f,int pj, float p){
+	//este constructor se deberia usar solo desde la carga masiva ya que no tiene el id
+	public Jugador( String n, String a, String e, int year, int month, int day, float p){
+		this.nombre=n;
+		this.equipo=e;
+		this.apellido=a;
+		this.fechaNac=new GregorianCalendar(year,month-1,day).getTime();
+		this.precio=p;
+		this.puntaje=0;		
+	}
+
+	public Jugador(int id,String n, String a, String e, Date f,int pj, float p){
+		this.id = id;
 		this.nombre=n;
 		this.equipo=e;
 		this.apellido=a;
@@ -75,6 +88,18 @@ public class Jugador {
 
 	public int getPuntaje() {
 		return puntaje;
+	}
+
+	public void setPuntaje(int f){
+		this.puntaje = f;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public float getPrecio() {

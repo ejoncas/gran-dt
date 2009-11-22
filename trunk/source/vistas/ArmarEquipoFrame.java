@@ -194,10 +194,20 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 			{
 				btnConfirmar = new JButton();
 				btnConfirmar.setText("Confirmar Equipo");
+				btnConfirmar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						btnConfirmarActionPerformed(evt);
+					}
+				});
 			}
 			{
 				btnCancelar = new JButton();
 				btnCancelar.setText("Cancelar");
+				btnCancelar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						btnCancelarActionPerformed(evt);
+					}
+				});
 			}
 			{
 				separatorEquipoS = new JSeparator();
@@ -390,6 +400,20 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 		//TODO add your code for btnQuitarS.actionPerformed
 		Jugador removed = tableEquipoSModel.removeJugadorAt(tableEquipoS.getSelectedRow());
 		tableJugadoresModel.addJugador(removed);
+	}
+
+	private void btnCancelarActionPerformed(ActionEvent evt) {
+		System.out.println("btnCancelar.actionPerformed, event="+evt);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.dispose();
+	}
+
+	private void btnConfirmarActionPerformed(ActionEvent evt) {
+		System.out.println("btnConfirmar.actionPerformed, event="+evt);
+		//guardamos el equipo titular y suplente en el modelo de datos y en la logica
+		this.aec.guardarEquipoT(this.tableEquipoTModel.getDatalist());
+		this.aec.gaurdarEquipoS(this.tableEquipoSModel.getDatalist());
+		this.dispose();
 	}
 
 }

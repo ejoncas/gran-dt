@@ -5,6 +5,8 @@ import java.util.Vector;
 import logica.Arquero;
 import logica.Defensor;
 import logica.Delantero;
+import logica.EquipoSuplente;
+import logica.EquipoTitular;
 import logica.Jugador;
 import logica.SistemaGranDT;
 import logica.Volante;
@@ -32,13 +34,15 @@ public class ArmarEquipoControlador {
 		//levantamos todos los jugadores para llenar la pantalla
 		//levantamos todos los jugadores de la BD
 		logica.cargarJugadores();
-		//pasasrselos al table model y luego a la ventana
+		logica.cargarEquipoTitular();
+		logica.cargarEquipoSuplente();
+
+
+		//los seteamos a las vars locales
 		this.disponibles = logica.getJugadores();
+		this.titulares = logica.getUsuarioActual().getEquipo().getEquipoTitular().toVector();
+		this.suplentes = logica.getUsuarioActual().getEquipo().getEquipoSuplente().toVector();
 
-		//DESCOMENTAR ESTO cuando se carge el equipo
-		//this.titulares = logica.getUsuarioActual().getEquipo().getEquipoTitular().toVector();
-
-		//this.suplentes = logica.getUsuarioActual().getEquipo().getEquipoSuplente().toVector();
 
 		//TODO Descomentar lo siguiente, solo fue para testear
 		//levantamos el equipo titular del usuario logueado
@@ -52,14 +56,17 @@ public class ArmarEquipoControlador {
 		this.montoGastado = this.logica.getUsuarioActual().getMontoGastado();
 
 		//Creamos los tables models para completar las vistas
+		//aca a disponibles habria que sacarle los que ya tiene
+		//limpiamos los disponibles de los que el jugador ya tiene
+		this.limpiarDisponibles();
 		JugadorTableModel jug = new JugadorTableModel(this.disponibles);
 		JugadorTableModel et = null;
 		JugadorTableModel es = null;
-		if(this.titulares != null)
+		if(!this.titulares.isEmpty())
 			et = new JugadorTableModel(this.titulares);
 		else
 			et = new JugadorTableModel();
-		if(this.suplentes != null)
+		if(!this.suplentes.isEmpty())
 			es = new JugadorTableModel(this.suplentes);
 		else
 			es = new JugadorTableModel();
@@ -226,6 +233,70 @@ public class ArmarEquipoControlador {
 		return null;
 	}
 
+	//se encarga de guardar el equipo
+	public String guardarEquipoT(Vector<Jugador> datalist) {
+		//lo unico que hay que verificar es que sean 11
+		if(datalist.size()==11){
+			EquipoTitular e = new EquipoTitular();
+			//no necesito verificar porque se que si o si la ventana te deja armar el equipo bien
+			for(Jugador j : datalist){
+				if(j instanceof Arquero)
+					e.addArquero((Arquero)j);
+				else if (j instanceof Defensor)
+					e.addDefensor((Defensor)j);
+				else if (j instanceof Delantero)
+					e.addDelantero((Delantero)j);
+				else if (j instanceof Volante)
+					e.addVolante((Volante)j);
+			}
+			//guardamos en el modelo
+			this.logica.getUsuarioActual().getEquipo().setEquipoTitular(e);
+			//TODO guardar en la base
+			this.logica.getAdminDAO().guardarEquipoTitular(this.logica.getUsuarioActual().getEquipo(), e);
 
+			return null;
+		}
+		else{
+			return "Equipo Titular incompleto. Por favor, complete el equipo antes de poder guardarlo";
+		}
+
+
+	}
+
+
+	//se encarga de guardar el equipo suplente
+	public String gaurdarEquipoS(Vector<Jugador> datalist) {
+		//lo unico que hay que verificar es que sean 11
+		if(datalist.size()==5){
+			EquipoSuplente e = new EquipoSuplente();
+			//no necesito verificar porque se que si o si la ventana te deja armar el equipo bien
+			for(Jugador j : datalist){
+				if(j instanceof Arquero)
+					e.addArquero((Arquero)j);
+				else if (j instanceof Defensor)
+					e.addDefensor((Defensor)j);
+				else if (j instanceof Delantero)
+					e.addDelantero((Delantero)j);
+				else if (j instanceof Volante)
+					e.addVolante((Volante)j);
+			}
+			//guardamos en el modelo
+			this.logica.getUsuarioActual().getEquipo().setEquipoSuplente(e);
+			//TODO guardar en la base
+			this.logica.getAdminDAO().guardarEquipoSuplente(this.logica.getUsuarioActual().getEquipo(), e);
+
+			return null;
+		}
+		else{
+			return "Equipo Suplente incompleto. Por favor, complete el equipo antes de poder guardarlo";
+		}
+
+	}
+
+	private void limpiarDisponibles(){
+		this.disponibles.removeAll(this.titulares);
+		this.disponibles.removeAll(this.suplentes);
+	}
 
 }
+

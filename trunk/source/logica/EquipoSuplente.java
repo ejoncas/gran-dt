@@ -12,19 +12,19 @@ public class EquipoSuplente {
 	public Arquero getArquero() {
 		return arquero;
 	}
-	public void setArquero(Arquero arquero) {
+	public void addArquero(Arquero arquero) {
 		this.arquero = arquero;
 	}
 	public Defensor getDefensor() {
 		return defensor;
 	}
-	public void setDefensor(Defensor defensor) {
+	public void addDefensor(Defensor defensor) {
 		this.defensor = defensor;
 	}
 	public Volante getVolante() {
 		return volante;
 	}
-	public void setVolante(Volante volante) {
+	public void addVolante(Volante volante) {
 		this.volante = volante;
 	}
 
@@ -35,6 +35,10 @@ public class EquipoSuplente {
 		this.delanteros = delanteros;
 	}
 
+	public void addDelantero(Delantero d){
+		this.delanteros.addElement(d);
+	}
+
 	public EquipoSuplente(Arquero arquero, Defensor defensor, Volante volante,
 			Vector<Delantero> delanteros) {
 		super();
@@ -43,6 +47,15 @@ public class EquipoSuplente {
 		this.volante = volante;
 		this.delanteros = delanteros;
 	}
+
+	public EquipoSuplente(){
+		super();
+		this.arquero = null;
+		this.defensor = null;
+		this.volante = null;
+		this.delanteros = new Vector<Delantero>();
+	}
+
 
 
 	public EquipoSuplente(Jugador ja,Jugador jdf, Jugador jv, Jugador jd1,Jugador jd2) {
@@ -77,10 +90,14 @@ public class EquipoSuplente {
 
 	public Vector<Jugador> toVector(){
 		Vector<Jugador> j = new Vector<Jugador>();
-		j.addElement(this.arquero);
-		j.addElement(this.defensor);
-		j.addElement(this.volante);
-		j.addAll(this.delanteros);
+		if(this.arquero!=null)
+			j.addElement(this.arquero);
+		if(this.defensor!=null)
+			j.addElement(this.defensor);
+		if(this.volante!=null)
+			j.addElement(this.volante);
+		if(!this.delanteros.isEmpty())
+			j.addAll(this.delanteros);
 
 		return j;
 	}

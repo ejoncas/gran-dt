@@ -16,11 +16,32 @@ public class EquipoTitular {
 		super();
 		this.arquero = arquero;
 		this.defensores = defensores;
-		this.defensores.setSize(getCANT_DEF());
 		this.volantes = volantes;
-		this.volantes.setSize(getCANT_VOL());
 		this.delanteros = delanteros;
-		this.delanteros.setSize(getCANT_DEL());
+	}
+
+	public EquipoTitular(){
+		super();
+		this.arquero = null;
+		this.defensores = new Vector<Defensor>();
+		this.volantes = new Vector<Volante>();
+		this.delanteros = new Vector<Delantero>();
+	}
+
+	public void addDelantero(Delantero d){
+		this.delanteros.addElement(d);
+	}
+
+	public void addDefensor(Defensor d){
+		this.defensores.addElement(d);
+	}
+
+	public void addVolante(Volante v){
+		this.volantes.addElement(v);
+	}
+
+	public void addArquero(Arquero arquero) {
+		this.arquero = arquero;
 	}
 
 	public static int getCANT_DEF() {
@@ -44,9 +65,7 @@ public class EquipoTitular {
 	public Arquero getArquero() {
 		return arquero;
 	}
-	public void setArquero(Arquero arquero) {
-		this.arquero = arquero;
-	}
+
 	public Vector<Defensor> getDefensores() {
 		return defensores;
 	}
@@ -68,10 +87,15 @@ public class EquipoTitular {
 
 	public Vector<Jugador> toVector(){
 		Vector<Jugador> aux = new Vector<Jugador>();
-		aux.addElement(this.arquero);
-		aux.addAll(this.defensores);
-		aux.addAll(this.volantes);
-		aux.addAll(this.delanteros);
+		if(this.arquero!=null)
+			aux.addElement(this.arquero);
+		if(!this.defensores.isEmpty())
+			aux.addAll(this.defensores);
+		if(!this.volantes.isEmpty())
+			aux.addAll(this.volantes);
+		if(!this.delanteros.isEmpty())
+			aux.addAll(this.delanteros);
+
 		return aux;
 	}
 

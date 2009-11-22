@@ -122,8 +122,13 @@ public class SistemaGranDT {
 
 	}
 
-	public void cargarJugadores(){
-		this.jugadores = this.adminDAO.obtenerTodosJugadores();
+	public void cargarJugadores(){ 
+		this.jugadores = this.adminDAO.obtenerTodosJugadores() ;
+	}
+
+	public void liberarJugadores(){
+		this.jugadores = null;
+		//y aca esperemos que pase el garbage colector y los limpie
 	}
 
 	public void listarUsuarios(){
@@ -170,6 +175,48 @@ public class SistemaGranDT {
 
 	public void setUsuarioActual(Usuario usuarioActual) {
 		this.usuarioActual = usuarioActual;
+	}
+
+	public void cargarEquipoTitular() {
+		int[] idsTitulares = this.adminDAO.obtenerEquipoTitularIDS(this.usuarioActual);
+		EquipoTitular et  = new EquipoTitular();
+		for(Jugador j : this.jugadores){
+			for(int i=0; i<idsTitulares.length;i++){
+				if(j.getId()==idsTitulares[i]){
+					if(j instanceof Arquero)
+						et.addArquero((Arquero) j);
+					else if (j instanceof Defensor)
+						et.addDefensor((Defensor) j);
+					else if (j instanceof Delantero)
+						et.addDelantero((Delantero) j);
+					else if (j instanceof Volante)
+						et.addVolante((Volante) j);
+				}
+
+			}
+		}
+		this.usuarioActual.getEquipo().setEquipoTitular(et);
+	}
+
+	public void cargarEquipoSuplente() {
+		//mandamos false para indicar al query que queremos solo los suplentes
+		int[] idsSuplentes = this.adminDAO.obtenerEquipoSuplenteIDS(this.usuarioActual);
+		EquipoSuplente es = new EquipoSuplente();
+		for(Jugador j: this.jugadores){
+			for(int i=0; i < idsSuplentes.length ; i++ ){
+				if(j.getId()==idsSuplentes[i]){
+					if(j instanceof Arquero)
+						es.addArquero((Arquero) j);
+					else if (j instanceof Defensor)
+						es.addDefensor((Defensor) j);
+					else if (j instanceof Delantero)
+						es.addDelantero((Delantero) j);
+					else if (j instanceof Volante)
+						es.addVolante((Volante) j);
+				}
+			}
+		}
+		this.usuarioActual.getEquipo().setEquipoSuplente(es);
 	}
 
 
