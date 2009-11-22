@@ -411,9 +411,17 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 	private void btnConfirmarActionPerformed(ActionEvent evt) {
 		System.out.println("btnConfirmar.actionPerformed, event="+evt);
 		//guardamos el equipo titular y suplente en el modelo de datos y en la logica
-		this.aec.guardarEquipoT(this.tableEquipoTModel.getDatalist());
-		this.aec.gaurdarEquipoS(this.tableEquipoSModel.getDatalist());
-		this.dispose();
+		String r = this.aec.guardarEquipoT(this.tableEquipoTModel.getDatalist());
+		if ( r!= null)
+			JOptionPane.showMessageDialog(null, r);
+		else{
+			String r2 = this.aec.gaurdarEquipoS(this.tableEquipoSModel.getDatalist());
+			if(r2!=null)
+				JOptionPane.showMessageDialog(null, r2);
+			else
+				this.dispose();
+		}
+
 	}
 
 }
