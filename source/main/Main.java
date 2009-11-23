@@ -15,7 +15,6 @@ public class Main {
 	 * @author jonatan, candela
 	 */
 	public static void main(String[] args) throws IOException {
-		//TODO Auto-generated method stub
 		SistemaGranDT sys = SistemaGranDT.getInstance();
 
 		//		TESTING Armar Equipo
@@ -39,7 +38,6 @@ public class Main {
 		//		sys.getUsuarios().addElement(u);
 		//
 		//
-		//		//TODO add Jugador
 		//		sys.getJugadores().addElement(j3);
 		//		sys.getJugadores().addElement(j4);
 		//		sys.getJugadores().addElement(j5);
@@ -65,7 +63,6 @@ public class Main {
 		//		sys.getUsuarios().addElement(u);
 
 
-		//		//TODO add Jugador
 		//		sys.getJugadores().addElement(j3);
 		//		sys.getJugadores().addElement(j4);
 		//		sys.getJugadores().addElement(j5);
@@ -83,7 +80,6 @@ public class Main {
 		//		System.out.println(loaded.toString());
 
 
-		//TODO Menu Interfaz
 		//new AltaUsuario1Frame(new AltaUsuarioControlador());
 
 		//Vector<Jugador> jugadoresVolantes = jdao.getJugadoresPorPosicion("VOL");
@@ -130,7 +126,6 @@ public class Main {
 		//		try {
 		//			r = new CsvReader("database/jugadores.csv");
 		//		} catch (FileNotFoundException e) {
-		//			// TODO Auto-generated catch block
 		//			e.printStackTrace();
 		//		}
 		//

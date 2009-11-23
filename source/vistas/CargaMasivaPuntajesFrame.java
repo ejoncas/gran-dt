@@ -1,4 +1,5 @@
 package vistas;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -7,10 +8,13 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 import javax.swing.filechooser.FileFilter;
+
+import controlador.CargaMasivasControlador;
 
 
 /**
@@ -32,10 +36,12 @@ public class CargaMasivaPuntajesFrame extends javax.swing.JInternalFrame {
 	private JButton btnExaminar;
 	private JFileChooser fc;
 	private File file=null; 
+	private CargaMasivasControlador cmc;
 
 
 	public CargaMasivaPuntajesFrame() {
 		super("Carga masiva de equipos", true, true, true, true);
+		cmc = new CargaMasivasControlador();
 		initGUI();
 	}
 
@@ -134,6 +140,11 @@ public class CargaMasivaPuntajesFrame extends javax.swing.JInternalFrame {
 
 	private void btnCargarActionPerformed(ActionEvent evt) {
 		System.out.println("btnCargar.actionPerformed, event="+evt);
+		System.out.println("btnCargar.actionPerformed, event="+evt);
+		this.getContentPane().setCursor(new Cursor(Cursor.WAIT_CURSOR));
+		JOptionPane.showMessageDialog(this, cmc.cargarPuntajes(file.getAbsolutePath()));
+		this.getContentPane().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		this.dispose();
 
 	}
 
