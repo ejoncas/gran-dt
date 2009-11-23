@@ -1,4 +1,6 @@
 package vistas;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -64,10 +66,25 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 			{
 				jrbDuenio = new JRadioButton();
 				jrbDuenio.setText("Buscar por dueno");
+				jrbDuenio.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						System.out.println("jrbDuenio.actionPerformed, event="+evt);
+						if (jrbDuenio.isSelected())
+							jrbNombre.setSelected(false);
+			
+					}
+				});
 			}
 			{
 				jrbNombre = new JRadioButton();
 				jrbNombre.setText("Buscar por nombre del torneo");
+				jrbNombre.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						System.out.println("jrbNombre.actionPerformed, event="+evt);
+						if (jrbNombre.isSelected())
+							jrbDuenio.setSelected(false);
+					}
+				});
 			}
 			{
 				txtBuscar = new JTextField();
@@ -147,5 +164,8 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 			e.printStackTrace();
 		}
 	}
+	
+	//private void buscarPorDuenoActionPerformed(ActionEcentevt);
+
 
 }

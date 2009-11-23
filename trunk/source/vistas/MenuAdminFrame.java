@@ -120,9 +120,9 @@ public class MenuAdminFrame extends javax.swing.JFrame {
 						btnCMJugadores.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
 								System.out.println("btnCMJugadores.actionPerformed, event="+evt);
-								CargaMasivaJugadoresFrame frame = new CargaMasivaJugadoresFrame();
-								frame.setVisible(true);
-								desktopPane.add(frame);							}
+								CargaMasivaJugadoresFrame frameJug = new CargaMasivaJugadoresFrame();
+								frameJug.setVisible(true);
+								desktopPane.add(frameJug);							}
 						});
 					}
 					{
@@ -132,15 +132,23 @@ public class MenuAdminFrame extends javax.swing.JFrame {
 						btnCMEquipos.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
 								System.out.println("btnCMEquipos.actionPerformed, event="+evt);
-								CargaMasivaEquiposFrame frame = new CargaMasivaEquiposFrame();
-								frame.setVisible(true);
-								desktopPane.add(frame);							}
+								CargaMasivaEquiposFrame frameEq = new CargaMasivaEquiposFrame();
+								frameEq.setVisible(true);
+								desktopPane.add(frameEq);							}
 						});
 					}
 					{
 						btnCMPuntajes = new JMenuItem();
 						jMenu2.add(btnCMPuntajes);
 						btnCMPuntajes.setText("...de Puntajes");
+						btnCMPuntajes.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								System.out.println("btnCMPuntajes.actionPerformed, event="+evt);
+								CargaMasivaPuntajesFrame framePun = new CargaMasivaPuntajesFrame();
+								framePun.setVisible(true);
+								desktopPane.add(framePun);
+							}
+						});
 					}
 				}
 			}

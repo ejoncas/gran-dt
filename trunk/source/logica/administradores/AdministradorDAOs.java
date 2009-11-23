@@ -6,6 +6,7 @@ import logica.Equipo;
 import logica.EquipoSuplente;
 import logica.EquipoTitular;
 import logica.Jugador;
+import logica.JugadorFechaPuntaje;
 import logica.Usuario;
 import logica.dao.EquipoDAO;
 import logica.dao.EquipoJugadorDAO;
@@ -37,6 +38,13 @@ public class AdministradorDAOs {
 		}
 	}
 
+	public void updatePuntajes(Vector<JugadorFechaPuntaje> jfp) {
+		for(JugadorFechaPuntaje aux : jfp){
+			this.jugador.updatePuntaje(aux.getNombre(), aux.getApellido(),aux.getFecha(), aux.getPuntaje());
+		}
+		
+	}
+	
 	//Levanta el usuario de la base, carga su equipo y sus jugadores
 	//	public void loguearUsuario(String tipoDoc, int nroDoc){
 	//		Usuario u = this.usuario.getUsuarioPorDoc(tipoDoc, nroDoc);
@@ -87,6 +95,8 @@ public class AdministradorDAOs {
 		this.equipojugador.insertEquipoJugador(e, es.getArquero(), false);
 
 	}
+
+	
 
 
 }

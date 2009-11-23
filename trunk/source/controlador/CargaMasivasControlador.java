@@ -8,6 +8,7 @@ import logica.Arquero;
 import logica.Defensor;
 import logica.Delantero;
 import logica.Jugador;
+import logica.JugadorFechaPuntaje;
 import logica.SistemaGranDT;
 import logica.Volante;
 import logica.administradores.AdministradorDAOs;
@@ -73,6 +74,7 @@ public class CargaMasivasControlador {
 				jugadores.addElement(j);
 			}
 
+			
 
 			adminDAO.insertarJugadores(jugadores);
 
@@ -90,9 +92,46 @@ public class CargaMasivasControlador {
 		}
 
 	}
+	
 
+	public String cargarPuntajes(String pathcsv){
+		Vector<JugadorFechaPuntaje> jfp= new Vector<JugadorFechaPuntaje>();
+
+		try{
+			csvParser = new CsvReader(pathcsv);
+			//we set the default delimiter
+			csvParser.setDelimiter(';');
+			//avanzamos uno para saltearnos los headers
+
+			csvParser.readRecord();
+
+			JugadorFechaPuntaje aux;
+			while(csvParser.readRecord()){
+				aux = new JugadorFechaPuntaje(csvParser.get(0).split(",")[1],csvParser.get(0).split(",")[0], Integer.parseInt(csvParser.get(1)), Integer.parseInt(csvParser.get(2)));
+				jfp.addElement(aux);
+			}
+
+			adminDAO.updatePuntajes(jfp);
+
+			return jfp.size()+" puntajes guardados.";
+			
+			//FIXME : llamar a generar tabla de puntajes!!!!!!!!!
+
+		}catch (FileNotFoundException e){
+			System.out.println("Archivo no encontrado por el parser");
+			e.printStackTrace();
+			return "File not found exception";
+		} catch (IOException e) {
+			System.out.println("Error de IO");
+			e.printStackTrace();
+			return "IOException";
+		}
+
+	}
+	
 
 }
+
 
 
 

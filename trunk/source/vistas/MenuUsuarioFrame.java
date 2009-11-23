@@ -10,6 +10,7 @@ import javax.swing.JMenuItem;
 import javax.swing.WindowConstants;
 
 import controlador.ArmarEquipoControlador;
+import controlador.MostrarEquipoControlador;
 
 
 /**
@@ -81,9 +82,12 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
 						btnEquipoEstado.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
 								System.out.println("btnEquipoEstado.actionPerformed, event="+evt);
-								MostrarEquipoFrame frame = new MostrarEquipoFrame();
-								frame.setVisible(true);
-								desktopPane.add(frame);							}
+//								MostrarEquipoFrame frame = new MostrarEquipoFrame();
+//								frame.setVisible(true);
+//								desktopPane.add(frame);							
+								MostrarEquipoControlador mec = new MostrarEquipoControlador();
+								desktopPane.add(mec.getFrame());
+							}
 						});
 					}
 				}

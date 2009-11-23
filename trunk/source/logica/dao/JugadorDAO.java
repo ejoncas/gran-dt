@@ -196,14 +196,43 @@ public class JugadorDAO {
 			stmt2.close();
 			rs2.close();
 		}catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}catch (Exception e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
 
+	}
+
+	public void updatePuntaje(String nombre, String apellido, int fecha,
+			int puntaje) {
+		//TODO ver que onda con la fecha
+		try{
+			//connect to db
+			Connection connection = DAOCM.getConnection();
+
+			String query = "UPDATE Jugador SET puntaje = ? WHERE nombre = ? AND apellido = ?";
+			//execute query
+			
+			PreparedStatement stmt = connection.prepareStatement(query);
+			
+			stmt.setInt(1, puntaje);
+			stmt.setString(2, nombre);
+			stmt.setString(3, apellido);
+			
+			stmt.execute();
+
+			//we close all the connections
+			stmt.close();
+
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }

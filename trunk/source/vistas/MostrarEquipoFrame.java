@@ -2,13 +2,21 @@ package vistas;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.LayoutStyle;
 import javax.swing.ListModel;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
+import controlador.MostrarEquipoControlador;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * This code was edited or generated using CloudGarden's Jigloo
@@ -23,48 +31,54 @@ import javax.swing.WindowConstants;
  * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
 public class MostrarEquipoFrame extends javax.swing.JInternalFrame {
-	private JLabel lblJugadores;
-	private JList listJugadores;
 	private JLabel lblAcumulado;
+	private JLabel lblTitular;
 	private JButton lblAceptar;
 	private JLabel jLabel1;
 	private JLabel lblUltFech;
 	private JLabel lblPuntAcum;
+	
+	private JugadorTableModel tableEquipoTModel;
+	private JugadorTableModel tableEquipoSModel;
+	private JTable tableSuplente;
+	private JLabel lblSuplente;
+	private JScrollPane jScrollPane2;
+	private JScrollPane jScrollPane1;
+	private JTable tableTitular; 
+	
+	private MostrarEquipoControlador mec;
+	
+	public MostrarEquipoControlador getMec() {
+		return mec;
+	}
 
-	/**
-	 * Auto-generated main method to display this JFrame
-	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				MostrarEquipoFrame inst = new MostrarEquipoFrame();
-	//			inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
-			}
-		});
+	public void setControlador(MostrarEquipoControlador mec) {
+		this.mec = mec;
 	}
 
 	public MostrarEquipoFrame() {
-		super("Ver equipo", true, true, true, true);
+		super("Mostrar equipo", true, true, true, true);
+		this.tableEquipoSModel=new JugadorTableModel();
+		this.tableEquipoTModel= new JugadorTableModel();
+		
+		initGUI();
+	}
+	
+
+	public MostrarEquipoFrame(JugadorTableModel et, JugadorTableModel es) {
+		super("Mostrar Equipo", true, true, true, true);
+		//Creamos las tablas cargadas
+		this.tableEquipoSModel=es;
+		this.tableEquipoTModel=et;
 		initGUI();
 	}
 
+
 	private void initGUI() {
 		try {
-			GroupLayout thisLayout = new GroupLayout(getContentPane());
+			GroupLayout thisLayout = new GroupLayout((JComponent)getContentPane());
 			getContentPane().setLayout(thisLayout);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			{
-				lblJugadores = new JLabel();
-				lblJugadores.setText("Jugadores:");
-			}
-			{
-				ListModel listJugadoresModel = 
-					new DefaultComboBoxModel(
-							new String[] { "Item One", "Item Two" });
-				listJugadores = new JList();
-				listJugadores.setModel(listJugadoresModel);
-			}
 			{
 				lblAcumulado = new JLabel();
 				lblAcumulado.setText("Puntaje acumulado:");
@@ -75,7 +89,7 @@ public class MostrarEquipoFrame extends javax.swing.JInternalFrame {
 			}
 			{
 				lblUltFech = new JLabel();
-				lblUltFech.setText("Puntaje obtenido en la �ltima fecha:");
+				lblUltFech.setText("Puntaje obtenido en la ultima fecha:");
 			}
 			{
 				jLabel1 = new JLabel();
@@ -84,54 +98,102 @@ public class MostrarEquipoFrame extends javax.swing.JInternalFrame {
 			{
 				lblAceptar = new JButton();
 				lblAceptar.setText("Aceptar");
+				lblAceptar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						System.out.println("lblAceptar.actionPerformed, event="+evt);
+						setDefaultCloseOperation(EXIT_ON_CLOSE);
+						dispose();
+						}
+				});
+			}
+			{
+				jScrollPane1 = new JScrollPane();
+				{
+
+					tableTitular = new JTable();
+					tableTitular.setAutoCreateColumnsFromModel(true);
+					tableTitular.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+					tableTitular.setRowSelectionAllowed(true);
+					
+					
+					jScrollPane1.setViewportView(tableTitular);
+					tableTitular.setModel(tableEquipoTModel);
+				}
+			}
+			{
+				jScrollPane2 = new JScrollPane();
+				{
+
+					tableSuplente = new JTable();
+					tableSuplente.setAutoCreateColumnsFromModel(true);
+					tableSuplente.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+					tableSuplente.setRowSelectionAllowed(true);
+					
+					jScrollPane2.setViewportView(tableSuplente);
+					tableSuplente.setModel(tableEquipoSModel);
+				}
+			}
+			{
+				lblSuplente = new JLabel();
+				lblSuplente.setText("Equipo suplente");
+			}
+			{
+				lblTitular = new JLabel();
+				lblTitular.setText("Equipo Titular");
 			}
 			thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
-					.addContainerGap(21, 21)
-					.addComponent(lblJugadores, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-					.addComponent(listJugadores, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-					.addGap(24)
-					.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-							.addComponent(lblAcumulado, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(lblPuntAcum, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-							.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-									.addComponent(lblUltFech, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-									.addComponent(jLabel1, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addGap(18)
-									.addComponent(lblAceptar, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addContainerGap(24, Short.MAX_VALUE));
-			thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
-					.addContainerGap(19, 19)
-					.addGroup(thisLayout.createParallelGroup()
-							.addComponent(listJugadores, GroupLayout.Alignment.LEADING, 0, 369, Short.MAX_VALUE)
-							.addGroup(thisLayout.createSequentialGroup()
-									.addGroup(thisLayout.createParallelGroup()
-											.addGroup(thisLayout.createSequentialGroup()
-													.addPreferredGap(lblJugadores, lblAcumulado, LayoutStyle.ComponentPlacement.INDENT)
-													.addGroup(thisLayout.createParallelGroup()
-															.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-																	.addComponent(lblAcumulado, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-																	.addGap(17)
-																	.addComponent(lblPuntAcum, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-																	.addGap(60))
-																	.addComponent(lblUltFech, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)))
-																	.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-																			.addComponent(lblJugadores, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-																			.addGap(151)))
-																			.addGap(24)
-																			.addGroup(thisLayout.createParallelGroup()
-																					.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-																							.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-																							.addGap(0, 56, Short.MAX_VALUE))
-																							.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-																									.addGap(37)
-																									.addComponent(lblAceptar, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-																									.addGap(0, 0, Short.MAX_VALUE)))
-																									.addGap(26)))
-																									.addContainerGap());
+			.addContainerGap()
+			.addComponent(lblTitular, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+			.addGap(20)
+			.addComponent(jScrollPane1, 0, 176, Short.MAX_VALUE)
+			.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+			.addComponent(lblSuplente, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+			.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+			.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
+			.addGap(23)
+			.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+			    .addComponent(lblAcumulado, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+			    .addComponent(lblPuntAcum, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+			.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+			.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+			    .addComponent(lblAceptar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+			    .addComponent(lblUltFech, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+			    .addComponent(jLabel1, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+			.addContainerGap());
+		thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
+				.addContainerGap(17, 17)
+				.addGroup(thisLayout.createParallelGroup()
+				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+				        .addGroup(thisLayout.createParallelGroup()
+				            .addComponent(lblUltFech, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE)
+				            .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+				                .addComponent(lblAcumulado, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+				                .addGap(88)))
+				        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+				        .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+				        .addGap(40)
+				        .addComponent(lblAceptar, 0, 162, Short.MAX_VALUE)
+				        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, GroupLayout.PREFERRED_SIZE))
+				    .addGroup(thisLayout.createSequentialGroup()
+				        .addPreferredGap(lblAcumulado, lblTitular, LayoutStyle.ComponentPlacement.INDENT)
+				        .addGroup(thisLayout.createParallelGroup()
+				            .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+				                .addGroup(thisLayout.createParallelGroup()
+				                    .addComponent(lblTitular, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE)
+				                    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+				                        .addPreferredGap(lblTitular, lblSuplente, LayoutStyle.ComponentPlacement.INDENT)
+				                        .addComponent(lblSuplente, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
+				                        .addGap(43)))
+				                .addComponent(lblPuntAcum, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+				                .addGap(0, 264, Short.MAX_VALUE))
+				            .addGroup(thisLayout.createSequentialGroup()
+				                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 487, GroupLayout.PREFERRED_SIZE)
+				                .addGap(0, 0, Short.MAX_VALUE))
+				            .addGroup(thisLayout.createSequentialGroup()
+				                .addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 487, GroupLayout.PREFERRED_SIZE)
+				                .addGap(0, 0, Short.MAX_VALUE)))))
+				.addGap(8));
 			pack();
-			setSize(400, 300);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
