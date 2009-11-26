@@ -1,0 +1,703 @@
+JUGADOR ;EQUIPO ;PRECIO;POSICION
+Frandino, Gabriel Oscar;Argentinos;300000;ARQ
+Morales, Diego;Argentinos;500000;ARQ
+Peric, Nicolás;Argentinos;2500000;ARQ
+Torrico, Sebastián;Argentinos;4300000;ARQ
+Berardo, Nicolás;Argentinos;1000000;DEF
+Canuto, Ignacio;Argentinos;4200000;DEF
+Caruzzo, Matías;Argentinos;3700000;DEF
+Domínguez, Federico;Argentinos;4000000;DEF
+Fernández, Julián;Argentinos;1000000;DEF
+Franco, Daniel Alejandro;Argentinos;300000;DEF
+Prósperi, Gonzalo;Argentinos;2500000;DEF
+Sabia, Juan Alberto;Argentinos;2400000;DEF
+Scotti, Andrés;Argentinos;4100000;DEF
+Sola, Maximiliano;Argentinos;400000;DEF
+Alfonso, Facundo;Argentinos;600000;VOL
+Basualdo, Germán;Argentinos;1900000;VOL
+Bogado, Mauro;Argentinos;2000000;VOL
+Lima, René;Argentinos;2800000;VOL
+Mercier, Juan;Argentinos;4500000;VOL
+Ortigoza, Néstor;Argentinos;4800000;VOL
+Quiroga, Franco;Argentinos;2400000;VOL
+Raymonda, Santiago;Argentinos;4700000;VOL
+Rius, Ciro;Argentinos;2400000;VOL
+Coria, Facundo;Argentinos;1900000;DEL
+García, Diego;Argentinos;1300000;DEL
+Gianni, Nicolás;Argentinos;2300000;DEL
+Hauche, Gabriel;Argentinos;6100000;DEL
+Jaime, Sebastián;Argentinos;800000;DEL
+Oberman, Gustavo;Argentinos;3400000;DEL
+Pavlovich, Nicolás;Argentinos;4400000;DEL
+Romero, Andrés;Argentinos;1900000;DEL
+Rotondi, Edgardo;Argentinos;300000;DEL
+Salazar, Hernán;Argentinos;400000;DEL
+Sosa, Ismael;Argentinos;3000000;DEL
+Burrai, Javier Nicolás;Arsenal;300000;ARQ
+Campestrini, Cristian;Arsenal;5800000;ARQ
+Orcellet, Catriel;Arsenal;1500000;ARQ
+Paulucci, Ludovico;Arsenal;300000;ARQ
+Brau, Mariano Sebastián;Arsenal;2000000;DEF
+Cuesta, Víctor;Arsenal;300000;DEF
+Espínola, Darío;Arsenal;2800000;DEF
+Matellán, Aníbal;Arsenal;4000000;DEF
+Nervo, Hugo;Arsenal;1800000;DEF
+Peppino, Franco;Arsenal;3200000;DEF
+Pérez, Damián;Arsenal;600000;DEF
+Pérez, Matías;Arsenal;2800000;DEF
+Reichel, Martín;Arsenal;400000;DEF
+Tula, Cristian;Arsenal;3200000;DEF
+Aguirre, Nicolás;Arsenal;500000;VOL
+Alvarez, Cristian;Arsenal;3600000;VOL
+Carabajal, Matías;Arsenal;2500000;VOL
+Corro, Alexander;Arsenal;400000;VOL
+Galván, Diego;Arsenal;4000000;VOL
+Marcone, Iván;Arsenal;1800000;VOL
+Mosca, Claudio;Arsenal;300000;VOL
+Pérez Castro, Facundo;Arsenal;3000000;VOL
+Poggi, Federico;Arsenal;3600000;VOL
+Sachetto, Nahuel;Arsenal;1000000;VOL
+Sena, Sergio;Arsenal;3800000;VOL
+Silva, Facundo;Arsenal;600000;VOL
+Yacuzzi, Javier;Arsenal;4300000;VOL
+Benedetto, Darío;Arsenal;1800000;DEL
+Bottaro, Juan;Arsenal;1900000;DEL
+Jara, Franco;Arsenal;3800000;DEL
+López, Jonathan;Arsenal;2000000;DEL
+Martínez, Mariano;Arsenal;1800000;DEL
+Matos, Mauro;Arsenal;4000000;DEL
+Medina, Alexander;Arsenal;2200000;DEL
+Sierra, Matías Javier;Arsenal;300000;DEL
+Speroni, Raúl;Arsenal;700000;DEL
+Villalba Fretes, Pablo;Arsenal;300000;DEL
+Dei Rossi, Esteban;Atl. Tucumán;900000;ARQ
+Ischuk, Lucas;Atl. Tucumán;2500000;ARQ
+Azconzábal, Juan Manuel;Atl. Tucumán;2800000;DEF
+Barone, Deivis;Atl. Tucumán;2900000;DEF
+Bressán, Andrés;Atl. Tucumán;2500000;DEF
+Desvaux, Héctor;Atl. Tucumán;3900000;DEF
+Herrera, Rodrigo;Atl. Tucumán;400000;DEF
+Páez, Javier;Atl. Tucumán;2800000;DEF
+Saavedra, Raúl;Atl. Tucumán;3900000;DEF
+Villavicencio, Matías;Atl. Tucumán;3300000;DEF
+Blanes, Jonathan;Atl. Tucumán;2600000;VOL
+Drocco, David;Atl. Tucumán;800000;VOL
+Erroz, Diego;Atl. Tucumán;2300000;VOL
+Escobar, Matías;Atl. Tucumán;3200000;VOL
+García, Matías;Atl. Tucumán;2000000;VOL
+González, Claudio;Atl. Tucumán;300000;VOL
+Granero, Martín;Atl. Tucumán;2300000;VOL
+Longo, Sebastián;Atl. Tucumán;2200000;VOL
+Montiglio, César;Atl. Tucumán;2100000;VOL
+Musto, Damián;Atl. Tucumán;2300000;VOL
+Saavedra, José;Atl. Tucumán;400000;VOL
+Sarría, Claudio;Atl. Tucumán;3200000;VOL
+Calandria, Pablo;Atl. Tucumán;3500000;DEL
+Escobar, Fabio;Atl. Tucumán;2300000;DEL
+Gigliotti, Emanuel;Atl. Tucumán;1800000;DEL
+Pereyra, Juan;Atl. Tucumán;2100000;DEL
+Rodríguez, Luis;Atl. Tucumán;3800000;DEL
+Bologna, Enrique;Banfield;1800000;ARQ
+López, Sebastián;Banfield;300000;ARQ
+Lucchetti, Cristian;Banfield;7000000;ARQ
+Barraza, Julio;Banfield;2400000;DEF
+Broggi, Ariel;Banfield;2300000;DEF
+Bustamante, Marcelo;Banfield;3000000;DEF
+Devaca, José;Banfield;2700000;DEF
+Dos Santos, Mauro;Banfield;800000;DEF
+Galarza, Marcos;Banfield;1500000;DEF
+Ladino, Santiago;Banfield;3000000;DEF
+López, Víctor;Banfield;5300000;DEF
+Méndez, Sebastián;Banfield;3500000;DEF
+Robledo, Gonzalo;Banfield;500000;DEF
+Segovia, Favio;Banfield;300000;DEF
+Vergara, Pablo;Banfield;600000;DEF
+Battión, Roberto;Banfield;4300000;VOL
+Bilos, Daniel;Banfield;4800000;VOL
+Bustos, Maximiliano;Banfield;3900000;VOL
+Erviti, Walter;Banfield;5800000;VOL
+Galeano, Diego;Banfield;500000;VOL
+Gómez, Gustavo;Banfield;900000;VOL
+Laso, Maximiliano;Banfield;1700000;VOL
+Marchant, Julio;Banfield;3100000;VOL
+Pío, Emmanuel;Banfield;3000000;VOL
+Quinteros, Marcelo;Banfield;3500000;VOL
+Rodríguez, James;Banfield;2400000;VOL
+Santana, Fabián;Banfield;1500000;VOL
+Sarla, Federico;Banfield;700000;VOL
+Di Vanni, Guido;Banfield;400000;DEL
+Fernández, Sebastián;Banfield;5900000;DEL
+Ferreyra, Facundo;Banfield;800000;DEL
+García, Cristian;Banfield;1900000;DEL
+Salmerón, Luis;Banfield;2800000;DEL
+Silva, Santiago;Banfield;6500000;DEL
+Abbondanzieri, Roberto;Boca;6500000;ARQ
+Ayala, Josué;Boca;1000000;ARQ
+García, Javier;Boca;2000000;ARQ
+Aguirre, Leandro;Boca;400000;DEF
+Alfonso, Omar;Boca;300000;DEF
+Bonilla, Breyner;Boca;800000;DEF
+Cáceres, Julio César;Boca;5500000;DEF
+Calvo, José María;Boca;2400000;DEF
+Gunino, Adrián;Boca;1800000;DEF
+Ibarra, Hugo;Boca;6000000;DEF
+Krupoviesa, Juan;Boca;3000000;DEF
+Monzón, Luciano;Boca;3900000;DEF
+Morel Rodríguez, Claudio;Boca;6000000;DEF
+Muñoz, Ezequiel;Boca;1200000;DEF
+Paletta, Gabriel;Boca;4000000;DEF
+Ruiz, Enzo Adrián;Boca;300000;DEF
+Sauro, Gastón;Boca;1200000;DEF
+Battaglia, S. Alberto;Boca;600000;VOL
+Battaglia, Sebastián;Boca;8000000;VOL
+Benavídez, Exequiel;Boca;1000000;VOL
+Chávez, Cristian;Boca;4200000;VOL
+Colazo, Nicolás;Boca;500000;VOL
+Erbes, Cristian;Boca;300000;VOL
+Gaitán, Nicolás;Boca;3800000;VOL
+Insúa, Federico;Boca;8000000;VOL
+Marino, Guillermo;Boca;4000000;VOL
+Medel, Gary;Boca;5600000;VOL
+Riquelme, Juan Román;Boca;11500000;VOL
+Rosada, Ariel;Boca;4000000;VOL
+Vidal, Sebastián;Boca;300000;VOL
+Mouche, Pablo;Boca;4900000;DEL
+Noir, Ricardo;Boca;3800000;DEL
+Palermo, Martín;Boca;13200000;DEL
+Philippe, Jonathan;Boca;600000;DEL
+Viatri, Lucas;Boca;4000000;DEL
+Cejas, Sebastián;Chacarita;3500000;ARQ
+Fernández, Pedro;Chacarita;400000;ARQ
+Tauber, Nicolás;Chacarita;4200000;ARQ
+Coria, Franco;Chacarita;600000;DEF
+Crosa, Diego;Chacarita;3800000;DEF
+Crosa, Fernando;Chacarita;3500000;DEF
+Echeverría, Mariano;Chacarita;2300000;DEF
+Fontana, Fernando;Chacarita;1800000;DEF
+Grabinski, Cristian;Chacarita;3900000;DEF
+Gutiérrez, Cristian;Chacarita;800000;DEF
+López, Lisandro;Chacarita;400000;DEF
+Miranda, Franco;Chacarita;1800000;DEF
+Núñez, Jorge;Chacarita;3000000;DEF
+Rosso, Federico;Chacarita;500000;DEF
+Centurión, Emanuel;Chacarita;3000000;VOL
+Frezzotti, Alejandro;Chacarita;2500000;VOL
+Gómez, José Luis;Chacarita;1400000;VOL
+Iñíguez, Federico;Chacarita;1500000;VOL
+Myma, Jorge;Chacarita;600000;VOL
+Pereira, Daniel;Chacarita;2800000;VOL
+Pisano, Matías;Chacarita;500000;VOL
+Ponce, Daniel;Chacarita;1300000;VOL
+Ramírez, Nicolás;Chacarita;2500000;VOL
+Sciorilli, Sebastián;Chacarita;4400000;VOL
+Vismara, Federico;Chacarita;3000000;VOL
+Zarif, Omar;Chacarita;3000000;VOL
+Alustiza, Matías;Chacarita;3900000;DEL
+Aróstegui, Juan Manuel;Chacarita;2600000;DEL
+Cano, Germán;Chacarita;1400000;DEL
+Churín, Diego;Chacarita;1500000;DEL
+Giordano, Daniel;Chacarita;300000;DEL
+Milla, Cristian;Chacarita;2900000;DEL
+Morales, Diego;Chacarita;800000;DEL
+Parra, Facundo;Chacarita;3600000;DEL
+Strappini, Emiliano;Chacarita;1000000;DEL
+Torres, Diego;Chacarita;500000;DEL
+Díaz, Marcos;Colón;500000;ARQ
+Gorosito, Iván;Colón;300000;ARQ
+Pozo, Diego;Colón;5800000;ARQ
+Caire, Maximiliano;Colón;1500000;DEF
+Candia, Salustiano;Colón;2500000;DEF
+De Miranda, Pablo;Colón;1400000;DEF
+Ferrero, Alexis;Colón;4700000;DEF
+Garcé, Ariel;Colón;4000000;DEF
+García, Federico;Colón;1300000;DEF
+Gaydou, Gonzalo;Colón;300000;DEF
+Goux, Marcelo;Colón;4100000;DEF
+Mansilla, Mauricio;Colón;1000000;DEF
+Merlo, Omar;Colón;1800000;DEF
+Quilez, Ismael;Colón;500000;DEF
+Rivarola, Germán;Colón;4700000;DEF
+Acosta, Lucas;Colón;3500000;VOL
+Barinaga, Cristian;Colón;1800000;VOL
+Bellone, Mauro;Colón;500000;VOL
+Bertoglio, Facundo;Colón;2800000;VOL
+Capurro, Alejandro;Colón;4000000;VOL
+Gómez, Ricardo;Colón;3600000;VOL
+Pellerano, Cristian;Colón;4200000;VOL
+Ramírez, Alfredo;Colón;3000000;VOL
+Sánchez, Facundo;Colón;700000;VOL
+Soto, Santiago;Colón;300000;VOL
+Torres, Nicolás;Colón;2500000;VOL
+Bauman, Jonatan Jesús;Colón;300000;DEL
+Canario, Rodrigo;Colón;400000;DEL
+Castillo, Fabián;Colón;1900000;DEL
+Fuertes, Esteban;Colón;11400000;DEL
+Lucero, Juan Manuel;Colón;3000000;DEL
+Mena, Daley;Colón;3500000;DEL
+Nieto, Federico;Colón;4200000;DEL
+Quinteros, Luis;Colón;2600000;DEL
+Albil, Damián;Estudiantes;4000000;ARQ
+Armani, Diego;Estudiantes;1000000;ARQ
+Fernández, Roberto;Estudiantes;3400000;ARQ
+Silva, Agustín;Estudiantes;300000;ARQ
+Taborda, César;Estudiantes;2000000;ARQ
+Alayes, Agustín;Estudiantes;4800000;DEF
+Angeleri, Marcos;Estudiantes;5200000;DEF
+Cellay, Christian;Estudiantes;4800000;DEF
+Desábato, Leandro;Estudiantes;4900000;DEF
+Díaz, Juan Manuel;Estudiantes;2000000;DEF
+Fernández, Federico;Estudiantes;1800000;DEF
+Gaitán, Cristian;Estudiantes;900000;DEF
+Iberbia, Raúl;Estudiantes;1700000;DEF
+Ré, Germán;Estudiantes;4200000;DEF
+Rodríguez, Clemente;Estudiantes;5300000;DEF
+Rojo, Marcos;Estudiantes;1000000;DEF
+Sarulyte, Matías;Estudiantes;900000;DEF
+Benítez, Leandro;Estudiantes;4800000;VOL
+Birge, Matías;Estudiantes;800000;VOL
+Braña, Rodrigo;Estudiantes;5500000;VOL
+Carrusca, Marcelo;Estudiantes;5000000;VOL
+González, Edgar;Estudiantes;2700000;VOL
+González, Leandro;Estudiantes;3500000;VOL
+Núñez, Maximiliano;Estudiantes;1500000;VOL
+Pérez, Enzo;Estudiantes;5600000;VOL
+Sánchez, Matías;Estudiantes;3800000;VOL
+Verón, Juan Sebastián;Estudiantes;14000000;VOL
+Boselli, Mauro;Estudiantes;10500000;DEL
+Calderón, José Luis;Estudiantes;5300000;DEL
+Galeana, Milton;Estudiantes;1300000;DEL
+Morales Neumann, J.;Estudiantes;2000000;DEL
+Salgueiro, Juan Manuel;Estudiantes;4800000;DEL
+Angelini, Andrés;Gimnasia LP;300000;ARQ
+Bangardino, Pablo;Gimnasia LP;1300000;ARQ
+Bonnin, Yair;Gimnasia LP;300000;ARQ
+Monetti, Fernando;Gimnasia LP;300000;ARQ
+Sessa, Gastón;Gimnasia LP;5500000;ARQ
+Agüero, Ariel;Gimnasia LP;4000000;DEF
+Albornoz, Raúl Alberto;Gimnasia LP;300000;DEF
+Cardozo, Marcelo;Gimnasia LP;3200000;DEF
+Iriarte, Hugo;Gimnasia LP;1900000;DEF
+Juárez, Miguel Angel;Gimnasia LP;300000;DEF
+Landa, Lucas;Gimnasia LP;1500000;DEF
+Maldonado, Rubén;Gimnasia LP;3700000;DEF
+Ormeño, Alvaro;Gimnasia LP;3800000;DEF
+Piarrou, Cristian;Gimnasia LP;1800000;DEF
+Quiroga, Federico;Gimnasia LP;300000;DEF
+Aued, Luciano;Gimnasia LP;2500000;VOL
+Casco, Milton;Gimnasia LP;400000;VOL
+Castro, Lucas;Gimnasia LP;400000;VOL
+De Blasis, Pablo;Gimnasia LP;700000;VOL
+Espinoza, Nery;Gimnasia LP;300000;VOL
+González, Esteban;Gimnasia LP;3800000;VOL
+Messera, Mariano;Gimnasia LP;3400000;VOL
+Miloc, Dardo;Gimnasia LP;400000;VOL
+Rinaudo, Fabián;Gimnasia LP;4600000;VOL
+Roldán, Alfredo Israel;Gimnasia LP;300000;VOL
+Romero, Sebastián;Gimnasia LP;6600000;VOL
+Villar, Diego;Gimnasia LP;3500000;VOL
+Cuevas, Juan;Gimnasia LP;5200000;DEL
+Ereros, Sebastián;Gimnasia LP;2200000;DEL
+Martinena, Néstor;Gimnasia LP;1800000;DEL
+Neira, Juan;Gimnasia LP;1200000;DEL
+Pérez, Marco;Gimnasia LP;2500000;DEL
+Sosa, Roberto;Gimnasia LP;3500000;DEL
+Stracqualursi, Denis;Gimnasia LP;1500000;DEL
+Vizcarra, José;Gimnasia LP;4600000;DEL
+Aracena, Cristian;Godoy Cruz;300000;ARQ
+Ibáñez, Nelson;Godoy Cruz;4400000;ARQ
+Ramírez, José;Godoy Cruz;2000000;ARQ
+Cuevas, Cristian;Godoy Cruz;500000;DEF
+Curbelo, Jorge;Godoy Cruz;2900000;DEF
+Dutari, Francisco;Godoy Cruz;3600000;DEF
+Formica, Lautaro;Godoy Cruz;3800000;DEF
+García, Zelmar;Godoy Cruz;800000;DEF
+Lobos, Luis;Godoy Cruz;900000;DEF
+Marital, Juan;Godoy Cruz;300000;DEF
+Martínez, Sebastián;Godoy Cruz;3500000;DEF
+Mena, César;Godoy Cruz;700000;DEF
+Santander, Paolo;Godoy Cruz;300000;DEF
+Sigali, Leonardo;Godoy Cruz;3400000;DEF
+Triviño, Nicolás;Godoy Cruz;300000;DEF
+Trotta, Diego;Godoy Cruz;2000000;DEF
+Vallés, Gabriel;Godoy Cruz;2700000;DEF
+Del Castillo, Cristian;Godoy Cruz;400000;DEF
+Aguirre, Martín;Godoy Cruz;2500000;VOL
+Bailo, Facundo;Godoy Cruz;400000;VOL
+Camargo, Alejandro;Godoy Cruz;300000;VOL
+Conejero, Marcio;Godoy Cruz;400000;VOL
+Garín, Ernesto;Godoy Cruz;900000;VOL
+Martín, Paul;Godoy Cruz;300000;VOL
+Olmedo, Nicolás;Godoy Cruz;3300000;VOL
+Rojas, Ariel;Godoy Cruz;2700000;VOL
+Salomón, Sebastián;Godoy Cruz;4000000;VOL
+Sánchez, Sergio;Godoy Cruz;500000;VOL
+Torres, Leandro;Godoy Cruz;3000000;VOL
+Valencia, Carlos;Godoy Cruz;900000;VOL
+Villegas, Federico;Godoy Cruz;400000;VOL
+Alaniz, Maximiliano;Godoy Cruz;500000;DEL
+Chávez, Cristian;Godoy Cruz;3100000;DEL
+Escudero, Adrián;Godoy Cruz;300000;DEL
+Higuaín, Federico;Godoy Cruz;4300000;DEL
+Jara, Matías;Godoy Cruz;900000;DEL
+Salinas, Rodrigo;Godoy Cruz;1000000;DEL
+Vega, Daniel;Godoy Cruz;4000000;DEL
+Vera, Jesús;Godoy Cruz;800000;DEL
+Calviño, Lucas;Huracán;400000;ARQ
+Monzón, Gastón;Huracán;4500000;ARQ
+Rudniesky, Gastón;Huracán;300000;ARQ
+Rudniesky, Gastón;Huracán;300000;ARQ
+Vallejos, César;Huracán;300000;ARQ
+Cura, Kevin;Huracán;1200000;DEF
+Domínguez, Eduardo;Huracán;4200000;DEF
+Fernández, Cristian;Huracán;300000;DEF
+Filipetto, Ezequiel;Huracán;900000;DEF
+García, Gonzalo;Huracán;1900000;DEF
+Goltz, Paolo;Huracán;4800000;DEF
+Jerez, Pablo;Huracán;3500000;DEF
+Llesona, Ezequiel;Huracán;300000;DEF
+Maidana, Gerardo;Huracán;300000;DEF
+Rodríguez, Diego;Huracán;2300000;DEF
+Bolatti, Mario;Huracán;12500000;VOL
+Carrizo, Juan Carlos;Huracán;1200000;VOL
+Cosentino, Mariano;Huracán;300000;VOL
+De Bruno, Nicolás;Huracán;1000000;VOL
+Díaz, Leandro;Huracán;3800000;VOL
+Díaz, Rodrigo;Huracán;2500000;VOL
+Esmerado, Gastón;Huracán;3300000;VOL
+Hernández, Francisco;Huracán;300000;VOL
+Malbernat, Rodrigo;Huracán;600000;VOL
+Medina, Daniel;Huracán;400000;VOL
+Moreno, Marcos;Huracán;300000;VOL
+Sánchez, Alan;Huracán;2400000;VOL
+Toranzo, Patricio;Huracán;5200000;VOL
+Trecarichi, Lucas;Huracán;1700000;VOL
+Benegas, Leandro;Huracán;1000000;DEL
+Clara, Gino;Huracán;300000;DEL
+Laurito, Federico;Huracán;1500000;DEL
+Nieto, Luciano;Huracán;900000;DEL
+Orlando, Muriel;Huracán;300000;DEL
+Ortiz López, Carlos;Huracán;300000;DEL
+Trecco, Nicolás;Huracán;700000;DEL
+Gabbarini, Adrián;Independiente;600000;ARQ
+Navarro, Hilario;Independiente;5300000;ARQ
+Rodríguez, Diego;Independiente;300000;ARQ
+Cáceres, Samuel;Independiente;800000;DEF
+Canteros, Matías;Independiente;400000;DEF
+Galeano, Leonel;Independiente;500000;DEF
+Kruspzky, Lucas;Independiente;500000;DEF
+Mareque, Lucas;Independiente;3300000;DEF
+Matheu, Carlos;Independiente;4000000;DEF
+Moreira, Ricardo;Independiente;3300000;DEF
+Puertas, Angel;Independiente;2500000;DEF
+Tuzzio, Eduardo;Independiente;4300000;DEF
+Velázquez, Julián;Independiente;300000;DEF
+Vella, Luciano;Independiente;3800000;DEF
+Acevedo, Walter;Independiente;4000000;VOL
+Berriex, Mariano;Independiente;300000;VOL
+Busse, Walter;Independiente;4800000;VOL
+Echagüe, Héctor;Independiente;600000;VOL
+Godoy, Fernando;Independiente;1300000;VOL
+Machín, Gastón;Independiente;4100000;VOL
+Mancuello, Federico;Independiente;2700000;VOL
+Martínez, Nicolás;Independiente;500000;VOL
+Piatti, Ignacio;Independiente;4500000;VOL
+Pusineri, Lucas;Independiente;3800000;VOL
+Rodríguez, Patricio;Independiente;2700000;VOL
+Vissio, Roberto;Independiente;500000;VOL
+Vittor, Sergio;Independiente;2500000;VOL
+Vittor, Sergio;Independiente;2500000;VOL
+Escalante, David;Independiente;300000;DEL
+Gandín, Darío;Independiente;4300000;DEL
+Gómez, Martín;Independiente;1000000;DEL
+González, Federico;Independiente;800000;DEL
+Mazzola, Nicolás;Independiente;900000;DEL
+Núñez, Leonel;Independiente;5000000;DEL
+Silvera, Andrés;Independiente;8200000;DEL
+Andrada, Esteban;Lanús;300000;ARQ
+Caranta, Mauricio ;Lanús;5200000;ARQ
+Marchesín, Agustín;Lanús;1100000;ARQ
+Alarcón, Ariel;Lanús;300000;DEF
+Arce, Carlos;Lanús;1800000;DEF
+Balbi, Luciano;Lanús;300000;DEF
+Erramuspe, Rodrigo;Lanús;400000;DEF
+Faccioli, Emir;Lanús;3200000;DEF
+Grana, Hernán;Lanús;2200000;DEF
+Hoyos, Santiago;Lanús;3800000;DEF
+Lolli, Gastón;Lanús;300000;DEF
+Lugo, Maximiliano;Lanús;800000;DEF
+Macalik, Iván;Lanús;1000000;DEF
+Pérez, Leonel;Lanús;300000;DEF
+Quintana, Carlos;Lanús;2200000;DEF
+Velázquez, Maximiliano;Lanús;4700000;DEF
+Viera, Jadson;Lanús;3300000;DEF
+Aguirre, Marcos;Lanús;4000000;VOL
+Benítez, Marcelo;Lanús;500000;VOL
+Blanco, Sebastián;Lanús;11200000;VOL
+Carrasco, Javier;Lanús;400000;VOL
+Díaz Nachar, Gonzalo;Lanús;400000;VOL
+Fritzler, Matías;Lanús;5000000;VOL
+González, Diego;Lanús;3800000;VOL
+Ledesma, Eduardo;Lanús;2600000;VOL
+Pelletieri, Agustín;Lanús;5200000;VOL
+Peralta, Adrián;Lanús;2500000;VOL
+Pizarro, Guido;Lanús;400000;VOL
+Salvio, Eduardo;Lanús;8400000;VOL
+Zaninovic, Mario;Lanús;700000;VOL
+Arias, Javier;Lanús;300000;DEL
+Bielkiewicz, Diego;Lanús;300000;DEL
+Biglieri, Santiago;Lanús;3600000;DEL
+Dovetta, Roberto;Lanús;1000000;DEL
+Lagos, Diego;Lanús;5300000;DEL
+Menéndez, Cristian;Lanús;1300000;DEL
+Salcedo, Santiago;Lanús;6300000;DEL
+Caffa, Germán;Newell's;2800000;ARQ
+Hoyos, Lucas;Newell's;300000;ARQ
+Peratta, Sebastián ;Newell's;4800000;ARQ
+Aguilar, Pablo;Newell's;2600000;DEF
+Chávez, Rodrigo;Newell's;400000;DEF
+Fideleff, Ignacio;Newell's;1700000;DEF
+Insaurralde, Juan M.;Newell's;4500000;DEF
+Machuca, Alexis;Newell's;800000;DEF
+Quiroga, Juan;Newell's;3000000;DEF
+Roselli, Nahuel;Newell's;1400000;DEF
+Schiavi, Rolando;Newell's;5500000;DEF
+Torren, Miguel;Newell's;1800000;DEF
+Vaca, Carlos;Newell's;600000;DEF
+Barrientos, Hugo;Newell's;3500000;VOL
+Bernardi, Lucas;Newell's;4000000;VOL
+Casaneve, Diego;Newell's;1900000;VOL
+Cascio, Alejandro;Newell's;300000;VOL
+Díaz, Cristian;Newell's;400000;VOL
+Dolci, Franco;Newell's;2000000;VOL
+Formica, Mauro;Newell's;6200000;VOL
+Mateo, Diego;Newell's;3500000;VOL
+Pérez, Pablo;Newell's;1700000;VOL
+Quiroga, Matías;Newell's;1900000;VOL
+Sánchez Prette, Cristian;Newell's;4200000;VOL
+Seri, Martín;Newell's;1200000;VOL
+Sosa, Juan Manuel;Newell's;1000000;VOL
+Sperdutti, Mauricio;Newell's;4300000;VOL
+Vangioni, Leonel;Newell's;4800000;VOL
+Zanni, Hernán;Newell's;400000;VOL
+Achucarro, Jorge;Newell's;3900000;DEL
+Boghossian, Joaquín A.;Newell's;4000000;DEL
+Carrasco, Mauricio;Newell's;1200000;DEL
+Cobelli, Juan Manuel;Newell's;300000;DEL
+Da Silva, Alejandro;Newell's;4000000;DEL
+Dening, Emanuel;Newell's;400000;DEL
+Falcone, Federico;Newell's;400000;DEL
+Fernández, Santiago;Newell's;500000;DEL
+Núñez, Cristian;Newell's;1800000;DEL
+Torres, Diego;Newell's;3200000;DEL
+De Olivera, Jorge;Racing;1500000;ARQ
+Dobler, Mauro;Racing;500000;ARQ
+Martínez Gullotta, José;Racing;2000000;ARQ
+Santillo, Pablo ;Racing;3300000;ARQ
+Aveldaño, Lucas;Racing;4400000;DEF
+Cáceres, Marcos;Racing;3500000;DEF
+Cahais, Matías;Racing;3500000;DEF
+Lluy, Braian;Racing;1800000;DEF
+Martínez, Matías;Racing;4800000;DEF
+Menghi, Diego;Racing;1500000;DEF
+Mercado, Gabriel;Racing;2700000;DEF
+Puchetta, Martín;Racing;300000;DEF
+Sainz, Nicolás;Racing;300000;DEF
+Tavio, Cristian;Racing;2600000;DEF
+Brítez Ojeda, Marcos;Racing;2000000;VOL
+Castromán, Lucas;Racing;3900000;VOL
+Falcón, Juan Carlos;Racing;3000000;VOL
+Fariña, Luis;Racing;300000;VOL
+Fernández, José Luis;Racing;1400000;VOL
+Grazzini, Sebastián;Racing;3400000;VOL
+Ledesma, Damián;Racing;3000000;VOL
+Lucero, Adrián;Racing;3800000;VOL
+Monsalvo, Pablo;Racing;2000000;VOL
+Pérez, Gonzalo;Racing;600000;VOL
+Rosano, Sebastián;Racing;3700000;VOL
+Wagner, Martín;Racing;3300000;VOL
+Yacob, Claudio;Racing;4600000;VOL
+Caballero, Pablo;Racing;2300000;DEL
+Lugüercio, Pablo;Racing;5000000;DEL
+Ramírez, Rubén;Racing;5900000;DEL
+Respuela, Juan Cruz;Racing;300000;DEL
+Risso, Brian;Racing;300000;DEL
+Sánchez Sotelo, Juan;Racing;1300000;DEL
+Steinert, Damián;Racing;2600000;DEL
+Velázquez, Javier;Racing;900000;DEL
+Viola, Valentín;Racing;300000;DEL
+Chichizola, Leandro;River;500000;ARQ
+Marinelli, Gonzalo;River;300000;ARQ
+Navarro, Nicolás;River;4500000;ARQ
+Ojeda, Juan Marcelo;River;3900000;ARQ
+Vega, Mario Daniel;River;4500000;ARQ
+Cabral, Gustavo;River;4500000;DEF
+Cohene Mereles, Javier;River;1900000;DEF
+Coronel, Maximiliano;River;500000;DEF
+Ferrari, Paulo;River;5600000;DEF
+Orban, Lucas;River;1200000;DEF
+Pezzella, Germán;River;300000;DEF
+Quiroga, Facundo;River;4500000;DEF
+Sánchez, Nicolás;River;4400000;DEF
+Villagra, Cristian;River;4400000;DEF
+Abelairas, Matías;River;4700000;VOL
+Affranchino, Facundo;River;700000;VOL
+Ahumada, Oscar;River;4200000;VOL
+Almeyda, Matías;River;3500000;VOL
+Archubi, Rodrigo;River;3600000;VOL
+Barrado, Diego;River;3800000;VOL
+Buonanotte, Diego;River;7900000;VOL
+Díaz, Mauro;River;3200000;VOL
+Domingo, Nicolás;River;2800000;VOL
+Fernandez, Augusto;River;No juega;VOL
+Gallardo, Marcelo;River;10200000;VOL
+Galmarini, Martín;River;3800000;VOL
+Lamela, Erik;River;600000;VOL
+Paniagua, Miguel;River;3600000;VOL
+Bou, Gustavo;River;1500000;DEL
+Fabbiani, Cristian;River;7000000;DEL
+Fernández, Gustavo;River;900000;DEL
+Gil, Gustavo;River;700000;DEL
+Ortega, Ariel;River;8500000;DEL
+Ríos, Andrés;River;1800000;DEL
+Rosales, Mauro;River;4700000;DEL
+Villalba, Daniel;River;800000;DEL
+Broun, Jorge ;Rosario Central;5000000;ARQ
+Galíndez, Hernán;Rosario Central;1000000;ARQ
+García, Manuel;Rosario Central;300000;ARQ
+Lupardo, Facundo;Rosario Central;300000;ARQ
+Ambrossi, Paul;Rosario Central;2900000;DEF
+Bogino, Ignacio;Rosario Central;1900000;DEF
+Braghieri, Diego;Rosario Central;3200000;DEF
+Burdisso, Guillermo;Rosario Central;3200000;DEF
+Chitzoff, Diego;Rosario Central;3500000;DEF
+Danelón, Alexis;Rosario Central;3000000;DEF
+Espinosa, Abel;Rosario Central;900000;DEF
+García, Santiago;Rosario Central;500000;DEF
+Godoy, Cristian;Rosario Central;300000;DEF
+Paz, Cristian;Rosario Central;300000;DEF
+Valentini, Nahuel;Rosario Central;1300000;DEF
+Vallejo, Mario;Rosario Central;300000;DEF
+Delgado, Rafael;Rosario Central;300000;DEF
+Astudillo, Martín;Rosario Central;4000000;VOL
+Ballini, Matías;Rosario Central;300000;VOL
+Calcaterra, Ignacio;Rosario Central;400000;VOL
+Choy González, Gonzalo;Rosario Central;3600000;VOL
+Méndez, Jesús;Rosario Central;4000000;VOL
+Moya, Lucas;Rosario Central;800000;VOL
+Núñez, Gervasio;Rosario Central;3000000;VOL
+Ocampo, Darío;Rosario Central;3400000;VOL
+Paglialunga, Mario;Rosario Central;1900000;VOL
+Rivero, Martín;Rosario Central;300000;VOL
+Zárate, Milton;Rosario Central;300000;VOL
+Caraglio, Milton;Rosario Central;3800000;DEL
+Castillejos, Gonzalo;Rosario Central;600000;DEL
+Franzoia, Andrés;Rosario Central;4700000;DEL
+Gómez, Jonatan;Rosario Central;900000;DEL
+Gurrieri, Leandro;Rosario Central;700000;DEL
+Serra, Emanuel;Rosario Central;300000;DEL
+Zelaya, Emilio;Rosario Central;4900000;DEL
+Campagnuolo, Gustavo;San Lorenzo;2500000;ARQ
+Centeno, Bruno;San Lorenzo;700000;ARQ
+Champagne, Nereo;San Lorenzo;1500000;ARQ
+Migliore, Pablo ;San Lorenzo;6500000;ARQ
+Orion, Agustín;San Lorenzo;5600000;ARQ
+Aguirre, Gastón;San Lorenzo;4600000;DEF
+Bianchi Arce, Nicolás;San Lorenzo;3000000;DEF
+Bottinelli, Jonathan;San Lorenzo;5000000;DEF
+Cadelgado, Juan Martín;San Lorenzo;500000;DEF
+Civelli, Renato;San Lorenzo;3700000;DEF
+Martínez, Damián;San Lorenzo;800000;DEF
+Meza, Fernando;San Lorenzo;1000000;DEF
+Palomino, José Luis;San Lorenzo;300000;DEF
+Pintos, Pablo;San Lorenzo;3300000;DEF
+Torres, Aureliano;San Lorenzo;4500000;DEF
+Voboril, Germán;San Lorenzo;2800000;DEF
+Bazán, Gonzalo;San Lorenzo;400000;VOL
+De Vico, Nahuel;San Lorenzo;400000;VOL
+Gómez, Alejandro;San Lorenzo;7300000;VOL
+González, Cristian;San Lorenzo;5000000;VOL
+González, Sebastián;San Lorenzo;800000;VOL
+Juárez, Axel;San Lorenzo;900000;VOL
+Leiva, Cristian;San Lorenzo;4200000;VOL
+Luna, Sebastián;San Lorenzo;1800000;VOL
+Prim, Santiago;San Lorenzo;300000;VOL
+Reynoso, Salvador;San Lorenzo;800000;VOL
+Rinaldi, Leonel;San Lorenzo;500000;VOL
+Rivero, Diego;San Lorenzo;4300000;VOL
+Romagnoli, Leandro;San Lorenzo;8000000;VOL
+Torres, Juan Manuel;San Lorenzo;5100000;VOL
+Bordagaray, Fabián;San Lorenzo;2500000;DEL
+Cvitanich, Darío;San Lorenzo;6500000;DEL
+Menseguez, Juan Carlos;San Lorenzo;3500000;DEL
+Orode, Félix;San Lorenzo;1400000;DEL
+Romeo, Bernardo;San Lorenzo;4000000;DEL
+Rovira, Gonzalo;San Lorenzo;400000;DEL
+Abud, Lucas;Tigre;300000;ARQ
+Ardente, Luis;Tigre;1300000;ARQ
+Islas, Daniel ;Tigre;5500000;ARQ
+Arruabarrena, Rodolfo;Tigre;4300000;DEF
+Castria, Hernán;Tigre;300000;DEF
+Cincotta, Emiliano;Tigre;400000;DEF
+Fondacaro, Carlos;Tigre;1400000;DEF
+Garat, Juan Pablo;Tigre;1900000;DEF
+Leyes, Damián;Tigre;2600000;DEF
+Manzur, Julio;Tigre;4200000;DEF
+Oliva, Maximiliano;Tigre;1000000;DEF
+Paparatto, Norberto;Tigre;3700000;DEF
+San Román, José Ignacio;Tigre;2500000;DEF
+Abregú, Gregorio;Tigre;600000;VOL
+Blanco, Jonathan;Tigre;2500000;VOL
+Blanco, Milton;Tigre;300000;VOL
+Botta, Rubén;Tigre;600000;VOL
+Castaño, Diego;Tigre;4500000;VOL
+Ferreyra, Diego;Tigre;700000;VOL
+Giménez, Matías;Tigre;4800000;VOL
+Leone, Ramiro;Tigre;2800000;VOL
+Maldonado, Juan Miguel;Tigre;300000;VOL
+Montiel, José;Tigre;4000000;VOL
+Morel, Martín;Tigre;7000000;VOL
+Oviedo, Lucas;Tigre;3000000;VOL
+Pasini, Mariano;Tigre;1600000;VOL
+Pieters, Fabio;Tigre;2500000;VOL
+Sánchez, Walter;Tigre;300000;VOL
+Aguilar, Julio;Tigre;3300000;DEL
+Attadia, Jeremías Pablo;Tigre;300000;DEL
+Bardaro, Cristian;Tigre;2700000;DEL
+Lazzaro, Leandro;Tigre;5200000;DEL
+Luna, Carlos;Tigre;7000000;DEL
+Pumpido, Facundo;Tigre;400000;DEL
+Suárez, Guillermo;Tigre;3100000;DEL
+Barovero, Marcelo;Vélez;3500000;ARQ
+Cacace, Ezequiel;Vélez;600000;ARQ
+Montoya, Germán ;Vélez;6500000;ARQ
+Bittolo, Mariano;Vélez;500000;DEF
+Díaz, Gastón;Vélez;3400000;DEF
+Domínguez, Sebastián;Vélez;5800000;DEF
+Lima, Pablo;Vélez;4000000;DEF
+Otamendi, Nicolás;Vélez;6100000;DEF
+Papa, Emiliano;Vélez;5400000;DEF
+Ponce, Waldo;Vélez;4600000;DEF
+Tobio, Fernando;Vélez;2000000;DEF
+Torsiglieri, Marco;Vélez;1800000;DEF
+Alvarez, Ricardo;Vélez;600000;VOL
+Bella, Iván;Vélez;1900000;VOL
+Cabral, Alejandro;Vélez;2500000;VOL
+Cabrera, Nicolás;Vélez;3900000;VOL
+Cigno, Luciano;Vélez;400000;VOL
+Coronel, Leandro;Vélez;2600000;VOL
+Cubero, Fabián;Vélez;4900000;VOL
+Despósito, Pablo;Vélez;900000;VOL
+Moralez, Maximiliano;Vélez;9200000;VOL
+Razzotti, Franco;Vélez;4000000;VOL
+Robles, Javier;Vélez;1700000;VOL
+Somoza, Leandro;Vélez;5000000;VOL
+Velázquez, Leandro;Vélez;3500000;VOL
+Zapata, Víctor;Vélez;6700000;VOL
+Caruso, Leandro;Vélez;5700000;DEL
+Cristaldo, Jonathan;Vélez;4700000;DEL
+Guzmán, Andrés;Vélez;900000;DEL
+López, Hernán;Vélez;8600000;DEL
+Martínez, Juan M.;Vélez;4000000;DEL
+Piris, Leonardo;Vélez;400000;DEL
+Timpanaro, Maximiliano;Vélez;700000;DEL
+Zárate, Rolando;Vélez;4000000;DEL
