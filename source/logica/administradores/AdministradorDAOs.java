@@ -7,10 +7,12 @@ import logica.EquipoSuplente;
 import logica.EquipoTitular;
 import logica.Jugador;
 import logica.JugadorFechaPuntaje;
+import logica.Torneo;
 import logica.Usuario;
 import logica.dao.EquipoDAO;
 import logica.dao.EquipoJugadorDAO;
 import logica.dao.JugadorDAO;
+import logica.dao.PosicionesDAO;
 import logica.dao.TorneoDAO;
 import logica.dao.UsuarioDAO;
 
@@ -20,6 +22,7 @@ public class AdministradorDAOs {
 	private UsuarioDAO usuario;
 	private EquipoJugadorDAO equipojugador;
 	private TorneoDAO torneo;
+	private PosicionesDAO posiciones;
 
 	public AdministradorDAOs() {
 		super();
@@ -28,6 +31,7 @@ public class AdministradorDAOs {
 		this.usuario = new UsuarioDAO();
 		this.equipojugador = new EquipoJugadorDAO();
 		this.torneo = new TorneoDAO();
+		this.posiciones = new PosicionesDAO();
 	}
 
 	public void guardarUsuarioEquipo(Equipo e, Usuario u){
@@ -113,6 +117,40 @@ public class AdministradorDAOs {
 	}
 
 
+	public Vector<Torneo> getTorneosPorDuenio(String nombre, String apellido){
+		Vector<Torneo> v = new Vector();
+		v = torneo.getTorneosPorDuenio(nombre, apellido);
+		return v;
+		
+	}
+	
+	public Vector<Torneo> getTorneosPorNombre(String nombre){
+		Vector<Torneo> v = new Vector();
+		v = torneo.getTorneosLikeNombre(nombre);
+		return v;
+	}
+	
+	public void postularse(Torneo t, Usuario u){
+		posiciones.postularTorneo(torneo.getIdTorneo(t.getNombre()), u.getEquipo().getId());
+	}
+	
+	public void guardarTorneo(Torneo t){
+		torneo.guardarTorneo(t);		
+	}
+	
+	public Torneo getTorneoPorNombre(String nombre){
+		Torneo t = torneo.getTorneoPorNombre(nombre);
+		return t;
+		
+	}
+
+
+	public void agregarDuenioTorneo(Usuario usuarioActual, Torneo t) {
+		posiciones.postularTorneo(torneo.getIdTorneo(t.getNombre()), usuarioActual.getEquipo().getId());
+		posiciones.agregarParticipante(torneo.getIdTorneo(t.getNombre()), usuarioActual.getEquipo().getId());
+		
+		
+	}
 
 
 }
