@@ -3,13 +3,15 @@ package controlador;
 import logica.SistemaGranDT;
 import logica.Torneo;
 import logica.Usuario;
+import logica.administradores.AdministradorDAOs;
 import logica.dao.TorneoDAO;
 
 public class CrearTorneoAmigosControlador {	
 
 	// referencia al sistema, logica de negocio
 	private final SistemaGranDT logica;
-	private final TorneoDAO tdao;
+	private final AdministradorDAOs adminDAO;
+	//private final TorneoDAO tdao;
 	
 	// para guardar el nombre del torneo
 	private String nombre;
@@ -17,7 +19,8 @@ public class CrearTorneoAmigosControlador {
 	// constructor del controlador
 	public CrearTorneoAmigosControlador (){
 		this.logica = SistemaGranDT.getInstance(); // referencia al sistema
-		this.tdao= new TorneoDAO();
+		//this.tdao= new TorneoDAO();
+		this.adminDAO=new AdministradorDAOs();
 		System.out.println(this.logica);
 	}
 	
@@ -32,11 +35,12 @@ public class CrearTorneoAmigosControlador {
 	public String crearTorneo(String n){
 		String resultado = validarCrearTorneo(n);
 		if (resultado==null){ // si el ingreso del nombre del torneo esta ok
-			if (tdao.getTorneoPorNombre(n)==null){ // si no existe un torneo con ese nombre				
+			if (adminDAO.getTorneoPorNombre(n)==null){ // si no existe un torneo con ese nombre				
 				Torneo t = new Torneo(n); // crea el torneo
 				t.setCreador(logica.getUsuarioActual());
 				logica.getTorneos().addElement(t); // lo agrega al vector
-				tdao.guardarTorneo(t); // lo guarda en la bd
+				adminDAO.guardarTorneo(t); // lo guarda en la bd
+				adminDAO.agregarDuenioTorneo(logica.getUsuarioActual(), t);
 				return null; // si se creo ok devuelve null
 			}
 			else

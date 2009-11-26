@@ -78,5 +78,9 @@ public class Torneo {
 		this.posiciones = posiciones;
 	}
 	
+	public String toString(){	
+		return this.nombre;
+	}
+	
 	
 }

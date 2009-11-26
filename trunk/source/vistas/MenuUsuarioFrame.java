@@ -10,6 +10,7 @@ import javax.swing.JMenuItem;
 import javax.swing.WindowConstants;
 
 import controlador.ArmarEquipoControlador;
+import controlador.InscribirTorneoAmigosControlador;
 import controlador.MostrarEquipoControlador;
 
 
@@ -114,9 +115,9 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
 						btnInscribir.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
 								System.out.println("btnInscribir.actionPerformed, event="+evt);
-								InscribirTorneoAmigosFrame frame = new InscribirTorneoAmigosFrame();
-								frame.setVisible(true);
-								desktopPane.add(frame);							}
+								InscribirTorneoAmigosControlador itac = new InscribirTorneoAmigosControlador();
+								//itac.getFrame().setVisible(true);
+								desktopPane.add(itac.getFrame());							}
 						});
 					}
 					{

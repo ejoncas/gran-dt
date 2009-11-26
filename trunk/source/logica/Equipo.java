@@ -5,6 +5,7 @@ public class Equipo {
 	private EquipoTitular equipoTitular;
 	private EquipoSuplente equipoSuplente;
 	private int puntajeacum;
+	private int puntajeult;
 
 	public Equipo(String nombre) {
 		super();

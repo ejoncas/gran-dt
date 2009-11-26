@@ -2,16 +2,22 @@ package vistas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.ListModel;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
+
+import logica.Torneo;
 
 import controlador.InscribirTorneoAmigosControlador;
 import controlador.MostrarEquipoControlador;
@@ -34,10 +40,13 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 	private JRadioButton jrbDuenio;
 	private JRadioButton jrbNombre;
 	private JTextField txtBuscar;
+	private JScrollPane jScrollPane1;
 	private JButton btnCancelar;
 	private JButton btnPostularse;
 	private JList listEncontrados;
 	private JButton btnBuscar;
+	private DefaultListModel listEncontradosModel;
+
 	
 	private InscribirTorneoAmigosControlador itac;
 	
@@ -69,7 +78,7 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 
 	private void initGUI() {
 		try {
-			GroupLayout thisLayout = new GroupLayout(getContentPane());
+			GroupLayout thisLayout = new GroupLayout((JComponent)getContentPane());
 			getContentPane().setLayout(thisLayout);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			{
@@ -91,6 +100,7 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 			{
 				jrbNombre = new JRadioButton();
 				jrbNombre.setText("Buscar por nombre del torneo");
+				jrbNombre.setSelected(true);
 				jrbNombre.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("jrbNombre.actionPerformed, event="+evt);
@@ -104,42 +114,73 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 				txtBuscar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("txtBuscar.actionPerformed, event="+evt);
-						String busqueda = null;
-						busqueda = txtBuscar.getText();
-						if (jrbDuenio.isSelected()){ // buscar por duenio
-							itac.buscarTorneosPorDuenio(busqueda);
-						}
-						else{
-							if (jrbNombre.isSelected()){ // buscar por nombre del torneo
-								itac.buscarTorneosPorNombre(busqueda);								
-							}
-							else{ // ninguno seleccionado
-								// mensaje: Debe selecionar un criterio de busqueda.
-								
-							}
-						}
-						//TODO add your code for txtBuscar.actionPerformed
-					}
+								}
 				});
 			}
 			{
 				btnBuscar = new JButton();
 				btnBuscar.setText("Buscar");
+				btnBuscar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						listEncontradosModel.removeAllElements();
+						
+						System.out.println("btnBuscar.actionPerformed, event="+evt);
+						String busqueda = null;
+						busqueda = txtBuscar.getText();
+						if (jrbDuenio.isSelected()){ // buscar por duenio
+							itac.buscarTorneosPorDuenio(busqueda);
+							
+						}
+						else{
+							if (jrbNombre.isSelected()){ // buscar por nombre del torneo
+								itac.buscarTorneosPorNombre(busqueda);								
+							}
+					
+						}
+								}
+				});
 			}
 			{
-				ListModel listEncontradosModel = 
-					new DefaultComboBoxModel(
-							new String[] { "Item One", "Item Two" });
-				listEncontrados = new JList();
-				listEncontrados.setModel(listEncontradosModel);
+				jScrollPane1 = new JScrollPane();
+				{
+					listEncontradosModel = 
+						new DefaultListModel();
+					listEncontrados = new JList();
+					jScrollPane1.setViewportView(listEncontrados);
+					listEncontrados.setModel(listEncontradosModel);
+				}
 			}
 			{
 				btnPostularse = new JButton();
 				btnPostularse.setText("Postularse");
+				btnPostularse.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						System.out.println("btnPostularse.actionPerformed, event="+evt);
+						String r=null;
+						Torneo t = null;
+						t = (Torneo) listEncontrados.getSelectedValue();
+						r = itac.postularse(t);
+						if(r!=null)	
+							JOptionPane.showMessageDialog(null, r);
+						else{
+							JOptionPane.showMessageDialog(null, "Se ha postulado exitosamente");
+							dispose();
+
+						}
+							
+					}
+				});
 			}
 			{
 				btnCancelar = new JButton();
 				btnCancelar.setText("Cancelar");
+				btnCancelar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						System.out.println("btnCancelar.actionPerformed, event="+evt);
+						setDefaultCloseOperation(EXIT_ON_CLOSE);	
+						dispose();
+						}
+				});
 			}
 			thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
 				.addContainerGap()
@@ -152,15 +193,15 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 				.addComponent(txtBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 				.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 				.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addGap(22)
-				.addComponent(listEncontrados, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+				.addGap(19)
+				.addComponent(jScrollPane1, 0, 129, Short.MAX_VALUE)
+				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, GroupLayout.PREFERRED_SIZE)
 				.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 				    .addComponent(btnPostularse, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(btnCancelar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
-				.addContainerGap(48, 48));
+				    .addComponent(btnCancelar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+				.addContainerGap());
 			thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
-				.addContainerGap(21, 21)
+				.addContainerGap()
 				.addGroup(thisLayout.createParallelGroup()
 				    .addGroup(thisLayout.createSequentialGroup()
 				        .addComponent(lblSeleccione, GroupLayout.PREFERRED_SIZE, 359, GroupLayout.PREFERRED_SIZE)
@@ -174,28 +215,41 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 				    .addGroup(thisLayout.createSequentialGroup()
 				        .addComponent(txtBuscar, GroupLayout.PREFERRED_SIZE, 359, GroupLayout.PREFERRED_SIZE)
 				        .addGap(0, 0, Short.MAX_VALUE))
-				    .addGroup(thisLayout.createSequentialGroup()
-				        .addPreferredGap(lblSeleccione, listEncontrados, LayoutStyle.ComponentPlacement.INDENT)
+				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+				        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 353, GroupLayout.PREFERRED_SIZE)
+				        .addGap(0, 6, Short.MAX_VALUE))
+				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+				        .addGap(97)
+				        .addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
 				        .addGroup(thisLayout.createParallelGroup()
 				            .addGroup(thisLayout.createSequentialGroup()
-				                .addComponent(listEncontrados, GroupLayout.PREFERRED_SIZE, 353, GroupLayout.PREFERRED_SIZE)
+				                .addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
 				                .addGap(0, 0, Short.MAX_VALUE))
 				            .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				                .addGap(92)
-				                .addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
-				                .addGap(19)
-				                .addGroup(thisLayout.createParallelGroup()
-				                    .addGroup(thisLayout.createSequentialGroup()
-				                        .addComponent(btnPostularse, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
-				                        .addGap(0, 0, Short.MAX_VALUE))
-				                    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				                        .addGap(13)
-				                        .addComponent(btnBuscar, 0, 106, Short.MAX_VALUE)))))))
-				.addContainerGap(37, 37));
+				                .addGap(13)
+				                .addComponent(btnPostularse, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
+				                .addGap(0, 6, Short.MAX_VALUE)))))
+				.addContainerGap(30, 30));
 			pack();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+//	public JList getListEncontrados() {
+//		return listEncontrados;
+//	}
+//
+//	public void setListEncontrados(JList listEncontrados) {
+//		this.listEncontrados = listEncontrados;
+//	}
+
+	public DefaultListModel getListEncontradosModel() {
+		return this.listEncontradosModel;
+	}
+
+	public void setListEncontradosModel(ListModel listEncontradosModel) {
+		this.listEncontradosModel = (DefaultListModel) listEncontradosModel;
 	}
 	
 

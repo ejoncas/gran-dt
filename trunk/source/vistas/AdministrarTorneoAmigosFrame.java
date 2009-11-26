@@ -1,7 +1,10 @@
 package vistas;
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.LayoutStyle;
@@ -27,11 +30,11 @@ public class AdministrarTorneoAmigosFrame extends javax.swing.JInternalFrame {
 	private JLabel lblPostulados;
 	private JList listParticipantes;
 	private JButton btnRechazar;
+	private JComboBox cmbTorneos;
 	private JButton btnFinalizar;
 	private JButton btnAceptar;
 	private JList listPostulados;
 	private JLabel lblParticipantes;
-	private JLabel lblNombre;
 
 	/**
 	 * Auto-generated main method to display this JFrame
@@ -53,16 +56,12 @@ public class AdministrarTorneoAmigosFrame extends javax.swing.JInternalFrame {
 
 	private void initGUI() {
 		try {
-			GroupLayout thisLayout = new GroupLayout(getContentPane());
+			GroupLayout thisLayout = new GroupLayout((JComponent)getContentPane());
 			getContentPane().setLayout(thisLayout);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			{
 				lblNombreTorneo = new JLabel();
 				lblNombreTorneo.setText("Nombre del torneo:");
-			}
-			{
-				lblNombre = new JLabel();
-				lblNombre.setText("<nombre>");
 			}
 			{
 				lblPostulados = new JLabel();
@@ -99,12 +98,19 @@ public class AdministrarTorneoAmigosFrame extends javax.swing.JInternalFrame {
 				btnFinalizar = new JButton();
 				btnFinalizar.setText("Finalizar");
 			}
+			{
+				ComboBoxModel cmbTorneosModel = 
+					new DefaultComboBoxModel(
+							new String[] { "Item One", "Item Two" });
+				cmbTorneos = new JComboBox();
+				cmbTorneos.setModel(cmbTorneosModel);
+			}
 			thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
-				.addContainerGap()
+				.addGap(8)
 				.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-				    .addComponent(lblNombreTorneo, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(lblNombre, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addGap(24)
+				    .addComponent(cmbTorneos, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+				    .addComponent(lblNombreTorneo, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+				.addGap(21)
 				.addComponent(lblPostulados, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 				.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 				.addComponent(listPostulados, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
@@ -124,8 +130,8 @@ public class AdministrarTorneoAmigosFrame extends javax.swing.JInternalFrame {
 				.addGroup(thisLayout.createParallelGroup()
 				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
 				        .addComponent(lblNombreTorneo, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
-				        .addGap(28)
-				        .addComponent(lblNombre, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)
+				        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+				        .addComponent(cmbTorneos, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
 				        .addGap(0, 0, Short.MAX_VALUE))
 				    .addGroup(thisLayout.createSequentialGroup()
 				        .addGroup(thisLayout.createParallelGroup()
