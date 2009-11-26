@@ -30,6 +30,11 @@ public class AdministradorDAOs {
 		this.torneo = new TorneoDAO();
 	}
 
+	public void guardarUsuarioEquipo(Equipo e, Usuario u){
+		this.equipo.insertEquipo(e);
+		this.usuario.guardarUsuario(u, e.getId());
+	}
+
 	public Vector<Jugador> obtenerTodosJugadores(){
 		return this.jugador.getJugadoresTodos();
 	}
@@ -45,9 +50,9 @@ public class AdministradorDAOs {
 		for(JugadorFechaPuntaje aux : jfp){
 			this.jugador.updatePuntaje(aux.getNombre(), aux.getApellido(),aux.getFecha(), aux.getPuntaje());
 		}
-		
+
 	}
-	
+
 	//Levanta el usuario de la base, carga su equipo y sus jugadores
 	//	public void loguearUsuario(String tipoDoc, int nroDoc){
 	//		Usuario u = this.usuario.getUsuarioPorDoc(tipoDoc, nroDoc);
@@ -99,7 +104,15 @@ public class AdministradorDAOs {
 
 	}
 
-	
+	public void updateMontosUsuario(Usuario u, float montoDisponible, float montoGastado) {
+		this.usuario.updateMontos(u.getTipoDoc(), u.getNroDoc(),montoDisponible, montoGastado);
+	}
+
+	public int getCountUltimaFecha(Equipo e) {
+		return this.jugador.countPuntajeUltimaFecha(e.getId());
+	}
+
+
 
 
 }

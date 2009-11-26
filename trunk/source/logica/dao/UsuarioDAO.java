@@ -88,6 +88,39 @@ public class UsuarioDAO {
 		}
 	}
 
+	public void updateMontos(String td, int nro, float m, float mg){
+		try{
+			//conexion a la bd
+			Connection connection = DAOCM.getConnection();
+
+			String query = 
+				"update usuario "+
+				"set " + 
+				"monto = ?, "+
+				"monto_gastado = ? " +
+				"where tipo_doc = ? and nro_doc = ? ";
+
+			PreparedStatement stmt = connection.prepareStatement(query);
+
+			stmt.setFloat(1, m);
+			stmt.setFloat(2, mg);
+			stmt.setString(3, td);
+			stmt.setInt(4, nro);
+
+			stmt.execute();
+
+			stmt.close();
+
+		}catch(SQLException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+		}
+
+	}
+
 	public Usuario getUsuarioPorDoc(String tipoDoc, int nroDoc) {
 
 		Usuario u;

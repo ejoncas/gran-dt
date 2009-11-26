@@ -40,6 +40,7 @@ public class CargaMasivaEquiposFrame extends javax.swing.JInternalFrame {
 
 	public CargaMasivaEquiposFrame() {
 		super("Carga masiva de equipos", true, true, true, true);
+		cmec = new CargaMasivasControlador();
 		initGUI();
 	}
 
@@ -138,6 +139,8 @@ public class CargaMasivaEquiposFrame extends javax.swing.JInternalFrame {
 	private void btnCargarActionPerformed(ActionEvent evt) {
 		System.out.println("btnCargar.actionPerformed, event="+evt);
 		System.out.println("Parseando el archivo");
+		this.cmec.cargarEquipos(txtPath.getText());
+
 	}
 
 }

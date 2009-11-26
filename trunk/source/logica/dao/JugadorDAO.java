@@ -55,6 +55,48 @@ public class JugadorDAO {
 
 	}
 
+	public int countPuntajeUltimaFecha(int equipoid){
+		try{
+			//connect to db
+			Connection connection = DAOCM.getConnection();
+			//create statment
+			Statement stmt = connection.createStatement();
+
+			String query = 
+				"select sum(j.puntaje) " +
+				"from Equipo e " +
+				"inner join EquipoJugador ej "+
+				"on e.id = ej.equipo_fk "+			
+				"inner join Jugador j " +
+				"on j.id = ej.jugador_fk " +
+				"where e.id = " + equipoid ;
+
+			//execute query
+			ResultSet rs = stmt.executeQuery(query);
+
+			//we move to the first row - ResultSet starts "before first"
+			rs.next();
+
+			int puntajeacum = rs.getInt(1);
+			//we close all the connections
+			stmt.close();
+			rs.close();
+
+			//Return the player
+			return puntajeacum;
+
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
+	}
+
+
 	public Vector<Jugador> getJugadoresPorPosicion(String posicion){
 		try{
 			//connect to db
@@ -215,13 +257,13 @@ public class JugadorDAO {
 
 			String query = "UPDATE Jugador SET puntaje = ? WHERE nombre = ? AND apellido = ?";
 			//execute query
-			
+
 			PreparedStatement stmt = connection.prepareStatement(query);
-			
+
 			stmt.setInt(1, puntaje);
 			stmt.setString(2, nombre);
 			stmt.setString(3, apellido);
-			
+
 			stmt.execute();
 
 			//we close all the connections
@@ -232,7 +274,7 @@ public class JugadorDAO {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

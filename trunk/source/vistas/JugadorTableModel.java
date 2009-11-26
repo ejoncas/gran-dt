@@ -52,7 +52,6 @@ public class JugadorTableModel extends AbstractTableModel {
 
 	public Object getValueAt(int row, int col) {
 		Jugador j = datalist.get(row);
-		System.out.println("Getting row no:"+row );
 		switch (col) {
 		case 0:
 			return j.getApellido()+","+j.getNombre();
