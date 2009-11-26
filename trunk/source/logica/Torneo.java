@@ -6,7 +6,7 @@ public class Torneo {
 	private Vector<Usuario> participantes;
 	private Vector<Usuario> postulados;
 	private Usuario creador;
-	private int nroFecha;
+	private int nroFecha; //TODO que onda esta ? para q se usa la fecha esta ?
 	private Vector<Posicion> posiciones;
 
 

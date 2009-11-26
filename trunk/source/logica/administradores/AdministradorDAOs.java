@@ -11,6 +11,7 @@ import logica.Usuario;
 import logica.dao.EquipoDAO;
 import logica.dao.EquipoJugadorDAO;
 import logica.dao.JugadorDAO;
+import logica.dao.TorneoDAO;
 import logica.dao.UsuarioDAO;
 
 public class AdministradorDAOs {
@@ -18,6 +19,7 @@ public class AdministradorDAOs {
 	private JugadorDAO jugador;
 	private UsuarioDAO usuario;
 	private EquipoJugadorDAO equipojugador;
+	private TorneoDAO torneo;
 
 	public AdministradorDAOs() {
 		super();
@@ -25,6 +27,7 @@ public class AdministradorDAOs {
 		this.jugador = new JugadorDAO();
 		this.usuario = new UsuarioDAO();
 		this.equipojugador = new EquipoJugadorDAO();
+		this.torneo = new TorneoDAO();
 	}
 
 	public Vector<Jugador> obtenerTodosJugadores(){
