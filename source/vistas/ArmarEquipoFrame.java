@@ -103,7 +103,7 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 					GroupLayout pnlJugadoresLayout = new GroupLayout(pnlJugadores);
 					pnlJugadores.setLayout(pnlJugadoresLayout);
 					separatorJugadores.add(pnlJugadores);
-					pnlJugadores.setBounds(11, 20, 460, 441);
+					pnlJugadores.setBounds(11, 21, 460, 441);
 					{
 						jScrollPane1 = new JScrollPane();
 						{
@@ -390,14 +390,14 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 	//Quitar Titular
 	private void btnQuitarTActionPerformed(ActionEvent evt) {
 		System.out.println("btnQuitarT.actionPerformed, event="+evt);
-		//TODO add your code for btnQuitarT.actionPerformed
+		//TODO Remover del monto gastado!
 		Jugador removed = tableEquipoTModel.removeJugadorAt(tableEquipoT.getSelectedRow());
 		tableJugadoresModel.addJugador(removed);
 	}
 	//Quitar Suplente
 	private void btnQuitarSActionPerformed(ActionEvent evt) {
 		System.out.println("btnQuitarS.actionPerformed, event="+evt);
-		//TODO add your code for btnQuitarS.actionPerformed
+		//TODO Remover del monto gastad! actualizar precios
 		Jugador removed = tableEquipoSModel.removeJugadorAt(tableEquipoS.getSelectedRow());
 		tableJugadoresModel.addJugador(removed);
 	}

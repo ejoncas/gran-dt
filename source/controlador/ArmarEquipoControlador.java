@@ -251,7 +251,10 @@ public class ArmarEquipoControlador {
 			}
 			//guardamos en el modelo
 			this.logica.getUsuarioActual().getEquipo().setEquipoTitular(e);
+			this.logica.getUsuarioActual().setMontoDisponible(montoDisponible);
+			this.logica.getUsuarioActual().setMontoGastado(montoGastado);
 			//TODO guardar en la base
+			this.logica.getAdminDAO().updateMontosUsuario(this.logica.getUsuarioActual(),montoDisponible, montoGastado);
 			this.logica.getAdminDAO().guardarEquipoTitular(this.logica.getUsuarioActual().getEquipo(), e);
 
 			return null;
@@ -282,7 +285,6 @@ public class ArmarEquipoControlador {
 			}
 			//guardamos en el modelo
 			this.logica.getUsuarioActual().getEquipo().setEquipoSuplente(e);
-			//TODO guardar en la base
 			this.logica.getAdminDAO().guardarEquipoSuplente(this.logica.getUsuarioActual().getEquipo(), e);
 
 			return null;

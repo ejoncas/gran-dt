@@ -228,5 +228,14 @@ public class SistemaGranDT {
 	//		return t;
 	//	}
 
+	public Jugador getJugadorByNombre(String n, String a){
+		if(this.jugadores == null)
+			this.cargarJugadores();
+		for ( Jugador j : this.jugadores){
+			if(j.getNombre().equals(n) && j.getApellido().equals(a))
+				return j;
+		}
+		return null;
+	}
 
 }
