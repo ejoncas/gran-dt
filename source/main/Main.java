@@ -169,6 +169,16 @@ public class Main {
 		//		System.out.println(e2.getId() + e2.getNombre());
 		//		
 
+		
+		
+		
+		String x = "lalala lalalal lalalla la";
+		
+		System.out.println(x);
+
+		String []cortado = x.split(" ");
+		for(String s :cortado)
+			System.out.println(s);
 	}
 
 }

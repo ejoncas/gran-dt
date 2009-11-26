@@ -61,7 +61,7 @@ public class TorneoDAO {
 	}
 	
 	public Torneo getTorneoPorNombre(String nombre){
-		Torneo t;
+		Torneo t = null;
 		try{
 			Connection connection = DAOCM.getConnection();
 			Statement stmt = connection.createStatement();
@@ -81,54 +81,43 @@ public class TorneoDAO {
 			//we close all the connections
 			stmt.close();
 			rs.close();
-
 			//Return the team vector
-			return t;
 		}catch (SQLException ex) {
 			ex.printStackTrace();
-			return null;
+			//		return null;
 		}catch (Exception ex) {
 			ex.printStackTrace();
-			return null;
+			//		return null;
 		}
+		return t;
+		
 
 	}
 
 
-	public Torneo getTorneoLikeNombre(String nombre, String apellido){
-		Torneo t;
+	public Vector<Torneo> getTorneosLikeNombre(String nombre){
+		Vector<Torneo> torneos = new Vector<Torneo>();
+		Torneo t=null;
 		try{
 			Connection connection = DAOCM.getConnection();
 			Statement stmt = connection.createStatement();
 
-			String query = "SELECT nombre FROM Torneo WHERE nombre LIKE '"+nombre+"'" +
-					"or nombre LIKE '"+apellido+"'" +
-					"or apellido LIKE '"+nombre+"'" +
-					"or apellido LIKE '"+apellido+"'";
-			
-//
-//			String query = "SELECT nombre FROM Torneo WHERE nombre LIKE '%"+nombre+"%'" +
-//					"or nombre LIKE '%"+apellido+"%'" +
-//					"or apellido LIKE '%"+nombre+"%'" +
-//					"or apellido LIKE '%"+apellido+"%'";
+			String query = "SELECT nombre FROM Torneo WHERE nombre LIKE '%"+nombre+"%'";
 			ResultSet rs = stmt.executeQuery(query);
-
-			//we create the new team
-
-			if(rs.next()){
+	
+			while(rs.next()){
 				
-				t=new Torneo(rs.getString(1));
-				//TODO aca deberiamos agregar si es necesario el tipo y nro doc del usuario creador y despues los participantes
+				t=new Torneo(rs.getString(1)); 
+				torneos.addElement(t);
+			
 			}
-			else
-				t=null;
 
 			//we close all the connections
 			stmt.close();
 			rs.close();
 
 			//Return the team vector
-			return t;
+			return torneos;
 		}catch (SQLException ex) {
 			ex.printStackTrace();
 			return null;
@@ -139,33 +128,47 @@ public class TorneoDAO {
 
 	}
 	
-	public Vector getTorneosPorDuenio (String nombre){
-		Vector<Torneo> torneos = new Vector();
+	public Vector<Torneo> getTorneosPorDuenio (String nombre, String apellido){
+		Vector<Torneo> torneos = new Vector<Torneo>();
 		Torneo t=null;
 		
 		try{
 			Connection connection = DAOCM.getConnection();
 			Statement stmt = connection.createStatement();
-			String query = "select t.nombre" +
-					"from torneo t, usuario u where t.tipo_doc=u.tipo_doc" +
-					"and t.nro_doc=u.nro_doc and u.nombre LIKE '%"+nombre+"%'";
+
+//			String query = "SELECT t.nombre FROM Torneo t, Usuario u WHERE u.nombre LIKE '%"+nombre+"%'" +
+//					"or u.nombre LIKE '%"+apellido+"%'" +
+//					"or u.apellido LIKE '%"+nombre+"%'" +
+//					"or u.apellido LIKE '%"+apellido+"%'" +
+//					"AND t.tipo_doc=u.tipo_doc AND t.nro_doc=u.nro_doc";
+			
+			String query=
+				"SELECT t.nombre " +
+				"FROM Torneo t " +
+				"INNER JOIN Usuario u " +
+				"on (t.tipo_doc = u.tipo_doc AND t.nro_doc=u.nro_doc) " +
+				"WHERE u.nombre LIKE '%"+nombre+"%' " +
+				"or u.nombre LIKE '%"+apellido+"%' " +
+				"or u.apellido LIKE '%"+nombre+"%' " +
+				"or u.apellido LIKE '%"+apellido+"%' ";
+				
+			
 			ResultSet rs = stmt.executeQuery(query);
 
 			//we create the new team
 
-			if(rs.next()){
+			while(rs.next()){
 				
-				t=new Torneo(rs.getString(1)); //TODO aca deberiamos agregar si es necesario el tipo y nro doc del usuario creador y despues los participantes
+				t=new Torneo(rs.getString(1)); 
 				torneos.addElement(t);
 			
 			}
-			else
-				torneos=null;
 
 			//we close all the connections
 			stmt.close();
 			rs.close();
 
+			return torneos;
 		}catch (SQLException ex) {
 			ex.printStackTrace();
 			return null;
@@ -173,7 +176,34 @@ public class TorneoDAO {
 			ex.printStackTrace();
 			return null;
 		}
-		return torneos;
+		
+		
+	}
+	
+	// devuelve el id guardado en la base de un torneo segun el nombre
+	public int getIdTorneo(String nombre){
+		int id=0;
+		try{
+			Connection connection = DAOCM.getConnection();
+			Statement stmt = connection.createStatement();
+
+			String query = "SELECT id FROM Torneo WHERE nombre = '"+nombre+"'";
+			ResultSet rs = stmt.executeQuery(query);
+
+			if(rs.next())
+				id=rs.getInt(1);
+			
+
+			//we close all the connections
+			stmt.close();
+			rs.close();
+			
+		}catch (SQLException ex) {
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return id;
 		
 	}
 
