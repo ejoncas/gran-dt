@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 
 import logica.Equipo;
 import logica.Torneo;
@@ -51,11 +52,9 @@ public class TorneoDAO {
 
 
 		}catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			//return null;
 		}catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			//return null;
 		}
@@ -86,11 +85,9 @@ public class TorneoDAO {
 			//Return the team vector
 			return t;
 		}catch (SQLException ex) {
-			// TODO Auto-generated catch block
 			ex.printStackTrace();
 			return null;
 		}catch (Exception ex) {
-			// TODO Auto-generated catch block
 			ex.printStackTrace();
 			return null;
 		}
@@ -98,20 +95,30 @@ public class TorneoDAO {
 	}
 
 
-	public Torneo getTorneoLikeNombre(String nombre){
+	public Torneo getTorneoLikeNombre(String nombre, String apellido){
 		Torneo t;
 		try{
 			Connection connection = DAOCM.getConnection();
 			Statement stmt = connection.createStatement();
 
-			String query = "SELECT nombre FROM Torneo WHERE nombre LIKE '%"+nombre+"%'";
+			String query = "SELECT nombre FROM Torneo WHERE nombre LIKE '"+nombre+"'" +
+					"or nombre LIKE '"+apellido+"'" +
+					"or apellido LIKE '"+nombre+"'" +
+					"or apellido LIKE '"+apellido+"'";
+			
+//
+//			String query = "SELECT nombre FROM Torneo WHERE nombre LIKE '%"+nombre+"%'" +
+//					"or nombre LIKE '%"+apellido+"%'" +
+//					"or apellido LIKE '%"+nombre+"%'" +
+//					"or apellido LIKE '%"+apellido+"%'";
 			ResultSet rs = stmt.executeQuery(query);
 
 			//we create the new team
 
 			if(rs.next()){
 				
-				t=new Torneo(rs.getString(1)); //TODO aca deberiamos agregar si es necesario el tipo y nro doc del usuario creador y despues los participantes
+				t=new Torneo(rs.getString(1));
+				//TODO aca deberiamos agregar si es necesario el tipo y nro doc del usuario creador y despues los participantes
 			}
 			else
 				t=null;
@@ -123,15 +130,51 @@ public class TorneoDAO {
 			//Return the team vector
 			return t;
 		}catch (SQLException ex) {
-			// TODO Auto-generated catch block
 			ex.printStackTrace();
 			return null;
 		}catch (Exception ex) {
-			// TODO Auto-generated catch block
 			ex.printStackTrace();
 			return null;
 		}
 
+	}
+	
+	public Vector getTorneosPorDuenio (String nombre){
+		Vector<Torneo> torneos = new Vector();
+		Torneo t=null;
+		
+		try{
+			Connection connection = DAOCM.getConnection();
+			Statement stmt = connection.createStatement();
+			String query = "select t.nombre" +
+					"from torneo t, usuario u where t.tipo_doc=u.tipo_doc" +
+					"and t.nro_doc=u.nro_doc and u.nombre LIKE '%"+nombre+"%'";
+			ResultSet rs = stmt.executeQuery(query);
+
+			//we create the new team
+
+			if(rs.next()){
+				
+				t=new Torneo(rs.getString(1)); //TODO aca deberiamos agregar si es necesario el tipo y nro doc del usuario creador y despues los participantes
+				torneos.addElement(t);
+			
+			}
+			else
+				torneos=null;
+
+			//we close all the connections
+			stmt.close();
+			rs.close();
+
+		}catch (SQLException ex) {
+			ex.printStackTrace();
+			return null;
+		}catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+		return torneos;
+		
 	}
 
 

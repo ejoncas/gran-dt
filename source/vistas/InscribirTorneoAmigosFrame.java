@@ -13,6 +13,9 @@ import javax.swing.ListModel;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
+import controlador.InscribirTorneoAmigosControlador;
+import controlador.MostrarEquipoControlador;
+
 
 /**
  * This code was edited or generated using CloudGarden's Jigloo
@@ -35,6 +38,16 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 	private JButton btnPostularse;
 	private JList listEncontrados;
 	private JButton btnBuscar;
+	
+	private InscribirTorneoAmigosControlador itac;
+	
+	public InscribirTorneoAmigosControlador getControlador() {
+		return itac;
+	}
+
+	public void setControlador(InscribirTorneoAmigosControlador c) {
+		this.itac = c;
+	}
 
 	/**
 	 * Auto-generated main method to display this JFrame
@@ -88,6 +101,26 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 			}
 			{
 				txtBuscar = new JTextField();
+				txtBuscar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						System.out.println("txtBuscar.actionPerformed, event="+evt);
+						String busqueda = null;
+						busqueda = txtBuscar.getText();
+						if (jrbDuenio.isSelected()){ // buscar por duenio
+							itac.buscarTorneosPorDuenio(busqueda);
+						}
+						else{
+							if (jrbNombre.isSelected()){ // buscar por nombre del torneo
+								itac.buscarTorneosPorNombre(busqueda);								
+							}
+							else{ // ninguno seleccionado
+								// mensaje: Debe selecionar un criterio de busqueda.
+								
+							}
+						}
+						//TODO add your code for txtBuscar.actionPerformed
+					}
+				});
 			}
 			{
 				btnBuscar = new JButton();
@@ -165,7 +198,6 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 		}
 	}
 	
-	//private void buscarPorDuenoActionPerformed(ActionEcentevt);
 
 
 }
