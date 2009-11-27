@@ -206,6 +206,37 @@ public class TorneoDAO {
 		return id;
 		
 	}
+	
+	public Vector getTorneosCreados(String tipoDoc, int nroDoc){
+		Vector<Torneo> torneos = new Vector<Torneo>();
+		Torneo t=null;		
+		try{
+			Connection connection = DAOCM.getConnection();
+			Statement stmt = connection.createStatement();
+			String query=
+				"SELECT t.nombre " +
+				"FROM Torneo t " +
+				"WHERE t.nro_doc = "+nroDoc+
+				" and t.tipo_doc = '"+tipoDoc+"'";			
+			ResultSet rs = stmt.executeQuery(query);
+			while(rs.next()){				
+				t=new Torneo(rs.getString(1)); 
+				torneos.addElement(t);			
+			}
+			stmt.close();
+			rs.close();
+
+			return torneos;
+		}catch (SQLException ex) {
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return torneos;
+		
+		
+
+	}
 
 
 
