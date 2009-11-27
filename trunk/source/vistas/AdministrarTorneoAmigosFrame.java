@@ -12,6 +12,8 @@ import javax.swing.ListModel;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
+import controlador.AdministrarTorneoAmigosControlador;
+
 
 /**
  * This code was edited or generated using CloudGarden's Jigloo
@@ -35,22 +37,25 @@ public class AdministrarTorneoAmigosFrame extends javax.swing.JInternalFrame {
 	private JButton btnAceptar;
 	private JList listPostulados;
 	private JLabel lblParticipantes;
+	
+	private AdministrarTorneoAmigosControlador atac;
 
 	/**
 	 * Auto-generated main method to display this JFrame
 	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				AdministrarTorneoAmigosFrame inst = new AdministrarTorneoAmigosFrame();
-				//inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		SwingUtilities.invokeLater(new Runnable() {
+//			public void run() {
+//				AdministrarTorneoAmigosFrame inst = new AdministrarTorneoAmigosFrame();
+//				//inst.setLocationRelativeTo(null);
+//				inst.setVisible(true);
+//			}
+//		});
+//	}
 
-	public AdministrarTorneoAmigosFrame() {
+	public AdministrarTorneoAmigosFrame(AdministrarTorneoAmigosControlador c) {
 		super("Administrar torneo de amigos", true, true, true, true);
+		this.atac=c;
 		initGUI();
 	}
 
@@ -99,11 +104,13 @@ public class AdministrarTorneoAmigosFrame extends javax.swing.JInternalFrame {
 				btnFinalizar.setText("Finalizar");
 			}
 			{
-				ComboBoxModel cmbTorneosModel = 
-					new DefaultComboBoxModel(
-							new String[] { "Item One", "Item Two" });
-				cmbTorneos = new JComboBox();
-				cmbTorneos.setModel(cmbTorneosModel);
+//				ComboBoxModel cmbTorneosModel = 
+//					new DefaultComboBoxModel(
+//							new String[] { "Item One", "Item Two" });
+//				//cmbTorneos.setModel(arg0)
+				cmbTorneos = new JComboBox(atac.cargarTorneosCreados());
+				//cmbTorneos.setModel(cmbTorneosModel);
+				//cmbTorneos.addItem(anObject)
 			}
 			thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
 				.addGap(8)
@@ -157,6 +164,30 @@ public class AdministrarTorneoAmigosFrame extends javax.swing.JInternalFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public JList getListParticipantes() {
+		return listParticipantes;
+	}
+
+	public void setListParticipantes(JList listParticipantes) {
+		this.listParticipantes = listParticipantes;
+	}
+
+	public JComboBox getCmbTorneos() {
+		return cmbTorneos;
+	}
+
+	public void setCmbTorneos(JComboBox cmbTorneos) {
+		this.cmbTorneos = cmbTorneos;
+	}
+
+	public JList getListPostulados() {
+		return listPostulados;
+	}
+
+	public void setListPostulados(JList listPostulados) {
+		this.listPostulados = listPostulados;
 	}
 
 }

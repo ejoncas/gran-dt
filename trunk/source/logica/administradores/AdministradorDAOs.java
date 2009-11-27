@@ -148,7 +148,23 @@ public class AdministradorDAOs {
 	public void agregarDuenioTorneo(Usuario usuarioActual, Torneo t) {
 		posiciones.postularTorneo(torneo.getIdTorneo(t.getNombre()), usuarioActual.getEquipo().getId());
 		posiciones.agregarParticipante(torneo.getIdTorneo(t.getNombre()), usuarioActual.getEquipo().getId());
+	}
+	
+	public Vector<Torneo> getTorneosCreados(Usuario ua){
+		return torneo.getTorneosCreados(ua.getTipoDoc(),ua.getNroDoc());
 		
+	}
+	
+	public void getPostuladosTorneo(Torneo t){
+		
+	}
+	
+	public void getParticipantesTorneo(){
+		
+	}
+	
+	public void aceptarPostuladoTorneo(Usuario u, Torneo t){
+		posiciones.agregarParticipante(torneo.getIdTorneo(t.getNombre()),u.getEquipo().getId());
 		
 	}
 

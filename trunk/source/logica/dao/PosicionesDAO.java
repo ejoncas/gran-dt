@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import logica.Torneo;
+import logica.Usuario;
 
 public class PosicionesDAO {
 
@@ -72,6 +73,36 @@ public class PosicionesDAO {
 
 		
 	}
+	
+//	public void obtenerPostulados(int idTorneo){
+//		
+//		try{
+//			Connection connection = DAOCM.getConnection();
+//			Statement stmt = connection.createStatement();
+//
+//			String query = "SELECT id FROM Torneo WHERE nombre = '"+nombre+"'";
+//			ResultSet rs = stmt.executeQuery(query);
+//
+//			if(rs.next())
+//				id=rs.getInt(1);
+//			
+//
+//			//we close all the connections
+//			stmt.close();
+//			rs.close();
+//			
+//		}catch (SQLException ex) {
+//			ex.printStackTrace();
+//		}catch (Exception ex) {
+//			ex.printStackTrace();
+//		}
+//		return id;
+//		
+//	}
+//	
+//	public void obtenerParticipantes(Torneo t){
+//		
+//	}
 
 
 }
