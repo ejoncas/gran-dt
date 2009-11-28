@@ -155,17 +155,31 @@ public class AdministradorDAOs {
 		
 	}
 	
-	public void getPostuladosTorneo(Torneo t){
+	public Vector<String> getPostuladosTorneo(Torneo t){
+		return posiciones.obtenerPostulados(torneo.getIdTorneo(t.getNombre()));
 		
 	}
 	
-	public void getParticipantesTorneo(){
+	public Vector<String> getParticipantesTorneo(Torneo t){
+		return posiciones.obtenerParticipantes(torneo.getIdTorneo(t.getNombre()));
 		
 	}
 	
-	public void aceptarPostuladoTorneo(Usuario u, Torneo t){
-		posiciones.agregarParticipante(torneo.getIdTorneo(t.getNombre()),u.getEquipo().getId());
+	public void aceptarPostuladoTorneo(Equipo e, Torneo t){
+		posiciones.agregarParticipante(torneo.getIdTorneo(t.getNombre()),e.getId());
 		
+	}
+	
+	public void rechazarPostulado(Equipo e, Torneo t){
+		posiciones.quitarPostulado(torneo.getIdTorneo(t.getNombre()),e.getId());
+	}
+	
+	public Equipo getEquipoPorNombre(String nombre){
+		return equipo.getEquipoPorNombre(nombre);
+	}
+	
+	public int getIdTorneo(Torneo t){
+		return torneo.getIdTorneo(t.getNombre());
 	}
 
 
