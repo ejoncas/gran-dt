@@ -79,11 +79,9 @@ public class EquipoDAO {
 			//Return the team vector
 			return e;
 		}catch (SQLException ex) {
-			// TODO Auto-generated catch block
 			ex.printStackTrace();
 			return null;
 		}catch (Exception ex) {
-			// TODO Auto-generated catch block
 			ex.printStackTrace();
 			return null;
 		}
@@ -167,10 +165,8 @@ public class EquipoDAO {
 			stmt2.close();
 			rs2.close();
 		} catch (SQLException ex) {
-			// TODO Auto-generated catch block
 			ex.printStackTrace();
 		}catch (Exception ex) {
-			// TODO Auto-generated catch block
 			ex.printStackTrace();
 		}finally{
 

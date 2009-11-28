@@ -2,6 +2,8 @@ package controlador;
 
 import java.util.Vector;
 
+import javax.swing.JList;
+
 import vistas.AdministrarTorneoAmigosFrame;
 
 import logica.SistemaGranDT;
@@ -32,6 +34,29 @@ public class AdministrarTorneoAmigosControlador {
 		return this.frame;
 	}
 	
+	public void refreshTorneo(Torneo t){
+		this.frame.getListPostuladosModel().removeAllElements();
+		this.frame.getListParticipantesModel().removeAllElements();
+		Vector<String> postulados = adminDAO.getPostuladosTorneo(t);
+		Vector<String> participantes = adminDAO.getParticipantesTorneo(t);
+		for (String epos: postulados)
+			this.frame.getListPostuladosModel().addElement(epos);
+		//this.frame.getListPostuladosModel().add.getListPostulados().setListData(adminDAO.getPostuladosTorneo(t));
+		//this.frame.getListParticipantes().setListData(adminDAO.getParticipantesTorneo(t));
+		for (String epar: participantes)
+			this.frame.getListParticipantesModel().addElement(epar);
+	}
+	
+	public void rechazarPostulado(String nombreEquipo, Torneo torneo){
+		adminDAO.rechazarPostulado(adminDAO.getEquipoPorNombre(nombreEquipo), torneo);
+
+		
+	}
+	
+	public void aceptarPostulado(String nombreEquipo, Torneo torneo){
+		adminDAO.aceptarPostuladoTorneo(adminDAO.getEquipoPorNombre(nombreEquipo), torneo);
+		
+	}
 	
 
 }

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 
 import logica.Torneo;
 import logica.Usuario;
@@ -74,35 +75,85 @@ public class PosicionesDAO {
 		
 	}
 	
-//	public void obtenerPostulados(int idTorneo){
-//		
-//		try{
-//			Connection connection = DAOCM.getConnection();
-//			Statement stmt = connection.createStatement();
-//
-//			String query = "SELECT id FROM Torneo WHERE nombre = '"+nombre+"'";
-//			ResultSet rs = stmt.executeQuery(query);
-//
-//			if(rs.next())
-//				id=rs.getInt(1);
-//			
-//
-//			//we close all the connections
-//			stmt.close();
-//			rs.close();
-//			
-//		}catch (SQLException ex) {
-//			ex.printStackTrace();
-//		}catch (Exception ex) {
-//			ex.printStackTrace();
-//		}
-//		return id;
-//		
-//	}
-//	
-//	public void obtenerParticipantes(Torneo t){
-//		
-//	}
+	public Vector<String> obtenerPostulados(int idTorneo){
+		Vector<String> postulados = new Vector<String>();
+		String nombre = null;
+		
+		try{
+			Connection connection = DAOCM.getConnection();
+			Statement stmt = connection.createStatement();
+
+			String query = 			
+			"select e.nombre " +
+			"from posiciones p inner join equipo e on  e.id=p.equipo_fk inner join torneo t on t.id = p.torneo_fk " +
+			"where participa=0" +
+			"and t.id = "+idTorneo;
+			ResultSet rs = stmt.executeQuery(query);
+
+			while(rs.next()){
+				nombre=rs.getString(1);
+				postulados.addElement(nombre);
+			}
+			stmt.close();
+			rs.close();
+			
+		}catch (SQLException ex) {
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return postulados;
+		
+	}
+	
+	public Vector<String> obtenerParticipantes(int idTorneo){
+		
+		Vector<String> participantes = new Vector<String>();
+		String nombre = null;
+		
+		try{
+			Connection connection = DAOCM.getConnection();
+			Statement stmt = connection.createStatement();
+
+			String query = 			
+			"select e.nombre " +
+			"from posiciones p inner join equipo e on  e.id=p.equipo_fk inner join torneo t on t.id = p.torneo_fk " +
+			"where participa=1" +
+			"and t.id = "+idTorneo;
+			ResultSet rs = stmt.executeQuery(query);
+
+			while(rs.next()){
+				nombre=rs.getString(1);
+				participantes.addElement(nombre);
+			}
+			stmt.close();
+			rs.close();
+			
+		}catch (SQLException ex) {
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return participantes;
+		
+	}
+
+	public void quitarPostulado(int idTorneo, int idEquipo) {
+		try{
+			Connection connection = DAOCM.getConnection();
+			Statement stmt = connection.createStatement();
+
+			String query = 
+				"delete from posiciones where torneo_fk="+idTorneo+" and equipo_fk="+idEquipo;
+			stmt.execute(query);
+			stmt.close();
+			
+		}catch (SQLException ex) {
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
 
 
 }
