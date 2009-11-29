@@ -198,6 +198,21 @@ public class AdministradorDAOs {
 		for(Jugador j : datalist)
 			this.jugador.updatePuntaje(j.getId(),j.getPuntaje());
 	}
+	
+	public boolean verificarSiEsCreador(Torneo t, Usuario u){
+		return torneo.isCreador(u.getTipoDoc(), u.getNroDoc(), torneo.getIdTorneo(t.getNombre()));
+		
+	}
+	
+	public boolean verificarSiEsPostulado(Torneo t, Usuario u){
+		return posiciones.isPostulado(u.getEquipo().getId(), torneo.getIdTorneo(t.getNombre()));
+		
+	}
+
+	public boolean verificarSiEsParticipante(Torneo t, Usuario u){
+		return posiciones.isParticipante(u.getEquipo().getId(), torneo.getIdTorneo(t.getNombre()));
+	
+}
 
 
 }

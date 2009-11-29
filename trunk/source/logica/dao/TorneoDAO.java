@@ -303,6 +303,39 @@ public class TorneoDAO {
 		return torneos;
 
 	}
+	
+	
+	public boolean isCreador(String tipoDoc, int nroDoc, int idTorneo){
+		boolean es = false;
+		try{
+			Connection connection = DAOCM.getConnection();
+			Statement stmt = connection.createStatement();
+
+			String query = 
+				"select * " +
+				"from torneo " +
+				"where id = " +idTorneo+
+				" and nro_doc = " +nroDoc+
+				" and tipo_doc = '"+tipoDoc+"'";
+
+			ResultSet rs = stmt.executeQuery(query);
+
+			if(rs.next())
+				es= true;
+			else
+				es= false;
+			
+			stmt.close();	
+			rs.close();
+			DAOCM.closeConnection();
+			
+		}catch (SQLException ex) {
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		}	
+		return es;
+	}
 
 
 

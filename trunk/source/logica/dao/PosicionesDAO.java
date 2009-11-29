@@ -151,5 +151,71 @@ public class PosicionesDAO {
 		}
 	}
 
+	
+	
+	public boolean isPostulado(int idEquipo, int idTorneo){
+		boolean es = false;
+		try{
+			Connection connection = DAOCM.getConnection();
+			Statement stmt = connection.createStatement();
+
+			String query = 
+				"select * " +
+				"from posiciones " +
+				"where torneo_fk = " +idTorneo+
+				" and equipo_fk = " +idEquipo+
+				" and participa = 0";
+			
+			ResultSet rs = stmt.executeQuery(query);
+
+			if(rs.next())
+				es= true;
+			else
+				es= false;
+			
+			stmt.close();	
+			rs.close();
+			DAOCM.closeConnection();
+			
+		}catch (SQLException ex) {
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		}	
+		return es;
+	}
+	
+	public boolean isParticipante(int idEquipo, int idTorneo){
+		boolean es = false;
+		try{
+			Connection connection = DAOCM.getConnection();
+			Statement stmt = connection.createStatement();
+
+			String query = 
+				"select * " +
+				"from posiciones " +
+				"where torneo_fk = " +idTorneo+
+				" and equipo_fk = " +idEquipo+
+				" and participa = 1";
+			
+			ResultSet rs = stmt.executeQuery(query);
+
+			if(rs.next())
+				es= true;
+			else
+				es= false;
+			
+			stmt.close();	
+			rs.close();
+			DAOCM.closeConnection();
+			
+		}catch (SQLException ex) {
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		}	
+		return es;
+	}
+
 
 }
