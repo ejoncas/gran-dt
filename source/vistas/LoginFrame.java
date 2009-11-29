@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
-import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 import controlador.AltaUsuarioControlador;
@@ -56,18 +55,6 @@ public class LoginFrame extends javax.swing.JFrame {
 
 	private final LoginControlador lc;
 
-	/**
-	 * Auto-generated main method to display this JFrame
-	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				LoginFrame inst = new LoginFrame(new LoginControlador());
-				inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
-			}
-		});
-	}
 
 	public LoginFrame(LoginControlador c) {
 		super();

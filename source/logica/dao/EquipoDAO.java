@@ -36,6 +36,47 @@ public class EquipoDAO {
 			//we close all the connections
 			stmt.close();
 			rs.close();
+			DAOCM.closeConnection();
+
+			//Return the team vector
+			return equi;
+
+
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public Vector<Equipo> getAllEquiposOrderByPuntaje(){
+		Vector<Equipo> equi = new Vector<Equipo>();
+
+		try{
+			//connect to db
+			Connection connection = DAOCM.getConnection();
+			//create statement. we create an special statement. This rs will be able to scroll upwards and backwards
+			Statement stmt = connection.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+			String query = "SELECT id, nombre, puntaje FROM Equipo ORDER BY puntaje DESC";
+			//execute query
+			ResultSet rs = stmt.executeQuery(query);
+
+			//we move to the first row - ResultSet starts "before first"
+			//we create the new team
+			while(rs.next()){
+				Equipo e = new Equipo(rs.getInt("id"), rs.getString("nombre"),rs.getInt("puntaje"));
+				equi.addElement(e);
+			}
+
+			//we close all the connections
+			stmt.close();
+			rs.close();
+			DAOCM.closeConnection();
 
 			//Return the team vector
 			return equi;
@@ -75,6 +116,7 @@ public class EquipoDAO {
 			//we close all the connections
 			stmt.close();
 			rs.close();
+			DAOCM.closeConnection();
 
 			//Return the team vector
 			return e;
@@ -119,6 +161,7 @@ public class EquipoDAO {
 
 			stmt.close();
 			rs.close();
+			DAOCM.closeConnection();
 
 			// devuelve el equipo
 			return e;
@@ -164,6 +207,7 @@ public class EquipoDAO {
 			stmt.close();
 			stmt2.close();
 			rs2.close();
+			DAOCM.closeConnection();
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}catch (Exception ex) {
@@ -173,6 +217,54 @@ public class EquipoDAO {
 			//DAOCM.getConnection().close();
 		}
 
+	}
+
+	public Vector<Equipo> getAllEquiposByTorneo(String nombre) {
+		Vector<Equipo> equi = new Vector<Equipo>();
+
+		try{
+			//connect to db
+			Connection connection = DAOCM.getConnection();
+			//create statement. we create an special statement. This rs will be able to scroll upwards and backwards
+			Statement stmt = connection.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+			String query = 
+				"SELECT e.id, e.nombre, p.puntaje " +
+				"FROM Equipo e " +
+				"INNER JOIN Posiciones p " +
+				"ON p.equipo_fk = e.id " +
+				"INNER JOIN Torneo t " +
+				"ON t.id = p.torneo_fk " +
+				"WHERE t.nombre LIKE '"+nombre+"' " +
+				"AND p.participa = 1 " +
+				"ORDER BY e.puntaje DESC";
+			//execute query
+			ResultSet rs = stmt.executeQuery(query);
+
+			//we move to the first row - ResultSet starts "before first"
+			//we create the new team
+			while(rs.next()){
+				Equipo e = new Equipo(rs.getInt("id"), rs.getString("nombre"),rs.getInt("puntaje"));
+				equi.addElement(e);
+			}
+
+			//we close all the connections
+			stmt.close();
+			rs.close();
+			DAOCM.closeConnection();
+
+			//Return the team vector
+			return equi;
+
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

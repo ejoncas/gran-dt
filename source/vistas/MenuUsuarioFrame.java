@@ -13,6 +13,7 @@ import controlador.AdministrarTorneoAmigosControlador;
 import controlador.ArmarEquipoControlador;
 import controlador.InscribirTorneoAmigosControlador;
 import controlador.MostrarEquipoControlador;
+import controlador.TablaPosicionesControlador;
 
 
 /**
@@ -43,6 +44,7 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
 	private JMenuItem btnArmarEquipo;
 	private JMenuItem btnEquipoEstado;
 	private JMenuItem btnInscribir;
+	private JMenuItem btnVerTablas;
 	private JMenuItem btnCrear;
 	private JMenuItem btnAceptar;
 	private JMenu jMenu2;
@@ -84,9 +86,9 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
 						btnEquipoEstado.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
 								System.out.println("btnEquipoEstado.actionPerformed, event="+evt);
-//								MostrarEquipoFrame frame = new MostrarEquipoFrame();
-//								frame.setVisible(true);
-//								desktopPane.add(frame);							
+								//								MostrarEquipoFrame frame = new MostrarEquipoFrame();
+								//								frame.setVisible(true);
+								//								desktopPane.add(frame);							
 								MostrarEquipoControlador mec = new MostrarEquipoControlador();
 								desktopPane.add(mec.getFrame());
 							}
@@ -132,6 +134,18 @@ public class MenuUsuarioFrame extends javax.swing.JFrame {
 								//AdministrarTorneoAmigosFrame frame = new AdministrarTorneoAmigosFrame();
 								//frame.setVisible(true);
 								desktopPane.add(atac.getFrame());							}
+						});
+					}
+					{
+						btnVerTablas = new JMenuItem();
+						jMenu2.add(btnVerTablas);
+						btnVerTablas.setText("Ver Tablas de Posiciones");
+						btnVerTablas.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								System.out.println("btnVerTablas.actionPerformed, event="+evt);
+								TablaPosicionesControlador tpc = new TablaPosicionesControlador();
+								desktopPane.add(tpc.getFrame());
+							}
 						});
 					}
 				}

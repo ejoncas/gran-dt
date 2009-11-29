@@ -14,7 +14,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
-import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 import controlador.AltaUsuarioControlador;
@@ -56,18 +55,6 @@ public class AltaUsuario1Frame extends javax.swing.JFrame {
 	private final AltaUsuarioControlador auc;
 
 
-	/**
-	 * Auto-generated main method to display this JFrame
-	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				AltaUsuario1Frame inst = new AltaUsuario1Frame(new AltaUsuarioControlador());
-				inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
-			}
-		});
-	}
 
 	public AltaUsuario1Frame(AltaUsuarioControlador a) {
 		super();

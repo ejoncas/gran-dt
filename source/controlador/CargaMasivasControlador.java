@@ -142,6 +142,10 @@ public class CargaMasivasControlador {
 		EquipoSuplente es;
 
 		try{
+
+			//cargamos los jugadores
+			this.logica.cargarJugadores();
+
 			csvParser = new CsvReader(pathcsv);
 			//we set the default delimiter
 			csvParser.setDelimiter(';');
@@ -152,6 +156,7 @@ public class CargaMasivasControlador {
 
 			while(csvParser.readRecord()){
 				//todos los usuarios se crean con password csv
+				System.out.println("ES ADMIN : " +csvParser.get(0));
 				u = new Usuario(csvParser.get(1), csvParser.get(2), csvParser.get(3), 
 						Integer.parseInt(csvParser.get(4)), 
 						new Date(Integer.parseInt(csvParser.get(5).split("/")[2]),Integer.parseInt(csvParser.get(5).split("/")[1]),Integer.parseInt(csvParser.get(5).split("/")[0])), 
@@ -159,7 +164,7 @@ public class CargaMasivasControlador {
 						csvParser.get(11), Integer.parseInt(csvParser.get(12)), Integer.parseInt(csvParser.get(13)), 
 						csvParser.get(14).substring(0, 1), csvParser.get(15), Integer.parseInt(csvParser.get(16).replaceAll("-", "")), Integer.parseInt(csvParser.get(17).replaceAll("-", "")), 
 						csvParser.get(18), csvParser.get(19), "csv");
-
+				u.setMontoDisponible(60000000);
 				//creamos el equipo con el nombre del usuario
 				e = new Equipo("Equipo"+csvParser.get(1)+csvParser.get(2));
 
@@ -182,8 +187,7 @@ public class CargaMasivasControlador {
 				Delantero ds1 = (Delantero) this.logica.getJugadorByNombre(csvParser.get(34).split(",")[1], csvParser.get(34).split(",")[0]);
 				Delantero ds2 = (Delantero) this.logica.getJugadorByNombre(csvParser.get(35).split(",")[1], csvParser.get(35).split(",")[0]);
 
-				//liberamos el vector de jugadores 
-				this.logica.liberarJugadores();
+
 
 
 				Vector<Defensor> def = new Vector<Defensor>();
@@ -204,12 +208,12 @@ public class CargaMasivasControlador {
 				vol.addElement(vt1);
 
 				//Creamos el vector de delanteros titulare
-				del.addElement(ds2);
-				del.addElement(ds1);
+				del.addElement(ddt2);
+				del.addElement(ddt1);
 
 				//Creamos el vector de delanteros suplentes
-				dels.addElement(ddt2);
-				dels.addElement(ddt1);
+				dels.addElement(ds2);
+				dels.addElement(ds1);
 
 				et = new EquipoTitular(at, def, vol, del);
 				es = new EquipoSuplente(as,ds,vs, dels);
@@ -218,6 +222,9 @@ public class CargaMasivasControlador {
 				this.adminDAO.guardarEquipoSuplente(e, es);
 
 			}
+
+			//liberamos el vector de jugadores 
+			this.logica.liberarJugadores();
 
 			return "Los equipos han sido cargados correctamente.";
 

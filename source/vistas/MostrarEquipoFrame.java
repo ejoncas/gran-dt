@@ -10,6 +10,7 @@ import javax.swing.JTable;
 import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 
+import controlador.JugadorTableModel;
 import controlador.MostrarEquipoControlador;
 
 /**
@@ -36,6 +37,7 @@ public class MostrarEquipoFrame extends javax.swing.JInternalFrame {
 	private JTable tableSuplente;
 	private JLabel lblSuplente;
 	private JScrollPane jScrollPane2;
+	private JLabel lblPuntUltFDesc;
 	private JScrollPane jScrollPane1;
 	private JTable tableTitular; 
 
@@ -83,11 +85,7 @@ public class MostrarEquipoFrame extends javax.swing.JInternalFrame {
 			}
 			{
 				lblUltFech = new JLabel();
-				lblUltFech.setText("Puntaje obtenido en la ultima fecha:");
-			}
-			{
-				final JLabel jLabel1 = new JLabel();
-				jLabel1.setText("<>");
+				lblUltFech.setText("<>");
 			}
 			{
 				lblAceptar = new JButton();
@@ -128,6 +126,10 @@ public class MostrarEquipoFrame extends javax.swing.JInternalFrame {
 				}
 			}
 			{
+				lblPuntUltFDesc = new JLabel();
+				lblPuntUltFDesc.setText("Puntaje Ultima Fecha");
+			}
+			{
 				lblSuplente = new JLabel();
 				lblSuplente.setText("Equipo suplente");
 			}
@@ -139,7 +141,7 @@ public class MostrarEquipoFrame extends javax.swing.JInternalFrame {
 					.addContainerGap()
 					.addComponent(lblTitular, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(20)
-					.addComponent(jScrollPane1, 0, 176, Short.MAX_VALUE)
+					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 					.addComponent(lblSuplente, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
@@ -150,43 +152,43 @@ public class MostrarEquipoFrame extends javax.swing.JInternalFrame {
 							.addComponent(lblPuntAcum, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-									.addComponent(lblAceptar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+									.addComponent(lblAceptar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addComponent(lblUltFech, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-									.addComponent(lblUltFech, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addComponent(lblPuntUltFDesc, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
 									.addContainerGap());
 			thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
-					.addContainerGap(17, 17)
+					.addContainerGap()
 					.addGroup(thisLayout.createParallelGroup()
 							.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-									.addGroup(thisLayout.createParallelGroup()
-											.addComponent(lblUltFech, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE)
-											.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-													.addComponent(lblAcumulado, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-													.addGap(88)))
-													.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-													.addComponent(lblUltFech, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-													.addGap(40)
-													.addComponent(lblAceptar, 0, 162, Short.MAX_VALUE)
-													.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, GroupLayout.PREFERRED_SIZE))
-													.addGroup(thisLayout.createSequentialGroup()
-															.addPreferredGap(lblAcumulado, lblTitular, LayoutStyle.ComponentPlacement.INDENT)
-															.addGroup(thisLayout.createParallelGroup()
-																	.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-																			.addGroup(thisLayout.createParallelGroup()
-																					.addComponent(lblTitular, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE)
-																					.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-																							.addPreferredGap(lblTitular, lblSuplente, LayoutStyle.ComponentPlacement.INDENT)
-																							.addComponent(lblSuplente, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
-																							.addGap(43)))
-																							.addComponent(lblPuntAcum, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-																							.addGap(0, 264, Short.MAX_VALUE))
-																							.addGroup(thisLayout.createSequentialGroup()
-																									.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 487, GroupLayout.PREFERRED_SIZE)
-																									.addGap(0, 0, Short.MAX_VALUE))
-																									.addGroup(thisLayout.createSequentialGroup()
-																											.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 487, GroupLayout.PREFERRED_SIZE)
-																											.addGap(0, 0, Short.MAX_VALUE)))))
-																											.addGap(8));
+									.addComponent(lblAcumulado, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+									.addGap(0, 360, Short.MAX_VALUE))
+									.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+											.addComponent(lblPuntUltFDesc, 0, 187, Short.MAX_VALUE)
+											.addGap(0, 323, GroupLayout.PREFERRED_SIZE))
+											.addGroup(thisLayout.createSequentialGroup()
+													.addPreferredGap(lblAcumulado, lblTitular, LayoutStyle.ComponentPlacement.INDENT)
+													.addGroup(thisLayout.createParallelGroup()
+															.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+																	.addGroup(thisLayout.createParallelGroup()
+																			.addComponent(lblTitular, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE)
+																			.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+																					.addPreferredGap(lblTitular, lblSuplente, LayoutStyle.ComponentPlacement.INDENT)
+																					.addComponent(lblSuplente, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
+																					.addGap(37)))
+																					.addGroup(thisLayout.createParallelGroup()
+																							.addComponent(lblUltFech, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+																							.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+																									.addComponent(lblPuntAcum, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+																									.addGap(6)))
+																									.addGap(86)
+																									.addComponent(lblAceptar, 0, 183, Short.MAX_VALUE))
+																									.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+																											.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 487, GroupLayout.PREFERRED_SIZE)
+																											.addGap(0, 11, Short.MAX_VALUE))
+																											.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+																													.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 487, GroupLayout.PREFERRED_SIZE)
+																													.addGap(0, 11, Short.MAX_VALUE)))))
+																													.addContainerGap());
 			pack();
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -9,12 +9,20 @@ public class DAOConnectionManager {
 
 
 	//Home - add your own settings here
-	protected String jdbc = "jdbc:sqlserver://";
-	protected String servidor = "<yoursqlsrvip>:1433";
-	protected String usuario = "<user>";
-	protected String password = "<secret>";
-	protected String defaultdb = "<grandtdb>";
+	protected static String jdbc = "jdbc:sqlserver://";
+	protected static String servidor = "192.168.1.3:1433";
+	protected static String usuario = "jonatan";
+	protected static String password = "manager";
+	protected static String defaultdb = "grandt";
 	private static DAOConnectionManager DAOCM;
+
+	//	//Candes Home
+	//	protected String jdbc = "jdbc:sqlserver://";
+	//	protected String servidor = "192.168.1.105:1433";
+	//	protected String usuario = "poo";
+	//	protected String password = "poo";
+	//	protected String defaultdb = "grandt";
+	//	private static DAOConnectionManager DAOCM;
 
 	//Laboratorio
 	//Dejar esto comentado para cuando estamos en el laboratorio!
@@ -25,6 +33,9 @@ public class DAOConnectionManager {
 	//	protected String defaultdb = "poo07";
 	//	private static DAOConnectionManager DAOCM;
 
+	private static Connection connection;
+	private static int anidamiento = 0;
+
 	public static DAOConnectionManager getDAOConectionManager()
 	{
 		if(DAOCM==null) {
@@ -33,23 +44,40 @@ public class DAOConnectionManager {
 		return DAOCM;
 	}
 
-	private Connection connect()
+	public Connection connect()
 	{
-		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
-
-			String dbConnectString = this.jdbc+this.servidor+";DatabaseName="+this.defaultdb;
-			Connection connection = DriverManager.getConnection(dbConnectString, usuario, password);
+		//		try {
+		//			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+		//
+		//			String dbConnectString = this.jdbc+this.servidor+";DatabaseName="+this.defaultdb;
+		//			connection = DriverManager.getConnection(dbConnectString, usuario, password);
+		//			return connection;
+		//		}
+		//		catch(SQLException e) {
+		//			System.out.println("Mensaje de error: " + e.getMessage());
+		//			return null;
+		//		}
+		//		catch(Exception ex) {
+		//			System.out.println("Mensaje de error: " + ex.getMessage());
+		//			return null;
+		//		}
+		if(connection==null){
+			try {
+				String dbConnectString = jdbc+servidor+";DatabaseName="+defaultdb;
+				Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+				connection = DriverManager.getConnection(dbConnectString,usuario,password);
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new RuntimeException(e);
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				throw new RuntimeException(e);
+			}
+		}else{
+			anidamiento++;
 			return connection;
 		}
-		catch(SQLException e) {
-			System.out.println("Mensaje de error: " + e.getMessage());
-			return null;
-		}
-		catch(Exception ex) {
-			System.out.println("Mensaje de error: " + ex.getMessage());
-			return null;
-		}
+		return connection;
 	}
 
 	public Connection getConnection()
@@ -57,14 +85,19 @@ public class DAOConnectionManager {
 		return connect();
 	}
 
-	public void closeConnection()
+	public  void closeConnection()
 	{
-		try {
-			DAOCM.closeConnection();
-		}
-		catch(Exception ex) {
-			System.out.println("Mensaje de error: " + ex.getMessage());
+		if(anidamiento==0){
+			try {
+				connection.close();
+				connection=null;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}else{
+			anidamiento--;
 		}
 	}
+
 
 }

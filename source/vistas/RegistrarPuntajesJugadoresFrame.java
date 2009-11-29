@@ -7,7 +7,6 @@ import javax.swing.JList;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.ListModel;
-import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 
@@ -36,18 +35,6 @@ public class RegistrarPuntajesJugadoresFrame extends javax.swing.JInternalFrame 
 	private JLabel lblJugador;
 	private JButton btnSeleccionar;
 
-	/**
-	 * Auto-generated main method to display this JFrame
-	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				RegistrarPuntajesJugadoresFrame inst = new RegistrarPuntajesJugadoresFrame();
-	//			inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
-			}
-		});
-	}
 
 	public RegistrarPuntajesJugadoresFrame() {
 		super("Cargar puntajes de jugadores", true, true, true, true);
