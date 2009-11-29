@@ -6,29 +6,15 @@ public class Torneo {
 	private Vector<Usuario> participantes;
 	private Vector<Usuario> postulados;
 	private Usuario creador;
-	private int nroFecha; //TODO que onda esta ? para q se usa la fecha esta ?
-	private Vector<Posicion> posiciones;
-
+	private int nroFecha;
 
 	public Torneo(String nombre) { 
-	this.nombre=nombre;
-	this.participantes= new Vector();
-	this.postulados= new Vector();
-	this.creador=null;
-	this.posiciones= new Vector();
+		this.nombre=nombre;
+		this.participantes= new Vector<Usuario>();
+		this.postulados= new Vector<Usuario>();
+		this.creador=null;
 	}
 
-	public void addObserver(Object aObserver_O) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void removeObserver(Object aObserver_O) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void notifyObservers() {
-		throw new UnsupportedOperationException();
-	}
 
 	public String getNombre() {
 		return nombre;
@@ -70,17 +56,10 @@ public class Torneo {
 		this.nroFecha = nroFecha;
 	}
 
-	public Vector<Posicion> getPosiciones() {
-		return posiciones;
-	}
-
-	public void setPosiciones(Vector<Posicion> posiciones) {
-		this.posiciones = posiciones;
-	}
-	
+	@Override
 	public String toString(){	
 		return this.nombre;
 	}
-	
-	
+
+
 }

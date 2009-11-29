@@ -2,9 +2,7 @@ package controlador;
 
 import logica.SistemaGranDT;
 import logica.Torneo;
-import logica.Usuario;
 import logica.administradores.AdministradorDAOs;
-import logica.dao.TorneoDAO;
 
 public class CrearTorneoAmigosControlador {	
 
@@ -12,9 +10,6 @@ public class CrearTorneoAmigosControlador {
 	private final SistemaGranDT logica;
 	private final AdministradorDAOs adminDAO;
 	//private final TorneoDAO tdao;
-	
-	// para guardar el nombre del torneo
-	private String nombre;
 
 	// constructor del controlador
 	public CrearTorneoAmigosControlador (){
@@ -23,15 +18,15 @@ public class CrearTorneoAmigosControlador {
 		this.adminDAO=new AdministradorDAOs();
 		System.out.println(this.logica);
 	}
-	
+
 	// validacion
-		
+
 	public String validarCrearTorneo(String n){
 		if (n.isEmpty())
 			return "Debe ingresar un nombre para el torneo.";		
 		return null;
 	}
-	
+
 	public String crearTorneo(String n){
 		String resultado = validarCrearTorneo(n);
 		if (resultado==null){ // si el ingreso del nombre del torneo esta ok
@@ -49,13 +44,13 @@ public class CrearTorneoAmigosControlador {
 		else
 			return resultado; // devuelve el mensaje de error
 	}
-	
-//	public String crearTorneo(String n, Usuario u){
-//		String resultado = validarExisteTorneo(String n);
-//		if (resultado==null)
-//			
-//		
-//		return null;
-//		
-//	}
+
+	//	public String crearTorneo(String n, Usuario u){
+	//		String resultado = validarExisteTorneo(String n);
+	//		if (resultado==null)
+	//			
+	//		
+	//		return null;
+	//		
+	//	}
 }

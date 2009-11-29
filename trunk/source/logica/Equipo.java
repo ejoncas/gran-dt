@@ -5,7 +5,6 @@ public class Equipo {
 	private EquipoTitular equipoTitular;
 	private EquipoSuplente equipoSuplente;
 	private int puntajeacum;
-	private int puntajeult;
 
 	public Equipo(String nombre) {
 		super();
@@ -14,12 +13,6 @@ public class Equipo {
 		this.equipoSuplente=null;
 		this.equipoTitular=null;
 	}
-	//	public Equipo(int id,String nombre) {
-	//		super();
-	//		this.setId(id);
-	//		this.nombre = nombre;
-	//		this.setPuntajeacum(0);
-	//	}
 
 	public Equipo(int id, String nombre, int puntaje) {
 		// TODO Auto-generated constructor stub
