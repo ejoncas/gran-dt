@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import logica.SistemaGranDT;
 import logica.Torneo;
+import logica.Usuario;
 import logica.administradores.AdministradorDAOs;
 import vistas.InscribirTorneoAmigosFrame;
 
@@ -61,12 +62,24 @@ public class InscribirTorneoAmigosControlador {
 	}
 
 	public String postularse(Torneo t){
+		Usuario u = logica.getUsuarioActual();
 		if (t==null)
 			return "Debe seleccionar el torneo al que desea postularse.";
 		else{
+			if (adminDAO.verificarSiEsCreador(t,u)){ // si es creador del torneo
+				return "No puede postularse a un torneo del que es creador, ya participa!";
+			}
+			else{
+				if (adminDAO.verificarSiEsParticipante(t,u)) // si ya esta participando
+					return "Ya esta participando en el torneo.";
+				else if (adminDAO.verificarSiEsPostulado(t,u)) // si esta postulado
+					return "Ya se encuentra postulado en el torneo, debe esperar confirmacion por parte del creador.";
+			}
 			adminDAO.postularse(t,logica.getUsuarioActual());			
 			return null;
 		}
+		
+		//return r–
 
 	}
 
