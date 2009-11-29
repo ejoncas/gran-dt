@@ -1,11 +1,10 @@
 package vistas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.DefaultComboBoxModel;
+
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -14,13 +13,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.ListModel;
-import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 import logica.Torneo;
-
 import controlador.InscribirTorneoAmigosControlador;
-import controlador.MostrarEquipoControlador;
 
 
 /**
@@ -47,9 +43,9 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 	private JButton btnBuscar;
 	private DefaultListModel listEncontradosModel;
 
-	
+
 	private InscribirTorneoAmigosControlador itac;
-	
+
 	public InscribirTorneoAmigosControlador getControlador() {
 		return itac;
 	}
@@ -58,18 +54,6 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 		this.itac = c;
 	}
 
-	/**
-	 * Auto-generated main method to display this JFrame
-	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				InscribirTorneoAmigosFrame inst = new InscribirTorneoAmigosFrame();
-	//			inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
-			}
-		});
-	}
 
 	public InscribirTorneoAmigosFrame() {
 		super("Inscribir en torneo de amigos", true, true, true, true);
@@ -78,7 +62,7 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 
 	private void initGUI() {
 		try {
-			GroupLayout thisLayout = new GroupLayout((JComponent)getContentPane());
+			GroupLayout thisLayout = new GroupLayout(getContentPane());
 			getContentPane().setLayout(thisLayout);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			{
@@ -93,7 +77,7 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 						System.out.println("jrbDuenio.actionPerformed, event="+evt);
 						if (jrbDuenio.isSelected())
 							jrbNombre.setSelected(false);
-			
+
 					}
 				});
 			}
@@ -114,7 +98,7 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 				txtBuscar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("txtBuscar.actionPerformed, event="+evt);
-								}
+					}
 				});
 			}
 			{
@@ -123,21 +107,21 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 				btnBuscar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						listEncontradosModel.removeAllElements();
-						
+
 						System.out.println("btnBuscar.actionPerformed, event="+evt);
 						String busqueda = null;
 						busqueda = txtBuscar.getText();
 						if (jrbDuenio.isSelected()){ // buscar por duenio
 							itac.buscarTorneosPorDuenio(busqueda);
-							
+
 						}
 						else{
 							if (jrbNombre.isSelected()){ // buscar por nombre del torneo
 								itac.buscarTorneosPorNombre(busqueda);								
 							}
-					
+
 						}
-								}
+					}
 				});
 			}
 			{
@@ -167,7 +151,7 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 							dispose();
 
 						}
-							
+
 					}
 				});
 			}
@@ -179,70 +163,70 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 						System.out.println("btnCancelar.actionPerformed, event="+evt);
 						setDefaultCloseOperation(EXIT_ON_CLOSE);	
 						dispose();
-						}
+					}
 				});
 			}
 			thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
-				.addContainerGap()
-				.addComponent(lblSeleccione, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addGap(17)
-				.addComponent(jrbDuenio, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-				.addComponent(jrbNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-				.addComponent(txtBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-				.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addGap(19)
-				.addComponent(jScrollPane1, 0, 129, Short.MAX_VALUE)
-				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, GroupLayout.PREFERRED_SIZE)
-				.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-				    .addComponent(btnPostularse, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(btnCancelar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addContainerGap());
+					.addContainerGap()
+					.addComponent(lblSeleccione, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(17)
+					.addComponent(jrbDuenio, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+					.addComponent(jrbNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+					.addComponent(txtBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+					.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(19)
+					.addComponent(jScrollPane1, 0, 129, Short.MAX_VALUE)
+					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, GroupLayout.PREFERRED_SIZE)
+					.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+							.addComponent(btnPostularse, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnCancelar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addContainerGap());
 			thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
-				.addContainerGap()
-				.addGroup(thisLayout.createParallelGroup()
-				    .addGroup(thisLayout.createSequentialGroup()
-				        .addComponent(lblSeleccione, GroupLayout.PREFERRED_SIZE, 359, GroupLayout.PREFERRED_SIZE)
-				        .addGap(0, 0, Short.MAX_VALUE))
-				    .addGroup(thisLayout.createSequentialGroup()
-				        .addComponent(jrbDuenio, GroupLayout.PREFERRED_SIZE, 359, GroupLayout.PREFERRED_SIZE)
-				        .addGap(0, 0, Short.MAX_VALUE))
-				    .addGroup(thisLayout.createSequentialGroup()
-				        .addComponent(jrbNombre, GroupLayout.PREFERRED_SIZE, 359, GroupLayout.PREFERRED_SIZE)
-				        .addGap(0, 0, Short.MAX_VALUE))
-				    .addGroup(thisLayout.createSequentialGroup()
-				        .addComponent(txtBuscar, GroupLayout.PREFERRED_SIZE, 359, GroupLayout.PREFERRED_SIZE)
-				        .addGap(0, 0, Short.MAX_VALUE))
-				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 353, GroupLayout.PREFERRED_SIZE)
-				        .addGap(0, 6, Short.MAX_VALUE))
-				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				        .addGap(97)
-				        .addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
-				        .addGroup(thisLayout.createParallelGroup()
-				            .addGroup(thisLayout.createSequentialGroup()
-				                .addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
-				                .addGap(0, 0, Short.MAX_VALUE))
-				            .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				                .addGap(13)
-				                .addComponent(btnPostularse, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
-				                .addGap(0, 6, Short.MAX_VALUE)))))
-				.addContainerGap(30, 30));
+					.addContainerGap()
+					.addGroup(thisLayout.createParallelGroup()
+							.addGroup(thisLayout.createSequentialGroup()
+									.addComponent(lblSeleccione, GroupLayout.PREFERRED_SIZE, 359, GroupLayout.PREFERRED_SIZE)
+									.addGap(0, 0, Short.MAX_VALUE))
+									.addGroup(thisLayout.createSequentialGroup()
+											.addComponent(jrbDuenio, GroupLayout.PREFERRED_SIZE, 359, GroupLayout.PREFERRED_SIZE)
+											.addGap(0, 0, Short.MAX_VALUE))
+											.addGroup(thisLayout.createSequentialGroup()
+													.addComponent(jrbNombre, GroupLayout.PREFERRED_SIZE, 359, GroupLayout.PREFERRED_SIZE)
+													.addGap(0, 0, Short.MAX_VALUE))
+													.addGroup(thisLayout.createSequentialGroup()
+															.addComponent(txtBuscar, GroupLayout.PREFERRED_SIZE, 359, GroupLayout.PREFERRED_SIZE)
+															.addGap(0, 0, Short.MAX_VALUE))
+															.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+																	.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 353, GroupLayout.PREFERRED_SIZE)
+																	.addGap(0, 6, Short.MAX_VALUE))
+																	.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+																			.addGap(97)
+																			.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+																			.addGroup(thisLayout.createParallelGroup()
+																					.addGroup(thisLayout.createSequentialGroup()
+																							.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
+																							.addGap(0, 0, Short.MAX_VALUE))
+																							.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+																									.addGap(13)
+																									.addComponent(btnPostularse, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
+																									.addGap(0, 6, Short.MAX_VALUE)))))
+																									.addContainerGap(30, 30));
 			pack();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-//	public JList getListEncontrados() {
-//		return listEncontrados;
-//	}
-//
-//	public void setListEncontrados(JList listEncontrados) {
-//		this.listEncontrados = listEncontrados;
-//	}
+	//	public JList getListEncontrados() {
+	//		return listEncontrados;
+	//	}
+	//
+	//	public void setListEncontrados(JList listEncontrados) {
+	//		this.listEncontrados = listEncontrados;
+	//	}
 
 	public DefaultListModel getListEncontradosModel() {
 		return this.listEncontradosModel;
@@ -251,7 +235,7 @@ public class InscribirTorneoAmigosFrame extends javax.swing.JInternalFrame {
 	public void setListEncontradosModel(ListModel listEncontradosModel) {
 		this.listEncontradosModel = (DefaultListModel) listEncontradosModel;
 	}
-	
+
 
 
 }

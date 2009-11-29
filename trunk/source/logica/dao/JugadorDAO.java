@@ -39,6 +39,7 @@ public class JugadorDAO {
 			//we close all the connections
 			stmt.close();
 			rs.close();
+			//			DAOCM.closeConnection();;
 
 			//Return the player
 			return r;
@@ -69,7 +70,7 @@ public class JugadorDAO {
 				"on e.id = ej.equipo_fk "+			
 				"inner join Jugador j " +
 				"on j.id = ej.jugador_fk " +
-				"where e.id = " + equipoid ;
+				"where ej.titular=1 and e.id = " + equipoid ;
 
 			//execute query
 			ResultSet rs = stmt.executeQuery(query);
@@ -81,7 +82,7 @@ public class JugadorDAO {
 			//we close all the connections
 			stmt.close();
 			rs.close();
-
+			//DAOCM.closeConnection();;
 			//Return the player
 			return puntajeacum;
 
@@ -122,6 +123,7 @@ public class JugadorDAO {
 			//we close all the connections
 			stmt.close();
 			rs.close();
+			//			DAOCM.closeConnection();;
 
 			//Return the player
 			return jugadores;
@@ -178,7 +180,7 @@ public class JugadorDAO {
 			//we close all the connections
 			stmt.close();
 			rs.close();
-
+			//DAOCM.closeConnection();;
 			//Return the player
 			return jugadores;
 
@@ -237,6 +239,7 @@ public class JugadorDAO {
 			stmt.close();
 			stmt2.close();
 			rs2.close();
+			//DAOCM.closeConnection();;
 		}catch (SQLException e) {
 
 			e.printStackTrace();
@@ -250,7 +253,6 @@ public class JugadorDAO {
 
 	public void updatePuntaje(String nombre, String apellido, int fecha,
 			int puntaje) {
-		//TODO ver que onda con la fecha
 		try{
 			//connect to db
 			Connection connection = DAOCM.getConnection();
@@ -268,12 +270,41 @@ public class JugadorDAO {
 
 			//we close all the connections
 			stmt.close();
+			//DAOCM.closeConnection();;
 
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+
+	}
+
+	public void updatePuntaje(int id, int puntaje) {
+		try{
+			//connect to db
+			Connection connection = DAOCM.getConnection();
+
+			String query = "UPDATE Jugador SET puntaje = ? WHERE id = ?";
+			//execute query
+
+			PreparedStatement stmt = connection.prepareStatement(query);
+
+			stmt.setInt(1, puntaje);
+			stmt.setInt(2, id);
+
+			stmt.execute();
+
+			//we close all the connections
+			stmt.close();
+			//DAOCM.closeConnection();;
+
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+
 
 	}
 

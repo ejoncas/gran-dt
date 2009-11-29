@@ -16,6 +16,7 @@ import javax.swing.WindowConstants;
 
 import logica.Jugador;
 import controlador.ArmarEquipoControlador;
+import controlador.JugadorTableModel;
 
 
 /**
@@ -71,7 +72,7 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 	}
 
 	public ArmarEquipoFrame() {
-		super("Armar Equipo", true, true, true, true);
+		super("Armar Equipo", false, true, true, true);
 		//creamos las listas vacias
 		this.tableJugadoresModel=new JugadorTableModel();
 		this.tableEquipoSModel=new JugadorTableModel();
@@ -393,6 +394,8 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 		//TODO Remover del monto gastado!
 		Jugador removed = tableEquipoTModel.removeJugadorAt(tableEquipoT.getSelectedRow());
 		tableJugadoresModel.addJugador(removed);
+		this.aec.setMontoDisponible(this.aec.getMontoDisponible() + removed.getPrecio());
+		lblMD.setText(this.aec.getMontoDisponibleString());
 	}
 	//Quitar Suplente
 	private void btnQuitarSActionPerformed(ActionEvent evt) {
@@ -400,6 +403,8 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 		//TODO Remover del monto gastad! actualizar precios
 		Jugador removed = tableEquipoSModel.removeJugadorAt(tableEquipoS.getSelectedRow());
 		tableJugadoresModel.addJugador(removed);
+		this.aec.setMontoDisponible(this.aec.getMontoDisponible() + removed.getPrecio());
+		lblMD.setText(this.aec.getMontoDisponibleString());
 	}
 
 	private void btnCancelarActionPerformed(ActionEvent evt) {

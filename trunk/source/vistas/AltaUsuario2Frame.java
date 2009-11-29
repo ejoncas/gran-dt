@@ -56,9 +56,7 @@ public class AltaUsuario2Frame extends javax.swing.JFrame {
 	private JLabel lblCalle;
 	private final AltaUsuarioControlador auc;
 
-	/**
-	 * Auto-generated main method to display this JFrame
-	 */
+
 
 	public AltaUsuario2Frame(AltaUsuarioControlador auc) {
 		super();
@@ -135,7 +133,7 @@ public class AltaUsuario2Frame extends javax.swing.JFrame {
 				btnCancelar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e)
 					{	dispose();
-						setDefaultCloseOperation(EXIT_ON_CLOSE);
+					setDefaultCloseOperation(EXIT_ON_CLOSE);
 					}
 				});
 			}

@@ -4,7 +4,6 @@ import java.util.Vector;
 
 import logica.Jugador;
 import logica.SistemaGranDT;
-import vistas.JugadorTableModel;
 import vistas.MostrarEquipoFrame;
 
 public class MostrarEquipoControlador {

@@ -1,4 +1,4 @@
-package vistas;
+package controlador;
 
 import java.util.Vector;
 
@@ -6,17 +6,17 @@ import javax.swing.table.AbstractTableModel;
 
 import logica.Jugador;
 
-public class JugadorTableModel extends AbstractTableModel {
+public class JugadorTableModelP extends AbstractTableModel {
 
-	private String [] columnNames = {"Jugador","Equipo", "Posicion", "Cotiza"};
+	private String [] columnNames = {"Jugador","Equipo", "Posicion", "Puntaje"};
 	private Vector<Jugador> datalist = new Vector<Jugador>();
 
 
-	public JugadorTableModel() {
+	public JugadorTableModelP() {
 
 	}
 
-	public JugadorTableModel(Vector<Jugador> l) {
+	public JugadorTableModelP(Vector<Jugador> l) {
 		datalist.addAll(l);
 	}  
 
@@ -60,12 +60,31 @@ public class JugadorTableModel extends AbstractTableModel {
 		case 2:
 			return j.getPosicion();
 		case 3:
-			return j.getPrecio();
+			return j.getPuntaje();
 		default:
 			return null;
 		}
 	}
 
+
+	@Override
+	public void setValueAt(Object p, int row, int col) {
+		String puntaje = (String) p;
+		if(col==3){
+			try {
+				getJugadorAt(row).setPuntaje(Integer.parseInt(puntaje));
+			} catch (NumberFormatException e) {
+				System.out.println("Solo se permiten formatos numericos");
+				e.printStackTrace();
+			}
+		}
+		fireTableDataChanged();
+	}
+
+	@Override
+	public boolean isCellEditable(int row, int col){
+		return col == 3;
+	}
 
 	public Vector<Jugador> getDatalist() {
 		return datalist;

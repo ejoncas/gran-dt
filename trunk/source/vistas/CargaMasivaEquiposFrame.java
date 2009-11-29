@@ -7,6 +7,7 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
@@ -139,8 +140,9 @@ public class CargaMasivaEquiposFrame extends javax.swing.JInternalFrame {
 	private void btnCargarActionPerformed(ActionEvent evt) {
 		System.out.println("btnCargar.actionPerformed, event="+evt);
 		System.out.println("Parseando el archivo");
-		this.cmec.cargarEquipos(txtPath.getText());
-
+		String r = this.cmec.cargarEquipos(txtPath.getText());
+		JOptionPane.showMessageDialog(null, r);
+		dispose();
 	}
 
 }

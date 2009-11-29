@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import logica.Torneo;
 import logica.Usuario;
 
 public class UsuarioDAO {
@@ -72,10 +71,11 @@ public class UsuarioDAO {
 			//
 			//			
 			//
-			//			// cerrar
-			//			connection.close();
-			//			stmt.close();
-			//			rs.close();
+			// cerrar
+			stmt.close();
+			//DAOCM.closeConnection();;
+
+
 
 
 		}catch (SQLException e) {
@@ -166,8 +166,10 @@ public class UsuarioDAO {
 				u=null;
 
 			// cierre de conexiones
-			stmt.close();
+
 			rs.close();
+			stmt.close();
+
 
 			// devolucion del usuario encontrado
 			return u;
@@ -181,39 +183,39 @@ public class UsuarioDAO {
 			return null;
 		}
 
-//		public int getIdEquipo(Usuario u){
-//			try{
-//				Connection connection = DAOCM.getConnection();
-//				Statement stmt = connection.createStatement();
-//				String tipodoc = u.getTipoDoc();
-//				int nrodoc = u.getNroDoc();
-//				int idEquipo;
-//				String query = "SELECT equipo_fk FROM Usuario WHERE nro_doc = "+nrodoc
-//				+"tipo_doc ="+tipodoc;
-//				ResultSet rs = stmt.executeQuery(query);
-//
-//				//we create the new team
-//
-//				if(rs.next()){
-//					idEquipo=; //TODO aca deberiamos agregar si es necesario el tipo y nro doc del usuario creador y despues los participantes
-//				}
-//				else
-//					t=null;
-//
-//				//we close all the connections
-//				stmt.close();
-//				rs.close();
-//
-//				//Return the team vector
-//				return t;
-//			}catch (SQLException ex) {
-//				ex.printStackTrace();
-//				return null;
-//			}catch (Exception ex) {
-//				ex.printStackTrace();
-//				return null;
-//			}
-//		}
+		//		public int getIdEquipo(Usuario u){
+		//			try{
+		//				Connection connection = DAOCM.getConnection();
+		//				Statement stmt = connection.createStatement();
+		//				String tipodoc = u.getTipoDoc();
+		//				int nrodoc = u.getNroDoc();
+		//				int idEquipo;
+		//				String query = "SELECT equipo_fk FROM Usuario WHERE nro_doc = "+nrodoc
+		//				+"tipo_doc ="+tipodoc;
+		//				ResultSet rs = stmt.executeQuery(query);
+		//
+		//				//we create the new team
+		//
+		//				if(rs.next()){
+		//					idEquipo=; //TODO aca deberiamos agregar si es necesario el tipo y nro doc del usuario creador y despues los participantes
+		//				}
+		//				else
+		//					t=null;
+		//
+		//				//we close all the connections
+		//				stmt.close();
+		//				rs.close();
+		//
+		//				//Return the team vector
+		//				return t;
+		//			}catch (SQLException ex) {
+		//				ex.printStackTrace();
+		//				return null;
+		//			}catch (Exception ex) {
+		//				ex.printStackTrace();
+		//				return null;
+		//			}
+		//		}
 
 	}
 

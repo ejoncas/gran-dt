@@ -238,4 +238,12 @@ public class SistemaGranDT {
 		return null;
 	}
 
+	public Vector<Equipo> cargarEquipos() {
+		Vector<Equipo> e = new Vector<Equipo>();
+
+		e = this.adminDAO.getAllEquiposByPuntaje();
+
+		return e;
+	}
+
 }

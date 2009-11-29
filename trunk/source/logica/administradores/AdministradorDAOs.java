@@ -118,30 +118,30 @@ public class AdministradorDAOs {
 
 
 	public Vector<Torneo> getTorneosPorDuenio(String nombre, String apellido){
-		Vector<Torneo> v = new Vector();
-		v = torneo.getTorneosPorDuenio(nombre, apellido);
-		return v;
-		
+		return torneo.getTorneosPorDuenio(nombre, apellido);
 	}
-	
+
+	//para el admin
+	public Vector<Torneo> getAllTorneos(){
+		return torneo.getAllTorneos();
+	}
+
 	public Vector<Torneo> getTorneosPorNombre(String nombre){
-		Vector<Torneo> v = new Vector();
-		v = torneo.getTorneosLikeNombre(nombre);
-		return v;
+		return torneo.getTorneosLikeNombre(nombre);
 	}
-	
+
 	public void postularse(Torneo t, Usuario u){
 		posiciones.postularTorneo(torneo.getIdTorneo(t.getNombre()), u.getEquipo().getId());
 	}
-	
+
 	public void guardarTorneo(Torneo t){
 		torneo.guardarTorneo(t);		
 	}
-	
+
 	public Torneo getTorneoPorNombre(String nombre){
 		Torneo t = torneo.getTorneoPorNombre(nombre);
 		return t;
-		
+
 	}
 
 
@@ -149,37 +149,54 @@ public class AdministradorDAOs {
 		posiciones.postularTorneo(torneo.getIdTorneo(t.getNombre()), usuarioActual.getEquipo().getId());
 		posiciones.agregarParticipante(torneo.getIdTorneo(t.getNombre()), usuarioActual.getEquipo().getId());
 	}
-	
+
 	public Vector<Torneo> getTorneosCreados(Usuario ua){
 		return torneo.getTorneosCreados(ua.getTipoDoc(),ua.getNroDoc());
-		
+
 	}
-	
+
 	public Vector<String> getPostuladosTorneo(Torneo t){
 		return posiciones.obtenerPostulados(torneo.getIdTorneo(t.getNombre()));
-		
+
 	}
-	
+
 	public Vector<String> getParticipantesTorneo(Torneo t){
 		return posiciones.obtenerParticipantes(torneo.getIdTorneo(t.getNombre()));
-		
+
 	}
-	
+
 	public void aceptarPostuladoTorneo(Equipo e, Torneo t){
 		posiciones.agregarParticipante(torneo.getIdTorneo(t.getNombre()),e.getId());
-		
+
 	}
-	
+
 	public void rechazarPostulado(Equipo e, Torneo t){
 		posiciones.quitarPostulado(torneo.getIdTorneo(t.getNombre()),e.getId());
 	}
-	
+
 	public Equipo getEquipoPorNombre(String nombre){
 		return equipo.getEquipoPorNombre(nombre);
 	}
-	
+
 	public int getIdTorneo(Torneo t){
 		return torneo.getIdTorneo(t.getNombre());
+	}
+
+	public Vector<Equipo> getAllEquiposByPuntaje() {
+		return this.equipo.getAllEquiposOrderByPuntaje();
+	}
+
+	public Vector<Equipo> getAllEquiposByTorneo(Torneo selectedItem) {
+		return this.equipo.getAllEquiposByTorneo(selectedItem.getNombre());
+	}
+
+	public Vector<Torneo> getTorneosParticipando(Usuario usuarioActual) {
+		return this.torneo.getTorneosPorParticipante(usuarioActual.getTipoDoc(), usuarioActual.getNroDoc());
+	}
+
+	public void updatePuntajesPorId(Vector<Jugador> datalist) {
+		for(Jugador j : datalist)
+			this.jugador.updatePuntaje(j.getId(),j.getPuntaje());
 	}
 
 

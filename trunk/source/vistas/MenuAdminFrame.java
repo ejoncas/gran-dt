@@ -7,8 +7,10 @@ import javax.swing.JDesktopPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
+
+import controlador.RegistrarPuntajeJugadorControlador;
+import controlador.TablaPosicionesControlador;
 
 
 /**
@@ -53,18 +55,6 @@ public class MenuAdminFrame extends javax.swing.JFrame {
 	}
 
 
-	/**
-	 * Auto-generated main method to display this JFrame
-	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				MenuAdminFrame inst = new MenuAdminFrame();
-				inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
-			}
-		});
-	}
 
 	public MenuAdminFrame() {
 		super();
@@ -91,9 +81,8 @@ public class MenuAdminFrame extends javax.swing.JFrame {
 						btnPuntajesJug.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
 								System.out.println("btnPuntajesJug.actionPerformed, event="+evt);
-								RegistrarPuntajesJugadoresFrame frame = new RegistrarPuntajesJugadoresFrame();
-								frame.setVisible(true);
-								desktopPane.add(frame);							}
+								RegistrarPuntajeJugadorControlador rpjc = new RegistrarPuntajeJugadorControlador();
+								desktopPane.add(rpjc.getFrame());							}
 						});
 					}
 					{
@@ -103,9 +92,9 @@ public class MenuAdminFrame extends javax.swing.JFrame {
 						btnGenerarTabla.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
 								System.out.println("btnGenerarTabla.actionPerformed, event="+evt);
-								TablasPosicionesFrame frame = new TablasPosicionesFrame();
-								frame.setVisible(true);
-								desktopPane.add(frame);							}
+								TablaPosicionesControlador tpc = new TablaPosicionesControlador();
+								desktopPane.add(tpc.getFrame());
+							}
 						});
 					}
 				}

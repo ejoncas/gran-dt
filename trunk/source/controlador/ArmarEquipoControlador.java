@@ -11,7 +11,6 @@ import logica.Jugador;
 import logica.SistemaGranDT;
 import logica.Volante;
 import vistas.ArmarEquipoFrame;
-import vistas.JugadorTableModel;
 
 public class ArmarEquipoControlador {
 	private ArmarEquipoFrame frame;

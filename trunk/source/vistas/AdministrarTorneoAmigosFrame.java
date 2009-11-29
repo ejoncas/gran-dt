@@ -1,26 +1,20 @@
 package vistas;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle;
-import javax.swing.ListModel;
-import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
-import controlador.AdministrarTorneoAmigosControlador;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import logica.Equipo;
 import logica.Torneo;
+import controlador.AdministrarTorneoAmigosControlador;
 
 /**
  * This code was edited or generated using CloudGarden's Jigloo
@@ -45,25 +39,14 @@ public class AdministrarTorneoAmigosFrame extends javax.swing.JInternalFrame {
 	private JButton btnAceptar;
 	private JList listPostulados;
 	private JLabel lblParticipantes;
-	
+
 	private DefaultListModel listPostuladosModel;
 	private DefaultListModel listParticipantesModel;
-	
+
 	private AdministrarTorneoAmigosControlador atac;
 	private JScrollPane jScrollPane1;
 
-	/**
-	 * Auto-generated main method to display this JFrame
-	 */
-//	public static void main(String[] args) {
-//		SwingUtilities.invokeLater(new Runnable() {
-//			public void run() {
-//				AdministrarTorneoAmigosFrame inst = new AdministrarTorneoAmigosFrame();
-//				//inst.setLocationRelativeTo(null);
-//				inst.setVisible(true);
-//			}
-//		});
-//	}
+
 
 	public AdministrarTorneoAmigosFrame(AdministrarTorneoAmigosControlador c) {
 		super("Administrar torneo de amigos", true, true, true, true);
@@ -73,7 +56,7 @@ public class AdministrarTorneoAmigosFrame extends javax.swing.JInternalFrame {
 
 	private void initGUI() {
 		try {
-			GroupLayout thisLayout = new GroupLayout((JComponent)getContentPane());
+			GroupLayout thisLayout = new GroupLayout(getContentPane());
 			getContentPane().setLayout(thisLayout);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			{
@@ -119,7 +102,7 @@ public class AdministrarTorneoAmigosFrame extends javax.swing.JInternalFrame {
 						atac.aceptarPostulado(e, (Torneo)cmbTorneos.getSelectedItem());
 						JOptionPane.showMessageDialog(null, "Se ha aceptado el equipo exitosamente");
 						atac.refreshTorneo((Torneo) cmbTorneos.getSelectedItem());
-											}
+					}
 				});
 			}
 			{
@@ -128,17 +111,17 @@ public class AdministrarTorneoAmigosFrame extends javax.swing.JInternalFrame {
 				btnRechazar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("btnRechazar.actionPerformed, event="+evt);
-//						Equipo e = null;
-//						e = (Equipo) listPostuladosModel.getElementAt(listPostulados.getSelectedIndex());
+						//						Equipo e = null;
+						//						e = (Equipo) listPostuladosModel.getElementAt(listPostulados.getSelectedIndex());
 						//(Equipo) listPostulados.getSelectedValue();
 						String e = (String) listPostulados.getSelectedValue();
 						atac.rechazarPostulado(e, (Torneo)cmbTorneos.getSelectedItem());
 						JOptionPane.showMessageDialog(null, "Se ha rechazado el equipo exitosamente");
 						atac.refreshTorneo((Torneo) cmbTorneos.getSelectedItem());
-						}}
-							
-								
-					
+					}}
+
+
+
 				);
 			}
 			{
@@ -148,72 +131,69 @@ public class AdministrarTorneoAmigosFrame extends javax.swing.JInternalFrame {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("btnFinalizar.actionPerformed, event="+evt);
 						dispose();
-						}
+					}
 				});
 			}
 			{
-//				ComboBoxModel cmbTorneosModel = 
-//					new DefaultComboBoxModel(
-//							new String[] { "Item One", "Item Two" });
-//				//cmbTorneos.setModel(arg0)
+
 				cmbTorneos = new JComboBox(atac.cargarTorneosCreados());
 				cmbTorneos.setSelectedItem(null);
 				cmbTorneos.addActionListener(new ActionListener() {	
 					public void actionPerformed(ActionEvent evt) {
-							System.out.println("cmbTorneos.actionPerformed, event="+evt);
-							atac.refreshTorneo((Torneo) cmbTorneos.getSelectedItem());
-					
+						System.out.println("cmbTorneos.actionPerformed, event="+evt);
+						atac.refreshTorneo((Torneo) cmbTorneos.getSelectedItem());
+
 					}
 
-});
+				});
 				//cmbTorneos.setModel(cmbTorneosModel);
 				//cmbTorneos.addItem(anObject)
 			}
 			thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
-				.addContainerGap()
-				.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-				    .addComponent(cmbTorneos, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(lblNombreTorneo, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addGap(21)
-				.addComponent(lblPostulados, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-				.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-				.addGap(18)
-				.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-				    .addComponent(btnAceptar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(btnRechazar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-				.addGap(20)
-				.addComponent(lblParticipantes, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-				.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
-				.addGap(28)
-				.addComponent(btnFinalizar, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addContainerGap(21, Short.MAX_VALUE));
+					.addContainerGap()
+					.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+							.addComponent(cmbTorneos, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblNombreTorneo, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(21)
+							.addComponent(lblPostulados, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+									.addComponent(btnAceptar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+									.addComponent(btnRechazar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+									.addGap(20)
+									.addComponent(lblParticipantes, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
+									.addGap(28)
+									.addComponent(btnFinalizar, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addContainerGap(21, Short.MAX_VALUE));
 			thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
-				.addContainerGap()
-				.addGroup(thisLayout.createParallelGroup()
-				    .addGroup(thisLayout.createSequentialGroup()
-				        .addGroup(thisLayout.createParallelGroup()
-				            .addComponent(lblPostulados, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
-				            .addComponent(lblParticipantes, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
-				            .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				                .addGap(36)
-				                .addComponent(btnRechazar, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)))
-				        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-				        .addGroup(thisLayout.createParallelGroup()
-				            .addGroup(thisLayout.createSequentialGroup()
-				                .addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE))
-				            .addGroup(thisLayout.createSequentialGroup()
-				                .addComponent(btnFinalizar, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE))))
-				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				        .addComponent(lblNombreTorneo, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
-				        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-				        .addComponent(cmbTorneos, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE))
-				    .addGroup(thisLayout.createSequentialGroup()
-				        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 343, GroupLayout.PREFERRED_SIZE))
-				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				        .addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 343, GroupLayout.PREFERRED_SIZE)))
-				.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+					.addContainerGap()
+					.addGroup(thisLayout.createParallelGroup()
+							.addGroup(thisLayout.createSequentialGroup()
+									.addGroup(thisLayout.createParallelGroup()
+											.addComponent(lblPostulados, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
+											.addComponent(lblParticipantes, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
+											.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+													.addGap(36)
+													.addComponent(btnRechazar, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)))
+													.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+													.addGroup(thisLayout.createParallelGroup()
+															.addGroup(thisLayout.createSequentialGroup()
+																	.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE))
+																	.addGroup(thisLayout.createSequentialGroup()
+																			.addComponent(btnFinalizar, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE))))
+																			.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+																					.addComponent(lblNombreTorneo, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+																					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+																					.addComponent(cmbTorneos, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE))
+																					.addGroup(thisLayout.createSequentialGroup()
+																							.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 343, GroupLayout.PREFERRED_SIZE))
+																							.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+																									.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 343, GroupLayout.PREFERRED_SIZE)))
+																									.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 			pack();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -224,17 +204,17 @@ public class AdministrarTorneoAmigosFrame extends javax.swing.JInternalFrame {
 		return listParticipantes;
 	}
 
-//	public void setListParticipantes(JList listParticipantes) {
-//		this.listParticipantes = listParticipantes;
-//	}
+	//	public void setListParticipantes(JList listParticipantes) {
+	//		this.listParticipantes = listParticipantes;
+	//	}
 
 	public JComboBox getCmbTorneos() {
 		return cmbTorneos;
 	}
 
-//	public void setCmbTorneos(JComboBox cmbTorneos) {
-//		this.cmbTorneos = cmbTorneos;
-//	}
+	//	public void setCmbTorneos(JComboBox cmbTorneos) {
+	//		this.cmbTorneos = cmbTorneos;
+	//	}
 
 	public JList getListPostulados() {
 		return listPostulados;
@@ -256,8 +236,8 @@ public class AdministrarTorneoAmigosFrame extends javax.swing.JInternalFrame {
 		this.listParticipantesModel = listParticipantesModel;
 	}
 
-//	public void setListPostulados(JList listPostulados) {
-//		this.listPostulados = listPostulados;
-//	}
+	//	public void setListPostulados(JList listPostulados) {
+	//		this.listPostulados = listPostulados;
+	//	}
 
 }

@@ -35,6 +35,7 @@ public class EquipoJugadorDAO {
 			stmt.execute();
 
 			stmt.close();
+			DAOCM.closeConnection();;
 
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
@@ -78,6 +79,7 @@ public class EquipoJugadorDAO {
 
 			stmt2.close();
 			rs.close();
+			DAOCM.closeConnection();;
 			return ids;
 
 		} catch (SQLException ex) {
@@ -157,6 +159,10 @@ public class EquipoJugadorDAO {
 				}
 			}
 
+			rs.close();
+			stmt.close();
+			DAOCM.closeConnection();;
+
 			return et;
 
 		} catch (SQLException ex) {
@@ -194,6 +200,8 @@ public class EquipoJugadorDAO {
 			stmt.execute(team_killer);
 
 			stmt.close();
+			DAOCM.closeConnection();;
+
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
