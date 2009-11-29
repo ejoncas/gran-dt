@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.LayoutStyle;
 
 import controlador.RegistrarPuntajeJugadorControlador;
 
@@ -24,6 +25,7 @@ import controlador.RegistrarPuntajeJugadorControlador;
  */
 public class RegistrarPuntajeJugadorFrame extends javax.swing.JInternalFrame {
 	private JPanel panel;
+	private JButton btnCancelar;
 	private JScrollPane jScrollPane1;
 	private JButton btnConfirmar;
 	private JTable tableJugadores;
@@ -52,6 +54,16 @@ public class RegistrarPuntajeJugadorFrame extends javax.swing.JInternalFrame {
 					}
 				}
 				{
+					btnCancelar = new JButton();
+					btnCancelar.setText("Cancelar");
+					btnCancelar.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent evt) {
+							System.out.println("btnCancelar.actionPerformed, event="+evt);
+							dispose();
+						}
+					});
+				}
+				{
 					btnConfirmar = new JButton();
 					btnConfirmar.setText("Confirmar");
 					btnConfirmar.addActionListener(new ActionListener() {
@@ -67,15 +79,19 @@ public class RegistrarPuntajeJugadorFrame extends javax.swing.JInternalFrame {
 										.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 374, GroupLayout.PREFERRED_SIZE)
 										.addGap(0, 0, Short.MAX_VALUE))
 										.addGroup(GroupLayout.Alignment.LEADING, panelLayout.createSequentialGroup()
-												.addGap(0, 266, Short.MAX_VALUE)
+												.addGap(0, 148, Short.MAX_VALUE)
+												.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+												.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED, 1, GroupLayout.PREFERRED_SIZE)
 												.addComponent(btnConfirmar, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)))
 												.addContainerGap());
 				panelLayout.setVerticalGroup(panelLayout.createSequentialGroup()
 						.addContainerGap()
 						.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 499, GroupLayout.PREFERRED_SIZE)
-						.addGap(0, 34, Short.MAX_VALUE)
-						.addComponent(btnConfirmar, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap());
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(btnConfirmar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnCancelar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+								.addContainerGap());
 			}
 			thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
 					.addComponent(panel, 0, 548, Short.MAX_VALUE));
