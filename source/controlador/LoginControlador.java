@@ -15,9 +15,8 @@ public class LoginControlador {
 	// devuelve true si es entero, false si no
 	public boolean isInteger(String i){
 		boolean es;
-		int n;
 		try {
-			n = Integer.parseInt(i);
+			Integer.parseInt(i);
 			es = true;
 		} catch(NumberFormatException e) {
 			es = false;
