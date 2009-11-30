@@ -308,4 +308,37 @@ public class JugadorDAO {
 
 	}
 
+	public Vector<String> getAllClubes() {
+		try{
+			//connect to db
+			Connection connection = DAOCM.getConnection();
+			//create statment
+			Statement stmt = connection.createStatement();
+
+			String query = "SELECT equipo FROM Jugador GROUP BY equipo";
+			//execute query
+			ResultSet rs = stmt.executeQuery(query);
+
+			Vector<String> clubes = new Vector<String>();
+
+			//we move to the first row - ResultSet starts "before first"
+			while(rs.next()){
+				clubes.add(rs.getString("equipo"));
+			}
+
+			//we close all the connections
+			stmt.close();
+			rs.close();
+
+			return clubes;
+
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
 }

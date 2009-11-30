@@ -3,8 +3,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -33,6 +36,9 @@ import controlador.JugadorTableModel;
  */
 public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 	private JSeparator separatorJugadores;
+	private JComboBox cmbClub;
+	private JComboBox cmbPosicion;
+	private JLabel lblFiltrar;
 	private JLabel lblMG;
 	private JPanel pnlJugadores;
 	private JScrollPane jScrollPane1;
@@ -104,7 +110,7 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 					GroupLayout pnlJugadoresLayout = new GroupLayout(pnlJugadores);
 					pnlJugadores.setLayout(pnlJugadoresLayout);
 					separatorJugadores.add(pnlJugadores);
-					pnlJugadores.setBounds(11, 21, 460, 441);
+					pnlJugadores.setBounds(11, 21, 460, 558);
 					{
 						jScrollPane1 = new JScrollPane();
 						{
@@ -122,6 +128,30 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 							//tableJugadores.setPreferredSize(new java.awt.Dimension(436, 135));
 
 						}
+					}
+					{
+						lblFiltrar = new JLabel();
+						lblFiltrar.setText("Filtrar por:");
+					}
+					{
+						ComboBoxModel cmbPosicionModel = 
+							new DefaultComboBoxModel(
+									new String[] { "Posicion", "Arquero" , "Delantero", "Volante", "Defensor"});
+						cmbPosicion = new JComboBox();
+						cmbPosicion.setModel(cmbPosicionModel);
+						cmbPosicion.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								cmbPosicionActionPerformed(evt);
+							}
+						});
+					}
+					{
+						cmbClub = new JComboBox();
+						cmbClub.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								cmbClubActionPerformed(evt);
+							}
+						});
 					}
 					{
 						lblMontoG = new JLabel();
@@ -161,35 +191,56 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 									.addGroup(pnlJugadoresLayout.createSequentialGroup()
 											.addGroup(pnlJugadoresLayout.createParallelGroup()
 													.addComponent(lblMontoD, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE)
-													.addComponent(lblMontoG, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE))
-													.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-													.addGroup(pnlJugadoresLayout.createParallelGroup()
-															.addGroup(GroupLayout.Alignment.LEADING, pnlJugadoresLayout.createSequentialGroup()
-																	.addComponent(lblMD, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-																	.addGap(8))
-																	.addComponent(lblMG, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
-																	.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-																	.addGroup(pnlJugadoresLayout.createParallelGroup()
-																			.addGroup(GroupLayout.Alignment.LEADING, pnlJugadoresLayout.createSequentialGroup()
-																					.addComponent(btnAgregarS, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
-																					.addGap(0, 0, Short.MAX_VALUE))
-																					.addComponent(btnAgregarT, GroupLayout.Alignment.LEADING, 0, 159, Short.MAX_VALUE)))
-																					.addComponent(jScrollPane1, GroupLayout.Alignment.LEADING, 0, 439, Short.MAX_VALUE))
-																					.addContainerGap());
+													.addComponent(lblMontoG, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE)
+													.addGroup(GroupLayout.Alignment.LEADING, pnlJugadoresLayout.createSequentialGroup()
+															.addComponent(lblFiltrar, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+															.addGap(59)))
+															.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+															.addGroup(pnlJugadoresLayout.createParallelGroup()
+																	.addGroup(pnlJugadoresLayout.createSequentialGroup()
+																			.addGroup(pnlJugadoresLayout.createParallelGroup()
+																					.addComponent(lblMG, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
+																					.addGroup(GroupLayout.Alignment.LEADING, pnlJugadoresLayout.createSequentialGroup()
+																							.addComponent(lblMD, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+																							.addGap(8)))
+																							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+																							.addGroup(pnlJugadoresLayout.createParallelGroup()
+																									.addGroup(pnlJugadoresLayout.createSequentialGroup()
+																											.addComponent(btnAgregarS, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+																											.addGap(0, 0, Short.MAX_VALUE))
+																											.addComponent(btnAgregarT, GroupLayout.Alignment.LEADING, 0, 159, Short.MAX_VALUE)))
+																											.addGroup(GroupLayout.Alignment.LEADING, pnlJugadoresLayout.createSequentialGroup()
+																													.addGap(7)
+																													.addComponent(cmbPosicion, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+																													.addGap(0, 16, Short.MAX_VALUE)
+																													.addComponent(cmbClub, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE))))
+																													.addComponent(jScrollPane1, GroupLayout.Alignment.LEADING, 0, 439, Short.MAX_VALUE))
+																													.addContainerGap());
 					pnlJugadoresLayout.setVerticalGroup(pnlJugadoresLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(jScrollPane1, 0, 322, Short.MAX_VALUE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+							.addGap(8)
 							.addGroup(pnlJugadoresLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-									.addComponent(btnAgregarT, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-									.addComponent(lblMD, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
-									.addComponent(lblMontoD, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addGroup(pnlJugadoresLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-											.addComponent(btnAgregarS, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-											.addComponent(lblMG, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-											.addComponent(lblMontoG, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-											.addContainerGap());
+									.addComponent(cmbPosicion, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(lblFiltrar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(cmbClub, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addGap(21)
+									.addComponent(jScrollPane1, 0, 436, Short.MAX_VALUE)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+									.addGroup(pnlJugadoresLayout.createParallelGroup()
+											.addGroup(GroupLayout.Alignment.LEADING, pnlJugadoresLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+													.addComponent(btnAgregarT, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+													.addComponent(lblMontoD, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+													.addGroup(GroupLayout.Alignment.LEADING, pnlJugadoresLayout.createSequentialGroup()
+															.addComponent(lblMD, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+															.addGap(7)))
+															.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+															.addGroup(pnlJugadoresLayout.createParallelGroup()
+																	.addGroup(GroupLayout.Alignment.LEADING, pnlJugadoresLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+																			.addComponent(btnAgregarS, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+																			.addComponent(lblMontoG, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+																			.addGroup(GroupLayout.Alignment.LEADING, pnlJugadoresLayout.createSequentialGroup()
+																					.addComponent(lblMG, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+																					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)))
+																					.addContainerGap());
 				}
 			}
 			{
@@ -265,7 +316,7 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 					GroupLayout panelEquipoTLayout = new GroupLayout(panelEquipoT);
 					panelEquipoT.setLayout(panelEquipoTLayout);
 					separatorEquipoT.add(panelEquipoT);
-					panelEquipoT.setBounds(12, 20, 355, 180);
+					panelEquipoT.setBounds(12, 20, 355, 305);
 					{
 						jScrollPane2 = new JScrollPane();
 						{
@@ -298,8 +349,8 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 											.addContainerGap());
 					panelEquipoTLayout.setVerticalGroup(panelEquipoTLayout.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(jScrollPane2, 0, 121, Short.MAX_VALUE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, GroupLayout.PREFERRED_SIZE)
+							.addComponent(jScrollPane2, 0, 248, Short.MAX_VALUE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED, 1, GroupLayout.PREFERRED_SIZE)
 							.addComponent(btnQuitarT, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap());
 				}
@@ -308,14 +359,14 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 					.addContainerGap()
 					.addGroup(thisLayout.createParallelGroup()
 							.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-									.addComponent(separatorEquipoT, GroupLayout.PREFERRED_SIZE, 217, GroupLayout.PREFERRED_SIZE)
+									.addComponent(separatorEquipoT, 0, 342, Short.MAX_VALUE)
 									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-									.addComponent(separatorEquipoS, 0, 215, Short.MAX_VALUE)
+									.addComponent(separatorEquipoS, 0, 208, Short.MAX_VALUE)
 									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 									.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 											.addComponent(btnCancelar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 											.addComponent(btnConfirmar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)))
-											.addComponent(separatorJugadores, GroupLayout.Alignment.LEADING, 0, 478, Short.MAX_VALUE))
+											.addComponent(separatorJugadores, GroupLayout.Alignment.LEADING, 0, 596, Short.MAX_VALUE))
 											.addContainerGap());
 			thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
 					.addContainerGap()
@@ -427,6 +478,24 @@ public class ArmarEquipoFrame extends javax.swing.JInternalFrame {
 				this.dispose();
 		}
 
+	}
+
+	public JComboBox getCmbClub() {
+		return cmbClub;
+	}
+
+	public JComboBox getCmbPosicion() {
+		return cmbPosicion;
+	}
+
+	private void cmbPosicionActionPerformed(ActionEvent evt) {
+		System.out.println("cmbPosicion.actionPerformed, event="+evt);
+		this.aec.procesarFiltros((String)cmbPosicion.getSelectedItem(), (String) cmbClub.getSelectedItem());
+	}
+
+	private void cmbClubActionPerformed(ActionEvent evt) {
+		System.out.println("cmbClub.actionPerformed, event="+evt);
+		this.aec.procesarFiltros((String)cmbPosicion.getSelectedItem(), (String) cmbClub.getSelectedItem());
 	}
 
 }

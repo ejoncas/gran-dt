@@ -71,6 +71,11 @@ public class JugadorTableModel extends AbstractTableModel {
 		return datalist;
 	}
 
+	public void cleanDatalist(){
+		this.datalist.removeAllElements();
+		this.fireTableDataChanged();
+	}
+
 	@Override
 	public String getColumnName(int col){
 		return columnNames[col];
