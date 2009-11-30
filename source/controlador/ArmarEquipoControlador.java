@@ -2,6 +2,8 @@ package controlador;
 
 import java.util.Vector;
 
+import javax.swing.DefaultComboBoxModel;
+
 import logica.Arquero;
 import logica.Defensor;
 import logica.Delantero;
@@ -23,6 +25,10 @@ public class ArmarEquipoControlador {
 	private Vector<Jugador> suplentes;
 	private float montoGastado;
 	private float montoDisponible;
+	private JugadorTableModel jug ;
+	private JugadorTableModel et;
+	private JugadorTableModel es;
+
 
 	public ArmarEquipoControlador() {
 		super();
@@ -58,9 +64,10 @@ public class ArmarEquipoControlador {
 		//aca a disponibles habria que sacarle los que ya tiene
 		//limpiamos los disponibles de los que el jugador ya tiene
 		this.limpiarDisponibles();
-		JugadorTableModel jug = new JugadorTableModel(this.disponibles);
-		JugadorTableModel et = null;
-		JugadorTableModel es = null;
+		//creamos los disponibles
+		jug = new JugadorTableModel(this.disponibles);
+		et = null;
+		es = null;
 		if(!this.titulares.isEmpty())
 			et = new JugadorTableModel(this.titulares);
 		else
@@ -74,6 +81,12 @@ public class ArmarEquipoControlador {
 		this.frame = new ArmarEquipoFrame(jug, et, es);
 		//le seteamos esta misma clase como controlador
 		this.frame.setControlador(this);
+
+		//Seteamos el combo de los clubes
+		Vector<String> clubes= this.logica.getAdminDAO().obtenerClubes();
+		clubes.add(0, "Clubes");
+		DefaultComboBoxModel cmb = new DefaultComboBoxModel(clubes);
+		this.frame.getCmbClub().setModel(cmb);
 		//seteamos los montos iniciales
 		this.frame.getLblMD().setText(this.getMontoDisponibleString());
 		this.frame.getLblMG().setText(this.getMontoGastadoString());
@@ -297,6 +310,46 @@ public class ArmarEquipoControlador {
 	private void limpiarDisponibles(){
 		this.disponibles.removeAll(this.titulares);
 		this.disponibles.removeAll(this.suplentes);
+	}
+
+	public void procesarFiltros(String pos, String club) {
+
+		//limpiamos el modelo de tabla por los posibles filtros aplicados anteriormente
+		jug.cleanDatalist();
+		//ponemos todos los jugadores disponibles
+		jug.addJugadorList(disponibles);
+
+		Vector<Jugador> jugTable = jug.getDatalist();
+		//los filtramos
+		if(pos.equals("Arquero"))
+			for(Jugador j : this.disponibles){
+				if(!j.getPosicion().equals("ARQ"))
+					jugTable.remove(j);
+			}
+		if(pos.equals("Volante"))
+			for(Jugador j : this.disponibles){
+				if(!j.getPosicion().equals("VOL"))
+					jugTable.remove(j);
+			}
+		if(pos.equals("Defensor"))
+			for(Jugador j : this.disponibles){
+				if(!j.getPosicion().equals("DEF"))
+					jugTable.remove(j);
+			}
+		if(pos.equals("Delantero"))
+			for(Jugador j : this.disponibles){
+				if(!j.getPosicion().equals("DEL"))
+					jugTable.remove(j);
+			}
+		//Filtramos los clubes
+		if(!club.equals("Clubes"))
+			for(Jugador j : this.disponibles){
+				if(!j.getEquipo().equals(club))
+					jugTable.remove(j);
+			}
+
+		jug.fireTableDataChanged();
+
 	}
 
 }
